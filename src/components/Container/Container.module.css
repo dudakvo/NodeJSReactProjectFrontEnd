@@ -1,0 +1,25 @@
+@media screen and (min-width: 320px) {
+    .Container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 320px;
+  }
+}
+
+  @media screen and (min-width: 768px) {
+     .Container{
+    width: 768px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  }
+
+  @media screen and (min-width: 1260px) {
+    .Container{
+    width: 1260px;
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+  }
