@@ -1,13 +1,25 @@
-import Container from './components/Container';
+import React, { lazy, Suspense } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
+import routes from './routes';
+
+const ProjectsView = lazy(() =>
+  import('./views/ProjectsView' /* webpackChunkName: "ProjectsView" */),
+);
+const ProjectDetailsView = lazy(() =>
+  import(
+    './views/ProjectDetailsView' /* webpackChunkName: "ProjectDetailsView" */
+  ),
+);
 
 function App() {
   return (
-    (
-    <Container>
-          
-      </Container>
-  )
+    <Suspense fallback={<p>loading...</p>}>
+      <Switch>
+        <Route exact path={routes.projects} component={ProjectsView} />
+        <Route path={routes.projectDetails} component={ProjectDetailsView} />
+      </Switch>
+    </Suspense>
   );
 }
 
