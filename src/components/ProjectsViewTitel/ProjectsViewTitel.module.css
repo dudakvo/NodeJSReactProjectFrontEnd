@@ -11,12 +11,14 @@
   line-height: 44px;
 }
 .button_add_project {
-  position: absolute;
+  position: fixed;
+  z-index: 2;
   bottom: 20px;
   right: 20px;
   border: none;
   padding: 0;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .button_plus {

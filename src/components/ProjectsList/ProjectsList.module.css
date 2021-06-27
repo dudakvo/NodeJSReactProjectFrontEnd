@@ -12,7 +12,7 @@
   padding: 10px;
   border-radius: 5px;
 }
-.project > h3 {
+.project_titel {
   margin-top: 0;
   margin-bottom: 6px;
   font-weight: 800;
@@ -22,7 +22,7 @@
   color: #ffffff;
 }
 
-.project > p {
+.project_text {
   font-size: 10px;
   line-height: 12px;
   margin: 0;
@@ -38,6 +38,7 @@
   background: #ffffff;
   border: none;
   border-radius: 50%;
+  cursor: pointer;
 }
 .button_plus {
   width: 16px;
@@ -75,7 +76,7 @@
     width: 18px;
     height: 18px;
   }
-  .project > h3 {
+  .project_titel {
     margin-bottom: 10px;
 
     font-size: 16px;
@@ -84,7 +85,7 @@
     font-size: 26px;
     line-height: 32px;
   }
-  .project > p {
+  .project_text {
     font-size: 14px;
     line-height: 17px;
   }
