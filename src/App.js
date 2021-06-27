@@ -1,4 +1,8 @@
 import Container from './components/Container';
+
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+
 import Header from './components/Header';
 
 import React, { lazy, Suspense } from 'react';
@@ -21,6 +25,12 @@ function App() {
       <Container>
         <Header />
       </Container>
+
+      <Container>
+        <RegisterPage />
+        <LoginPage />
+      </Container>
+
       <Suspense fallback={<p>loading...</p>}>
         <Switch>
           <Route exact path={routes.projects} component={ProjectsView} />
