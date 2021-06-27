@@ -1,3 +1,6 @@
+import Container from './components/Container';
+import Header from './components/Header';
+
 import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
@@ -14,12 +17,17 @@ const ProjectDetailsView = lazy(() =>
 
 function App() {
   return (
-    <Suspense fallback={<p>loading...</p>}>
-      <Switch>
-        <Route exact path={routes.projects} component={ProjectsView} />
-        <Route path={routes.projectDetails} component={ProjectDetailsView} />
-      </Switch>
-    </Suspense>
+    <>
+      <Container>
+        <Header />
+      </Container>
+      <Suspense fallback={<p>loading...</p>}>
+        <Switch>
+          <Route exact path={routes.projects} component={ProjectsView} />
+          <Route path={routes.projectDetails} component={ProjectDetailsView} />
+        </Switch>
+      </Suspense>
+    </>
   );
 }
 
