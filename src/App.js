@@ -4,11 +4,11 @@ import { Switch, Route } from 'react-router-dom';
 import routes from './routes';
 
 const ProjectsView = lazy(() =>
-  import('./views/ProjectsView' /* webpackChunkName: "ProjectsView" */),
+  import('./pages/ProjectsView' /* webpackChunkName: "ProjectsView" */),
 );
 const ProjectDetailsView = lazy(() =>
   import(
-    './views/ProjectDetailsView' /* webpackChunkName: "ProjectDetailsView" */
+    './pages/ProjectDetailsView' /* webpackChunkName: "ProjectDetailsView" */
   ),
 );
 
