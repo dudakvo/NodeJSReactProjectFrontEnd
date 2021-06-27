@@ -1,6 +1,7 @@
 import SectionView from '../components/SectionView';
 import ProjectsList from '../components/ProjectsList';
 import ProjectsViewTitel from '../components/ProjectsViewTitel';
+import Container from '../components/Container';
 const projects = [
   { id: 1, name: 'project1', description: 'Короткий опис проекту...' },
   { id: 2, name: 'project2', description: 'Короткий опис проекту...' },
@@ -20,8 +21,10 @@ const projects = [
 const ProjectsView = () => {
   return (
     <SectionView>
-      <ProjectsViewTitel />
-      <ProjectsList projects={projects} />
+      <Container>
+        <ProjectsViewTitel />
+        <ProjectsList projects={projects} />
+      </Container>
     </SectionView>
   );
 };
