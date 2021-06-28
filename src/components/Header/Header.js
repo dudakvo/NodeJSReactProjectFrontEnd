@@ -1,12 +1,14 @@
 import React from 'react';
 import styles from './Header.module.css';
-import logo from '../Header/Logo.png';
 import UserMenu from '../UserMenu';
+import sprite from '../../sprite.svg';
 
 const Header = () => {
   return (
     <header className={styles.header}>
-      <img src={logo} alt="logo" className={styles.logo} />
+      <svg className={styles.logo}>
+        <use href={sprite + '#icon-logo'}></use>
+      </svg>
       <UserMenu />
     </header>
   );
