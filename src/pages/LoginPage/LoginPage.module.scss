@@ -1,0 +1,129 @@
+.form {
+  font-family: Montserrat;
+  text-align: center;
+  margin: 0 auto;
+  width: 320px;
+  height: 508px;
+  background: #fafafa;
+  box-shadow: 0 6px 26px rgb(0 5 97 / 10%);
+  border-radius: 5px;
+  padding: 47px 20px 79px;
+
+  .title {
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+    letter-spacing: 0.04em;
+    color: #181c27;
+  }
+
+  .label {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.04em;
+    color: rgba(24, 28, 39, 0.6);
+  }
+
+  .input {
+    font: inherit;
+    color: rgba(24, 28, 39, 0.6);
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid rgba(24, 28, 39, 0.2);
+    height: 20px;
+    margin-bottom: 38px;
+    display: block;
+    padding: 9px 4px;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+    letter-spacing: inherit;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 11px 44px;
+    margin: 0 auto 20px;
+
+    background: #ff6b08;
+    color: #ffffff;
+
+    box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
+    border: 0;
+    border-radius: 25px;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+
+    text-align: center;
+    letter-spacing: 0.04em;
+
+    transition: all 0.25s linear;
+
+    &:hover {
+      background: #ffffff;
+      color: #ff6b08;
+    }
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.04em;
+    color: rgba(24, 28, 39, 0.6);
+
+    .link {
+      color: rgba(24, 28, 39, 0.6);
+      text-decoration: underline;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .bgCircles {
+    background-color: #e5e5e5;
+    background-image: url('../img/bg-tablet.png');
+    padding: 114px 100px 292px;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+  }
+
+  .form {
+    width: 570px;
+    height: 538px;
+    padding: 61px 71px 59px 70px;
+
+    .title {
+      font-size: 36px;
+      line-height: 44px;
+    }
+
+    .label {
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    .input {
+      height: 30px;
+      padding: 6px 0 7px;
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bgCircles {
+    background-image: url('../img/bg-desktop.png');
+    padding: 56px 355px 110px;
+  }
+}
