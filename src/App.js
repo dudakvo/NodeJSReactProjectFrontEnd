@@ -5,10 +5,12 @@ import Container from './components/Container';
 
 import Header from './components/Header';
 
-import RegisterPage from './pages/RegisterPage';
+// import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 
 import routes from './routes';
+
+import Modal from './components/HOC/ModalHOC';
 
 const ProjectsView = lazy(() =>
   import('./pages/ProjectsView' /* webpackChunkName: "ProjectsView" */),
@@ -24,11 +26,12 @@ function App() {
     <>
       <Container>
         <Header />
+        <Modal data="111" />
       </Container>
 
       <Suspense fallback={<p>loading...</p>}>
         <Switch>
-          <Route exact path={routes.register} component={RegisterPage} />
+          {/* <Route exact path={routes.register} component={RegisterPage} /> */}
           <Route exact path={routes.login} component={LoginPage} />
           <Route exact path={routes.projects} component={ProjectsView} />
           <Route path={routes.projectDetails} component={ProjectDetailsView} />
