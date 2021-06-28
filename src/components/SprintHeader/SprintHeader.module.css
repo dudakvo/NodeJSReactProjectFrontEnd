@@ -1,0 +1,116 @@
+.conteiner {
+    max-width: 1200px;
+    margin-bottom: 30px;
+}
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+.title_wraper {
+    max-width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.name {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+
+    color: #181C27;
+    margin-right: 40px;
+}
+.change_btn {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer; 
+
+}
+.add_task_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.add_task_btn {
+    display: block;
+    width: 44px;
+    height: 44px;
+    box-shadow: 0 3px 4px rgb(255 107 8 / 30%);
+    border-radius: 25px;
+    border: none;
+    margin-right: 20px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    outline: none;
+    transition: all .3s linear;
+} 
+.button_plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--button-color);
+  }
+  
+  .plus {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+  }
+.add_task_title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+
+    color: #181C27;
+}
+
+/* SprintTableTitle */
+
+.table_title_container {
+    max-width: 1200px;
+    position: relative;
+    border-bottom: 1px solid rgba(24,28,39,.1);
+    padding: 10px 0 10px;
+
+}
+.table_title_list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+}
+.table_title_item {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: 0.04em;
+
+    color: #181C27;
+
+} 
+
