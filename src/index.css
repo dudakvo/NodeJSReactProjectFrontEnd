@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 :root {
-  --main-text-color: #181C27;
-  --button-color: #FF6B08;
+  --main-text-color: #181c27;
+  --button-color: #ff6b08;
   --main-font: 'Montserrat', sans-serif;
+  --label-text-color: rgba(24, 28, 39, 0.6);
 }
 
 img {
@@ -10,15 +11,19 @@ img {
   max-width: 100%;
   height: auto;
 }
-
+a {
+  text-decoration: none;
+  color: aliceblue;
+}
 h1,
-h2 {
+h2,
+h3 {
   margin: 0;
 }
 
 body {
- font-family:  var(--main-font);;
- color:  var(--main-text-color);
+  font-family: var(--main-font);
+  color: var(--main-text-color);
 }
 
 ul {
