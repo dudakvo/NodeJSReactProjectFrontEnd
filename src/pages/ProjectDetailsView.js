@@ -1,11 +1,17 @@
 import Container from '../components/Container';
 import SectionView from '../components/SectionView';
+import Sidebar from '../components/Sidebar';
+import Project from '../components/Project';
+import Wrapper from '../components/Wrapper';
 
-const ProjectDetailsView = () => {
+const ProjectDetailsView = ({ history, location }) => {
   return (
     <SectionView>
       <Container>
-        <p>details</p>
+        <Wrapper>
+          <Sidebar history={history} location={location} />
+          <Project />
+        </Wrapper>
       </Container>
     </SectionView>
   );
