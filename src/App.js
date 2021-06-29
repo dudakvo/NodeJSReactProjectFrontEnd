@@ -2,9 +2,9 @@ import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Container from './components/Container';
-
+import TaskPage from './pages/TaskPage';
+import ModalTaskPages from './components/ModalTaskPages/ModalTaskPages';
 import Header from './components/Header';
-
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 
@@ -20,6 +20,7 @@ const ProjectDetailsView = lazy(() =>
 );
 
 function App() {
+  // const isOpen = Boolean(1);
   return (
     <>
       <Container>
@@ -34,6 +35,12 @@ function App() {
           <Route path={routes.projectDetails} component={ProjectDetailsView} />
         </Switch>
       </Suspense>
+
+      <Container>
+        <ModalTaskPages>
+          <TaskPage />
+        </ModalTaskPages>
+      </Container>
     </>
   );
 }
