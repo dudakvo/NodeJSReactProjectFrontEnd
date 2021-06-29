@@ -51,6 +51,13 @@ const SprintTaskList = () => {
                     </li>
                 ))}
             </ul>
+            <button type = 'button' className = {s.graphic_btn}>
+                    <div className={s.graphic_icon}>
+                        <svg className={s.graphic_icon_svg}>
+                            <use href={sprite + '#icon-analytics'} />
+                        </svg>
+                    </div>
+                </button>
         </div>
     )
 }

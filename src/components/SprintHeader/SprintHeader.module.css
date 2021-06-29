@@ -1,60 +1,74 @@
-.conteiner {
+/* .conteiner {
     max-width: 1200px;
     margin-bottom: 30px;
-}
+} */
+
 .wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
+    
 }
 .title_wraper {
-    max-width: 400px;
+    /* max-width: 400px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .name {
-    font-family: Montserrat;
+    font-family: var(--main-font);
     font-style: normal;
     font-weight: 500;
-    font-size: 36px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
+    font-size: 26px;
+    line-height: 32px;
     letter-spacing: 0.04em;
-
-    color: #181C27;
-    margin-right: 40px;
+    color: --main-text-color;
+    margin-right: 20px;
 }
+@media screen and (min-width: 768px) {
+    .name {
+        font-size: 36px;
+        line-height: 44px;
+        align-items: center;
+        letter-spacing: 0.04em;
+        margin-right: 40px;
+    }
+}
+
+
+/* Change-btn */
 .change_btn {
+    border: none;
+    background-color: #e5e5e5;
+}
+.change_btn_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.change_btn_icon {
     width: 20px;
     height: 20px;
-    border: none;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer; 
-
+    fill: #A6A6A6;
 }
 .add_task_wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+/* add task btn */
 .add_task_btn {
-    display: block;
-    width: 44px;
-    height: 44px;
-    box-shadow: 0 3px 4px rgb(255 107 8 / 30%);
-    border-radius: 25px;
+    position: fixed;
+    z-index: 2;
+    bottom: 20px;
+    right: 20px;
     border: none;
-    margin-right: 20px;
-    background-repeat: no-repeat;
+    padding: 0;
+    border-radius: 50%;
     cursor: pointer;
-
-    outline: none;
-    transition: all .3s linear;
 } 
 .button_plus {
     display: flex;
@@ -66,34 +80,56 @@
     background-color: var(--button-color);
   }
   
-  .plus {
+  .icon_plus {
     width: 20px;
     height: 20px;
     fill: #fff;
   }
-.add_task_title {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 22px;
+  .add_task_title {
+    display: none;
+}
+  @media screen and (min-width: 768px) {
+    .add_task_btn  {
+        position: relative;
+        bottom: 0;
+        right: 0;
+      }
 
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.04em;
-
-    color: #181C27;
+  }
+  @media screen and (min-width: 1280px) {
+    .add_task_title {
+        font-family: var(--main-font);
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.04em;
+    
+        color: #121316;
+    }
 }
 
-/* SprintTableTitle */
 
+
+/* SprintTableTitle */
+@media screen and (max-width: 767px){
+    .table_title_container {
+        display: none;
+    }
+}
 .table_title_container {
-    max-width: 1200px;
     position: relative;
     border-bottom: 1px solid rgba(24,28,39,.1);
     padding: 10px 0 10px;
-
 }
+@media screen and (min-widht: 768px) {
+    .table_title_container {
+         max-width: 869px;
+    }
+}
+
 .table_title_list{
     display: flex;
     justify-content: space-between;
@@ -101,16 +137,13 @@
     margin-right: 10px;
 }
 .table_title_item {
-    font-family: Montserrat;
+    font-family: var(--main-font);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
-    /* identical to box height */
-
     letter-spacing: 0.04em;
-
-    color: #181C27;
+    color: --main-text-color;
 
 } 
 

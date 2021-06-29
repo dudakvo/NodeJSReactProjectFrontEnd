@@ -1,8 +1,19 @@
+@media screen and ( max-width: 767px) {
+    .sprint_main_section{
+    display: none;
+    }
+}
 .sprint_conteiner {
     display: flex;
     background-color: #e5e5e5;
-    
 }
+
+/* @media screen and ( max-width: 767px) {
+    .sprint_conteiner {
+        display: flex;
+    } */
+
 .conteiner {
-    padding-left: 20px;
+    position: relative;
+    padding: 20px;
 }

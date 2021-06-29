@@ -1,10 +1,8 @@
+
 .sidebar_wrapper {
-    width: 255px;
     height: 100%;
     text-align: left;
     border-right: 1px solid rgba(24, 28, 39, 0.1);
-    
-
 }
 .sidebar_list {
     width: 170px;
@@ -21,20 +19,17 @@
     align-items: center;
     hyphens: auto;
     overflow-wrap: break-word;
-
 }
+/* add sprint btn */
 .add_sprint_btn {
-    display: block;
-    width: 44px;
-    height: 44px;
-    box-shadow: 0 3px 4px rgb(255 107 8 / 30%);
-    border-radius: 25px;
-    border: none;
-    background-repeat: no-repeat;
-    cursor: pointer;
-
-    outline: none;
-    transition: all .3s linear;
+  position: relative;
+  z-index: 2;
+  bottom: 20px;
+  right: 20px;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
 } 
 .button_plus {
     display: flex;
@@ -45,16 +40,23 @@
     border-radius: 50%;
     background-color: var(--button-color);
   }
-  
-  .plus {
+  .icon_plus {
     width: 20px;
     height: 20px;
     fill: #fff;
   }
   .back_wrapper {
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
+  }
+  /* Btn show sprint */
+  .btn_show_sprint {
+    position: relative;
+    bottom: 20px;
+    right: 20px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background-color: #e5e5e5;
   }
   .button_back {
     display: flex;
@@ -64,6 +66,7 @@
     padding: 0;
     width: 44px;
     height: 44px;
+    
   }
   .icon_back {
     width: 30px;
