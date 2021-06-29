@@ -1,0 +1,45 @@
+.project {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.project_title {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: 0.04em;
+
+  color: #181c27;
+}
+.button {
+  border: none;
+  background-color: transparent;
+  margin-left: 20px;
+}
+.svg {
+  width: 20px;
+  height: 20px;
+  fill: #a6a6a6;
+}
+
+.input {
+  width: 150px;
+  background-color: transparent;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  outline: none;
+}
+
+.button_add_people {
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+}
+.text {
+  margin-left: 10px;
+  text-decoration: underline;
+}
