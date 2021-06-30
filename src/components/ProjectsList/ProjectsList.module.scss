@@ -48,6 +48,10 @@
 .button_plus {
   width: 16px;
   height: 16px;
+  transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1);
+  &:hover {
+    transform: rotateZ(360deg);
+  }
 }
 .item:nth-child(3n + 1) > .project {
   background-color: #8c72df;

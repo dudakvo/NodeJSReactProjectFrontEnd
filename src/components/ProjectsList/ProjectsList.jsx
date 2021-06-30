@@ -22,13 +22,16 @@ const projects = [
 
 const ProjectsList = () => {
   const handleDeleteProject = e => {
-    if (
-      e.target.tagName === 'BUTTON' ||
-      e.target.tagName === 'svg' ||
-      e.target.tagName === 'use'
-    ) {
-      console.log('delete project');
-    }
+    e.preventDefault();
+
+    // if (
+    //   e.target.tagName === 'BUTTON' ||
+    //   e.target.tagName === 'svg' ||
+    //   e.target.tagName === 'use'
+    // ) {
+
+    // }
+    console.log('delete project');
   };
   return (
     <ul className={styles.list}>

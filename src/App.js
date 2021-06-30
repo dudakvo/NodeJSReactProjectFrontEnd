@@ -1,20 +1,20 @@
-import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
-
+import React, { useEffect, lazy, Suspense } from 'react';
+import { useDispatch } from 'react-redux';
 import Container from './components/Container';
 import TaskPage from './pages/TaskPage';
 import ModalTaskPages from './components/ModalTaskPages/ModalTaskPages';
 import Header from './components/Header';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
-import Header from './components/Header';
 
-import React, { useEffect, lazy, Suspense } from 'react';
-import { useDispatch } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
 import authOperations from './redux/auth/auth-operations';
 import routes from './routes';
 
+const LoginPage = lazy(() =>
+  import('./pages/LoginPage' /* webpackChunkName: "LoginPage" */),
+);
+const RegisterPage = lazy(() =>
+  import('./pages/RegisterPage' /* webpackChunkName: "RegisterPage" */),
+);
 const ProjectsView = lazy(() =>
   import('./pages/ProjectsView' /* webpackChunkName: "ProjectsView" */),
 );
