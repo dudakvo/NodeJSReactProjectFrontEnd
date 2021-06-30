@@ -5,9 +5,10 @@ import LoginPage from './pages/LoginPage';
 
 import Header from './components/Header';
 
-import React, { lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
+import { useDispatch} from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-
+import  authOperations from './redux/auth/auth-operations';
 import routes from './routes';
 
 const ProjectsView = lazy(() =>
@@ -20,11 +21,17 @@ const ProjectDetailsView = lazy(() =>
 );
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.getCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
-      <Container>
+      
         <Header />
-      </Container>
+      
 
       <Container>
         <RegisterPage />

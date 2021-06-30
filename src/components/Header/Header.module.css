@@ -1,10 +1,13 @@
+.section{
+ border-bottom: 1px solid rgba(24, 28, 39, 0.1);
+}
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-bottom: 1px solid rgba(24, 28, 39, 0.1);
 }
 
 .logo {
