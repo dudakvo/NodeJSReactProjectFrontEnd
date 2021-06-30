@@ -1,0 +1,72 @@
+.modalForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalLabelTask {
+  padding-top: 50px;
+  padding-left: 50px;
+}
+
+.modalInputTask,
+.modalInputNumber {
+  width: 428px;
+  font-family: var(--main-font);
+  font-size: 18px;
+  line-height: 0.82;
+  letter-spacing: 0.04em;
+  color: rgba(24, 28, 39, 0.6);
+  border: 1px solid rgba(24, 28, 39, 0.2);
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+}
+
+.modalLabelNumber {
+  padding-top: 50px;
+  padding-left: 50px;
+  margin-bottom: 40px;
+}
+
+.modalInputNumber {
+  width: 220px;
+}
+
+.modalButtonBlock {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+}
+
+.modalButtonSubmit {
+  margin-bottom: 20px;
+  padding: 11px 44px;
+  background: var(--button-color);
+  /* width: 154px; */
+  border: none;
+  display: block;
+
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+  box-shadow: 0px 3px 4px rgba(255, 107, 8, 0.3);
+  border-radius: 25px;
+}
+
+.modalButtonReset {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  font-family: var(--main-font);
+  font-size: 18px;
+  line-height: 0.82;
+  letter-spacing: 0.04em;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 1px solid rgba(24, 28, 39, 0.6);
+  border-left: 0px;
+  background-color: inherit;
+}
