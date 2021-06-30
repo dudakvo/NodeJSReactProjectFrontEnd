@@ -34,7 +34,7 @@ const ProjectsList = () => {
     <ul className={styles.list}>
       {projects.map(item => (
         <li className={styles.project} key={item.id}>
-          <Link to={`${routes.projects}/${item.id}`}>
+          <Link to={`${routes.projects}${item.id}`}>
             <h3 className={styles.project_titel}>{item.name}</h3>
             <p className={styles.project_text}>{item.description}</p>
           </Link>

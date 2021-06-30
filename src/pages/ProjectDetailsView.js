@@ -4,13 +4,13 @@ import Sidebar from '../components/Sidebar';
 import Project from '../components/Project';
 import Wrapper from '../components/Wrapper';
 
-const ProjectDetailsView = ({ history, location }) => {
+const ProjectDetailsView = props => {
   return (
     <SectionView>
       <Container>
         <Wrapper>
-          <Sidebar history={history} location={location} />
-          <Project />
+          <Sidebar {...props} />
+          <Project {...props} />
         </Wrapper>
       </Container>
     </SectionView>
