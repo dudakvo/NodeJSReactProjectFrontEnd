@@ -4,7 +4,7 @@
     align-items: center;
 } 
 
-.name {
+.email {
     font-size: 14px;
     font-weight: 600;
     line-height: 1.2;
@@ -45,7 +45,7 @@
     color: rgba(24, 28, 39, 0.6);
     background-color: transparent;
 }
-.name {
+.email {
     margin-right: 77px;
 }
 .text {
