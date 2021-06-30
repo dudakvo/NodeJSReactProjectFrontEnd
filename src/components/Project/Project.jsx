@@ -54,7 +54,8 @@ const Project = ({ match, location }) => {
   const handleAddSprint = () => {
     console.log('add sprint');
   };
-  const hendleDeleteSprint = () => {
+  const hendleDeleteSprint = e => {
+    e.preventDefault();
     console.log('delete sprint');
   };
 

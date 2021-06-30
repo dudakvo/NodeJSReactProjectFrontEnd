@@ -36,7 +36,7 @@ const Sidebar = ({ history }) => {
           <li className={styles.item} key={item.id}>
             <NavLink
               exact
-              to={`${routes.projects}${item.id}`}
+              to={`${routes.projects}/${item.id}`}
               className={styles.link}
               activeClassName={styles.isActive}
             >
