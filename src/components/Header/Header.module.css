@@ -1,27 +1,27 @@
-.section{
- border-bottom: 1px solid rgba(24, 28, 39, 0.1);
+.section {
+  border-bottom: 1px solid rgba(24, 28, 39, 0.1);
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .logo {
-    width: 100px;
-    height: 30px;
+  width: 100px;
+  height: 30px;
 }
 
 @media screen and (min-width: 768px) {
-.header {
-   padding-top: 19px;
-   padding-bottom: 19px; 
-}   
-.logo {
+  .header {
+    padding-top: 19px;
+    padding-bottom: 19px;
+  }
+  .logo {
     width: 140px;
     height: 42px;
-}
+  }
 }
