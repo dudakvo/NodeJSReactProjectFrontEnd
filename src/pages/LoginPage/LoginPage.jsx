@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { authOperations } from '../../redux/auth';
 import { NavLink } from 'react-router-dom';
+import routes from '../../routes';
 import {
   bgCircles,
   form,
@@ -69,7 +70,7 @@ export default function LoginPage() {
         </button>
         <p>
           No account?
-          <NavLink className={link} to="/" exact>
+          <NavLink className={link} to={routes.register} exact>
             Register
           </NavLink>
         </p>
