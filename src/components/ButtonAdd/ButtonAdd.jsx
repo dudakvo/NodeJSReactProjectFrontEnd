@@ -1,9 +1,13 @@
 import sprite from '../../sprite.svg';
 import styles from './ButtonAdd.module.scss';
 
-const ButtonAdd = ({ onClick, text }) => {
+const ButtonAdd = ({ onClick, text, style }) => {
   return (
-    <button type="button" className={styles.button_add} onClick={onClick}>
+    <button
+      type="button"
+      className={[styles.button_add, style].join('')}
+      onClick={onClick}
+    >
       <div className={styles.button_plus}>
         <svg className={styles.plus}>
           <use href={sprite + '#icon-plus'} />

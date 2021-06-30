@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import styles from './Project.module.scss';
 import sprite from '../../sprite.svg';
 import ButtonAdd from '../ButtonAdd';
@@ -36,7 +36,7 @@ const project = {
   ],
 };
 
-const Project = () => {
+const Project = ({ match, location }) => {
   const [changePojectName, setChangeProjectName] = useState(false);
   const [projectName, setProjectName] = useState(project.name);
 
@@ -108,29 +108,31 @@ const Project = () => {
 
       <ul className={styles.list}>
         {project.sprints.map(item => (
-          <li className={styles.sprint} key={item.id}>
-            <h3 className={styles.titel}>{item.sprint_name}</h3>
-            <div className={styles.time_block}>
-              <p>Start date</p>
-              <p>{item.date_start}</p>
-            </div>
-            <div className={styles.time_block}>
-              <p>End date</p>
-              <p>{item.date_end}</p>
-            </div>
-            <div className={styles.time_block}>
-              <p>duration</p>
-              <p>{item.date_start + item.date_end}</p>
-            </div>
-            <button
-              type="button"
-              onClick={hendleDeleteSprint}
-              className={styles.button_delete}
-            >
-              <svg className={styles.svg}>
-                <use href={sprite + '#icon-delete'} />
-              </svg>
-            </button>
+          <li key={item.id}>
+            <Link to={`${match.url}/${item.id}`} className={styles.sprint}>
+              <h3 className={styles.title}>{item.sprint_name}</h3>
+              <div className={styles.time_block}>
+                <p>Start date</p>
+                <p>{item.date_start}</p>
+              </div>
+              <div className={styles.time_block}>
+                <p>End date</p>
+                <p>{item.date_end}</p>
+              </div>
+              <div className={styles.time_block}>
+                <p>duration</p>
+                <p>{item.date_start + item.date_end}</p>
+              </div>
+              <button
+                type="button"
+                onClick={hendleDeleteSprint}
+                className={styles.button_delete}
+              >
+                <svg className={styles.svg}>
+                  <use href={sprite + '#icon-delete'} />
+                </svg>
+              </button>
+            </Link>
           </li>
         ))}
       </ul>

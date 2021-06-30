@@ -23,6 +23,9 @@ const ProjectDetailsView = lazy(() =>
     './pages/ProjectDetailsView' /* webpackChunkName: "ProjectDetailsView" */
   ),
 );
+const SprintView = lazy(() =>
+  import('./pages/SprintView' /* webpackChunkName: "SprintView" */),
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +43,12 @@ function App() {
           <Route exact path={routes.register} component={RegisterPage} />
           <Route exact path={routes.login} component={LoginPage} />
           <Route exact path={routes.projects} component={ProjectsView} />
-          <Route path={routes.projectDetails} component={ProjectDetailsView} />
+          <Route
+            exact
+            path={routes.projectDetails}
+            component={ProjectDetailsView}
+          />
+          <Route exact path={routes.sprint} component={SprintView} />
         </Switch>
       </Suspense>
 
