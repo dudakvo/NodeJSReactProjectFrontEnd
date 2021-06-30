@@ -8,12 +8,11 @@
     background-color: #e5e5e5;
 }
 
-/* @media screen and ( max-width: 767px) {
-    .sprint_conteiner {
-        display: flex;
-    } */
-
+@media screen and ( min-width: 767px) {
+    .conteiner {
+        padding: 20px;
+    }
+}
 .conteiner {
     position: relative;
-    padding: 20px;
 }

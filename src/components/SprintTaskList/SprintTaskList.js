@@ -1,5 +1,5 @@
 import sprite from '../../sprite.svg';
-import s from './SprintTaskList.module.css';
+import s from './SprintTaskList.module.scss';
 
 
 const tasks = [
@@ -32,13 +32,16 @@ const SprintTaskList = () => {
                                 <p>{item.name}</p>
                             </li>
                             <li className = {s.task_details_item }>
+                                <p className={s.hide_title}>Scheduled hours</p>
                                 <p>{item.planned}</p>
                             </li>
                             <li className = {s.task_details_item }>
+                                <p className={s.hide_title}>Spent day</p>
                                 <input type = 'text' value = '0'/>
                             </li>
                             <li className = {s.task_details_item }>
-                            <input type = 'text' value = '0'/>
+                                <p className={s.hide_title}>Hours spent</p>
+                                <p>0</p>
                             </li>
                             <li className = {s.task_details_item }>
                                 <button type = 'button' className ={s.button_del_task}>

@@ -27,8 +27,9 @@ const SprintSidebar = () => {
                             <use href={sprite + '#icon-plus'} />
                         </svg>
                     </div>
+                    <p className = {s.add_sprint_title}>Create a sprint</p>
                 </button>
-                <p className = {s.add_sprint_title}>Create a sprint</p>
+                
             </div> 
         </div>
     )

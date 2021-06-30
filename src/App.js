@@ -21,7 +21,7 @@ const ProjectDetailsView = lazy(() =>
   ),
 );
 const SprintView = lazy(() =>
-  import('./pages/SprintView' /* webpackChunkName: "SprintView" */),
+  import('./pages/SprintView/SprintView' /* webpackChunkName: "SprintView" */),
 );
 
 function App() {
