@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { authOperations } from '../../redux/auth';
 import { NavLink } from 'react-router-dom';
-import { form, label, input, button } from './RegisterPage.module.scss';
+import {
+  bgCircles,
+  form,
+  title,
+  label,
+  input,
+  button,
+  link,
+} from './RegisterPage.module.scss';
 
 export default function RegisterPage() {
   // const dispatch = useDispatch();
@@ -46,10 +54,9 @@ export default function RegisterPage() {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-
+    <div className={bgCircles}>
       <form onSubmit={handleSubmit} className={form} autoComplete="off">
+        <h1 className={title}>Registration</h1>
         <label className={label}>
           E-mail
           <input
@@ -86,10 +93,12 @@ export default function RegisterPage() {
         <button type="submit" className={button}>
           Register
         </button>
-        <p>Do you have an account?</p>
-        <NavLink to="/login" exact>
-          Log in
-        </NavLink>
+        <p>
+          Do you have an account?
+          <NavLink className={link} to="/login" exact>
+            Log in
+          </NavLink>
+        </p>
       </form>
     </div>
   );
