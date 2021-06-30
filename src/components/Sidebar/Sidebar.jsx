@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import ButtonBackspace from '../ButtonBackspace';
 import sprite from '../../sprite.svg';
 
-import styles from './Sidebar.module.css';
+import styles from './Sidebar.module.scss';
 import routes from '../../routes';
 
 const projects = [

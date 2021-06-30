@@ -1,4 +1,4 @@
-import styles from './ProjectsList.module.css';
+import styles from './ProjectsList.module.scss';
 import sprite from '../../sprite.svg';
 import { Link } from 'react-router-dom';
 import routes from '../../routes';
@@ -33,16 +33,17 @@ const ProjectsList = () => {
   return (
     <ul className={styles.list}>
       {projects.map(item => (
-        <li className={styles.project} key={item.id}>
-          <Link to={`${routes.projects}${item.id}`}>
-            <h3 className={styles.project_titel}>{item.name}</h3>
+        <li className={styles.item} key={item.id}>
+          <Link className={styles.project} to={`${routes.projects}${item.id}`}>
+            <h3 className={styles.project_title}>{item.name}</h3>
             <p className={styles.project_text}>{item.description}</p>
+
+            <button type="button" onClick={handleDeleteProject}>
+              <svg className={styles.button_plus}>
+                <use href={sprite + '#icon-delete'} />
+              </svg>
+            </button>
           </Link>
-          <button type="button" onClick={handleDeleteProject}>
-            <svg className={styles.button_plus}>
-              <use href={sprite + '#icon-delete'} />
-            </svg>
-          </button>
         </li>
       ))}
     </ul>

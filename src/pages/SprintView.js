@@ -1,5 +1,14 @@
+import SectionView from '../components/SectionView';
+import Container from '../components/Container';
+
 const SprintView = () => {
-  return <p>sprints</p>;
+  return (
+    <SectionView>
+      <Container>
+        <p>sprints</p>
+      </Container>
+    </SectionView>
+  );
 };
 
 export default SprintView;
