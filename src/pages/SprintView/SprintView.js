@@ -1,31 +1,25 @@
 import SectionView from '../../components/SectionView';
 import Container from '../../components/Container';
-// import Wrapper from '../../components/Wrapper';
 import SprintSidebar from '../../components/SprintSidebar';
 import SprintTaskList from '../../components/SprintTaskList';
 import SprintHeader from '../../components/SprintHeader';
-import GraphicBtn from '../../components/GraphicBtn'
-import s from './SprintView.module.css'
-
-
+import GraphicBtn from '../../components/GraphicBtn';
+import s from './SprintView.module.css';
 
 const SprintView = props => {
   return (
     <SectionView>
       <Container>
-        
-      <div className ={s.sprint_conteiner}>
-        <div className = {s.sprint_main_section}>
-            <SprintSidebar {...props }/>
-        </div>
-        <div className = {s.conteiner}>
+        <div className={s.sprint_conteiner}>
+          <div className={s.sprint_main_section}>
+            <SprintSidebar {...props} />
+          </div>
+          <div className={s.conteiner}>
             <SprintHeader />
-            <SprintTaskList/>
-            <GraphicBtn/>
+            <SprintTaskList />
+            <GraphicBtn />
+          </div>
         </div>
-
-    </div>
-        
       </Container>
     </SectionView>
   );

@@ -1,11 +1,8 @@
 .sidebar_wrapper {
-    height: 100%;
-    /* text-align: left; */
-    border-right: 1px solid rgba(24, 28, 39, 0.1);
+  border-right: 1px solid rgba(24, 28, 39, 0.1);
 }
 .sidebar_list {
-  margin-top: 120px;
-
+  margin-top: 100px;
 }
 .item {
   display: flex;
@@ -26,12 +23,11 @@
   &:hover > .square {
     transform: rotateY(360deg);
   }
-
 }
 .square {
   width: 36px;
   height: 36px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
   border-radius: 5px;
   margin-right: 15px;
@@ -57,24 +53,22 @@
   padding: 0;
   border-radius: 50%;
   cursor: pointer;
-  background-color: #F1F2F7;
-  
-} 
+  background-color: #f1f2f7;
+}
 .button_plus {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background-color: var(--button-color);
-  }
-  .icon_plus {
-    width: 20px;
-    height: 20px;
-    fill: #fff;
-  }
-
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--button-color);
+}
+.icon_plus {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
