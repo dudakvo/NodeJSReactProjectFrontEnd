@@ -1,27 +1,52 @@
-import s from './SprintSidebar.module.css';
+import { NavLink } from 'react-router-dom';
+import ButtonBackspace from '../ButtonBackspace';
+import s from './SprintSidebar.module.scss';
 import sprite from '../../sprite.svg';
+import routes from '../../routes';
 
-const SprintSidebar = () => {
+const sprints = [
+    { id: 1, name: 'sprint 1' },
+    { id: 2, name: 'sprint 2' },
+    {
+      id: 3,
+      name: 'sprint 3',
+    },
+    { id: 4, name: 'sprint 4' },
+  ];
+
+
+const SprintSidebar = ({ history }) => {
+    const HandleBackToSprints = () => {
+        history.push(routes.projectDetails);
+      };
+    
+      const handleCreateSprint = () => {
+        console.log('create a sprint');
+      };
     return (
         <div className = {s.sidebar_wrapper}>
-            {/* <div className = {s.back_wrapper}>
-                <button type = 'button' className={s.btn_show_sprint}>
-                    <div className={s.button_back}>
-                        <svg className={s.icon_back}>
-                            <use href={sprite + '#icon-arrow'} />
-                        </svg>
-                    </div>
-                </button>
-                <p className = {s.add_sprint_title}>Show sprints</p>
-
-            </div> */}
+            <ButtonBackspace text="Show sprints" onClick={HandleBackToSprints} />
             <ul className = {s.sidebar_list}>
-                <li className = {s.sidebar_item}>
-
-                </li>
+            {sprints.map(item => (
+          <li className={s.item} key={item.id}>
+            <NavLink
+              exact
+              to={`${routes.projectDetails}/${item.id}`}
+              className={s.link}
+              activeClassName={s.isActive}
+            >
+              <div className={s.square}></div>
+              <p className={s.title}>{item.name}</p>
+            </NavLink>
+          </li>
+        ))}
             </ul>
             <div>
-                <button type = 'button' className = {s.add_sprint_btn}>
+                <button 
+                type = 'button' 
+                onClick={handleCreateSprint}
+                className = {s.add_sprint_btn}
+                >
                     <div className={s.button_plus}>
                         <svg className={s.icon_plus}>
                             <use href={sprite + '#icon-plus'} />

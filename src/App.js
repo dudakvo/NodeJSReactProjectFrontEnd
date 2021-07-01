@@ -1,17 +1,25 @@
+import { Switch, Route } from 'react-router-dom';
+import React, { useEffect, lazy, Suspense } from 'react';
+import { useDispatch } from 'react-redux';
 import Container from './components/Container';
 import TaskPage from './pages/TaskPage';
 import ModalTaskPages from './components/ModalTaskPages/ModalTaskPages';
 import Header from './components/Header';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
+// import RegisterPage from './pages/RegisterPage';
+// import LoginPage from './pages/LoginPage';
 
+// import PublicRoute from './components/PublicRoute';
+// import PrivateRoute from './components/PrivateRoute';
 
-import React, { useEffect, lazy, Suspense } from 'react';
-import { useDispatch } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
 import authOperations from './redux/auth/auth-operations';
 import routes from './routes';
 
+const LoginPage = lazy(() =>
+  import('./pages/LoginPage' /* webpackChunkName: "LoginPage" */),
+);
+const RegisterPage = lazy(() =>
+  import('./pages/RegisterPage' /* webpackChunkName: "RegisterPage" */),
+);
 const ProjectsView = lazy(() =>
   import('./pages/ProjectsView' /* webpackChunkName: "ProjectsView" */),
 );
@@ -46,6 +54,35 @@ function App() {
             component={ProjectDetailsView}
           />
           <Route exact path={routes.sprint} component={SprintView} />
+          {/*реализация с публичными и приватными роутами */}
+          {/* <PrivateRoute
+            path={routes.sprint}
+            component={SprintView}
+            redirectTo={routes.register}
+          />
+          <PrivateRoute
+            path={routes.projectDetails}
+            component={ProjectDetailsView}
+            redirectTo={routes.register}
+          />
+          <PrivateRoute
+            exact
+            path={routes.projects}
+            component={ProjectsView}
+            redirectTo={routes.register}
+          />
+          <PublicRoute
+            path={routes.login}
+            restricted
+            component={LoginPage}
+            redirectTo={routes.projects}
+          />
+          <PublicRoute
+            path={routes.register}
+            restricted
+            component={RegisterPage}
+            redirectTo={routes.projects}
+          /> */}
         </Switch>
       </Suspense>
 
