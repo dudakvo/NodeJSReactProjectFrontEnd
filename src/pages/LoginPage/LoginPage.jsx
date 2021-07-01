@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { authOperations } from '../../redux/auth';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/auth';
 import { NavLink } from 'react-router-dom';
 import routes from '../../routes';
 import {
@@ -14,8 +14,8 @@ import {
 } from './LoginPage.module.scss';
 
 export default function LoginPage() {
-  // const dispatch = useDispatch();
-  // const onLogin = user => dispatch(authOperations.logIn(user));
+  const dispatch = useDispatch();
+  const onLogin = user => dispatch(authOperations.logIn(user));
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,7 +34,7 @@ export default function LoginPage() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // onLogin({ email, password });
+    onLogin({ email, password });
 
     reset();
   };
