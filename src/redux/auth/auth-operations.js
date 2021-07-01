@@ -2,7 +2,6 @@ import axios from 'axios';
 import authActions from './auth-actions';
 import * as userApi from '../../services/user-api';
 
-
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -28,7 +27,7 @@ const logIn = credentials => async dispatch => {
   dispatch(authActions.loginRequest());
 
   try {
-    const response = await await userApi.logIn(credentials);
+    const response = await userApi.logIn(credentials);
 
     token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));

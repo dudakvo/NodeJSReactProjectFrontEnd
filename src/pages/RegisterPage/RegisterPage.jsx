@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { authOperations } from '../../redux/auth';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/auth';
 import { NavLink } from 'react-router-dom';
 import routes from '../../routes';
 import {
@@ -14,8 +14,8 @@ import {
 } from './RegisterPage.module.scss';
 
 export default function RegisterPage() {
-  // const dispatch = useDispatch();
-  // const onRegister = user => dispatch(authOperations.register(user));
+  const dispatch = useDispatch();
+  const onRegister = user => dispatch(authOperations.register(user));
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +32,7 @@ export default function RegisterPage() {
       case 'repeatPassword':
         setRptPassword(value);
         if (rptPassword !== password) {
-          alert('Passwords do not match');
+          console.log('Passwords do not match');
         }
         break;
       default:
@@ -50,7 +50,7 @@ export default function RegisterPage() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // onRegister({ email, password });
+    onRegister({ email, password });
     reset();
   };
 
