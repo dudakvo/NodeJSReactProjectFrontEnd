@@ -2,7 +2,7 @@ import { Switch, Route } from 'react-router-dom';
 import React, { useEffect, lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import Container from './components/Container';
-import TaskPage from './pages/TaskPage';
+import TaskPage from './pages/TaskPage/';
 import ModalTaskPages from './components/ModalTaskPages/ModalTaskPages';
 import Header from './components/Header';
 // import PublicRoute from './components/PublicRoute';

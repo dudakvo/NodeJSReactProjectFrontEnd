@@ -1,19 +1,55 @@
 .modalOverlay {
-  background-color: rgba(24, 28, 39, 0.25);
   position: fixed;
   top: 0;
   bottom: 0;
+  background-color: rgba(24, 28, 39, 0.25);
   left: 0;
   right: 0;
 }
+
+.ModalOpen {
+  animation: openModal 0.4s ease-out forwards;
+}
+.ModalClosed {
+  display: none;
+  /* animation: closeModal 0.4s ease-out forwards; */
+}
+
+@keyframes openModal {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* @keyframes closeModal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+} */
 
 .modalWindow {
   position: absolute;
   top: 0;
   right: 0;
   background-color: #ffffff;
-  min-height: 768px;
-  min-width: 530px;
+}
+
+.iconCloseBlock {
+  position: relative;
+  /* height: 100%; */
+}
+
+.iconClose {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 10px;
 }
 
 .modalTitle {
@@ -27,27 +63,40 @@
   letter-spacing: 0.04em;
 }
 
-.modalHeader,
-.modalBody,
-.modalFooter {
-  padding: 10px 20px;
+@media screen and (min-width: 321px) {
+  .modalHeader {
+    display: none;
+  }
+  .iconClose {
+    right: 10px;
+  }
 }
 
-.modalHeader {
-  min-height: 60px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  align-items: center;
+@media screen and (min-width: 769px) {
+  .modalWindow {
+    height: 768px;
+    width: 530px;
+  }
 }
 
-.modalFooter {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+@media (min-width: 321px) and (max-width: 768px) {
+  .modalWindow {
+    height: 1024px;
+    width: 512px;
+  }
 }
 
-.modalFooter button:last-child {
-  margin-left: 10px;
+@media screen and (max-width: 320px) {
+  .modalWindow {
+    height: 508px;
+    width: 320px;
+  }
+  .modalTitle {
+    padding-top: 62px;
+    font-size: 26px;
+    line-height: 0.81;
+  }
+  .iconClose {
+    right: 5px;
+  }
 }
