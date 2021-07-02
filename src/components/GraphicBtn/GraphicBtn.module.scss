@@ -1,0 +1,43 @@
+/* Graphic btn */
+.graphic_btn {
+    position: fixed;
+    z-index: 2;
+    bottom: 20px;
+    left: 20px;
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .graphic_btn {
+        position: absolute;
+        z-index: 2;
+        bottom: 30px;
+        left: 450px;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .graphic_btn {
+        position: absolute;
+        z-index: 2;
+        bottom: 30px;
+        left: 900px;
+    }
+}
+
+.graphic_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--button-color);
+}
+.graphic_icon_svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+}
