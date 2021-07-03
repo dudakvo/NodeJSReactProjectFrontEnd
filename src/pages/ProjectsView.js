@@ -3,12 +3,12 @@ import ProjectsList from '../components/ProjectsList';
 import ProjectsViewTitel from '../components/ProjectsViewTitel';
 import Container from '../components/Container';
 
-const ProjectsView = () => {
+const ProjectsView = ({ location }) => {
   return (
     <SectionView>
       <Container>
         <ProjectsViewTitel />
-        <ProjectsList />
+        <ProjectsList location={location} />
       </Container>
     </SectionView>
   );

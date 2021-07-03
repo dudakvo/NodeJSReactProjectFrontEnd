@@ -1,8 +1,8 @@
 const routes = {
-  register: '/',
-  login: '/login',
+  register: '/register',
+  login: '/',
   projects: '/projects',
-  projectDetails: '/:projectId',
-  sprint: '/sprint',
+  projectDetails: '/projects/:projectId',
+  sprint: '/projects/:projectId/:sprintId',
 };
 export default routes;

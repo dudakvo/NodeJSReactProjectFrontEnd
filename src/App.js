@@ -1,9 +1,14 @@
+import { Switch } from 'react-router-dom';
+// import { Switch, Route } from 'react-router-dom';
 import React, { lazy, Suspense, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
 import Container from './components/Container';
-
+import TaskPage from './pages/TaskPage/';
+import ModalTaskPages from './components/ModalTaskPages/ModalTaskPages';
 import Header from './components/Header';
+import PublicRoute from './components/PublicRoute';
+import PrivateRoute from './components/PrivateRoute';
 
 // import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
@@ -12,6 +17,15 @@ import routes from './routes';
 
 import Modal from './components/HOC/ModalHOC';
 
+=======
+import authOperations from './redux/auth/auth-operations';
+import routes from './routes';
+
+const LoginPage = lazy(() =>
+  import('./pages/LoginPage' /* webpackChunkName: "LoginPage" */),
+);
+const RegisterPage = lazy(() =>
+  import('./pages/RegisterPage'); /* webpackChunkName: "RegisterPage" */),
 const ProjectsView = lazy(() =>
   import('./pages/ProjectsView' /* webpackChunkName: "ProjectsView" */),
 );
@@ -20,9 +34,12 @@ const ProjectDetailsView = lazy(() =>
     './pages/ProjectDetailsView' /* webpackChunkName: "ProjectDetailsView" */
   ),
 );
+const SprintView = lazy(() =>
+  import('./pages/SprintView/SprintView' /* webpackChunkName: "SprintView" */),
+);
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+   const [isOpen, setIsOpen] = useState(false);
 
   const [showModalProject, setShowModalProject] = useState(false);
   const [showModalSprint, setShowModalSprint] = useState(false);
@@ -66,39 +83,97 @@ function App() {
     }
   };
 
-  return (
-    <>
-      <Container>
-        <Header />
+  const dispatch = useDispatch();
 
-        {/* Для тестировочного открытия модалок, удалится */}
-        <button
-          data-project
-          onClick={e => {
-            toggle(e);
-            handleOpenModal();
-          }}
-        >
-          Проект
-        </button>
-        <button
-          data-sprint
-          onClick={e => {
-            toggle(e);
-            handleOpenModal();
-          }}
-        >
-          Спринт
-        </button>
-        <button
-          data-people
-          onClick={e => {
-            toggle(e);
-            handleOpenModal();
-          }}
-        >
-          Люди
-        </button>
+  useEffect(() => {
+    dispatch(authOperations.getCurrentUser());
+  }, [dispatch]);
+ return (
+    <>
+      <Header />
+      {/* {ReactDOM.createPortal(<Modal />, document.getElementById('portal'))} */}
+      <Suspense fallback={<p>loading...</p>}>
+        <Switch>
+       
+       {/* <Route exact path={routes.home} component={LoginPage} />
+          <Route exact path={routes.register} component={RegisterPage} />
+          <Route exact path={routes.login} component={LoginPage} />
+          <Route exact path={routes.projects} component={ProjectsView} />
+          <Route
+            exact
+            path={routes.projectDetails}
+            component={ProjectDetailsView}
+          />
+          <Route exact path={routes.sprint} component={SprintView} /> */}
+          {/*реализация с публичными и приватными роутами */}
+
+          <PublicRoute
+            exact
+            path={routes.register}
+            restricted
+            component={RegisterPage}
+            redirectTo={routes.projects}
+          />
+          <PublicRoute
+            exact
+            path={routes.login}
+            restricted
+            component={LoginPage}
+            redirectTo={routes.projects}
+          />
+          <PrivateRoute
+            exact
+            path={routes.sprint}
+            component={SprintView}
+            redirectTo={routes.login}
+          />
+          <PrivateRoute
+            exact
+            path={routes.projectDetails}
+            component={ProjectDetailsView}
+            redirectTo={routes.login}
+          />
+          <PrivateRoute
+            exact
+            path={routes.projects}
+            component={ProjectsView}
+            redirectTo={routes.login}
+          />
+        </Switch>
+      </Suspense>
+
+      <Container>
+        <ModalTaskPages>
+          <TaskPage />
+        </ModalTaskPages>
+  {/* Для тестировочного открытия модалок, удалится */}
+//         <button
+//           data-project
+//           onClick={e => {
+//             toggle(e);
+//             handleOpenModal();
+//           }}
+//         >
+//           Проект
+//         </button>
+//         <button
+//           data-sprint
+//           onClick={e => {
+//             toggle(e);
+//             handleOpenModal();
+//           }}
+//         >
+//           Спринт
+//         </button>
+//         <button
+//           data-people
+//           onClick={e => {
+//             toggle(e);
+//             handleOpenModal();
+//           }}
+//         >
+//           Люди
+//         </button>
       </Container>
       {isOpen && (
         <Modal
@@ -109,16 +184,7 @@ function App() {
           isOpen={isOpen}
         />
       )}
-      {/* {ReactDOM.createPortal(<Modal />, document.getElementById('portal'))} */}
-
-      <Suspense fallback={<p>loading...</p>}>
-        <Switch>
-          {/* <Route exact path={routes.register} component={RegisterPage} /> */}
-          <Route exact path={routes.login} component={LoginPage} />
-          <Route exact path={routes.projects} component={ProjectsView} />
-          <Route path={routes.projectDetails} component={ProjectDetailsView} />
-        </Switch>
-      </Suspense>
+      </Container>
     </>
   );
 }

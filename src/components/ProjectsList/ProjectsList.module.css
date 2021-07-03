@@ -1,18 +1,30 @@
 .list {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 74px;
 }
 
 .project {
+  display: block;
   position: relative;
   width: 136px;
   height: 136px;
   padding: 10px;
   border-radius: 5px;
+  -webkit-transition: all 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: all 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
 }
-.project_titel {
+
+.project:hover {
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
+}
+
+.project_title {
   margin-top: 0;
   margin-bottom: 6px;
   font-weight: 800;
@@ -26,9 +38,9 @@
   font-size: 10px;
   line-height: 12px;
   margin: 0;
-
   color: #ffffff;
 }
+
 .project > button {
   position: absolute;
   bottom: 10px;
@@ -40,20 +52,43 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
 .button_plus {
   width: 16px;
   height: 16px;
-  fill: #8c72df;
+  -webkit-transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 1000ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-.project:nth-child(3n + 1) {
+
+.button_plus:hover {
+  -webkit-transform: rotateZ(360deg);
+          transform: rotateZ(360deg);
+}
+
+.item:nth-child(3n + 1) > .project {
   background-color: #8c72df;
 }
-.project:nth-child(3n + 2) {
+
+.item:nth-child(3n + 1) > .project > button > .button_plus {
+  fill: #8c72df;
+}
+
+.item:nth-child(3n + 2) > .project {
   background-color: #ff765f;
 }
-.project:nth-child(3n + 3) {
+
+.item:nth-child(3n + 2) > .project > button > .button_plus {
+  fill: #ff765f;
+}
+
+.item:nth-child(3n + 3) > .project {
   background-color: #71df87;
 }
+
+.item:nth-child(3n + 3) > .project > button > .button_plus {
+  fill: #71df87;
+}
+
 @media screen and (min-width: 768px) {
   .list {
     gap: 20px;
@@ -63,7 +98,7 @@
     width: 216px;
     height: 216px;
     padding: 20px;
-    background-image: url('./project.png');
+    background-image: url("./project.png");
     background-size: cover;
   }
   .project > button {
@@ -78,10 +113,8 @@
   }
   .project_titel {
     margin-bottom: 10px;
-
     font-size: 16px;
     line-height: 20px;
-
     font-size: 26px;
     line-height: 32px;
   }
@@ -101,3 +134,4 @@
     padding: 30px;
   }
 }
+/*# sourceMappingURL=ProjectsList.module.css.map */

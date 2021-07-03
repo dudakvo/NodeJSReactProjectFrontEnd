@@ -1,7 +1,6 @@
 import axios from 'axios';
 import authActions from './auth-actions';
-
-axios.defaults.baseURL = 'https://localhost:4000';
+import * as userApi from '../../services/user-api';
 
 const token = {
   set(token) {
@@ -16,8 +15,7 @@ const register = credentials => async dispatch => {
   dispatch(authActions.registerRequest());
 
   try {
-    const response = await axios.post('/users/signup', credentials);
-
+    const response = await userApi.register(credentials);
     token.set(response.data.token);
     dispatch(authActions.registerSuccess(response.data));
   } catch (error) {
@@ -29,7 +27,7 @@ const logIn = credentials => async dispatch => {
   dispatch(authActions.loginRequest());
 
   try {
-    const response = await axios.post('/users/login', credentials);
+    const response = await userApi.logIn(credentials);
 
     token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));
@@ -42,7 +40,7 @@ const logOut = () => async dispatch => {
   dispatch(authActions.logoutRequest());
 
   try {
-    await axios.post('/users/logout');
+    await userApi.logOut();
 
     token.unset();
     dispatch(authActions.logoutSuccess());
@@ -61,12 +59,10 @@ const getCurrentUser = () => async (dispatch, getUser) => {
   }
 
   token.set(persistedToken);
-
   dispatch(authActions.getCurrentUserRequest());
 
   try {
-    const response = await axios.get('/users/current');
-
+    const response = await userApi.getCurrentUser();
     dispatch(authActions.getCurrentUserSuccess(response.data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
