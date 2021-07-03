@@ -21,6 +21,8 @@ export default function RegisterForm() {
   const [password, setPassword] = useState('');
   const [rptPassword, setRptPassword] = useState('');
 
+  // let matchPassword = true;
+
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'email':
@@ -46,6 +48,10 @@ export default function RegisterForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    // if (password !== rptPassword) {
+    //   matchPassword = false;
+    // }
 
     onRegister({ email, password });
     reset();
