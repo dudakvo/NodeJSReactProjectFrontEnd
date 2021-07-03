@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:4000/api';
+axios.defaults.baseURL = 'http://localhost:4000';
 
 export async function register(credentials) {
   const { data } = await axios.post('/users/signup', credentials);

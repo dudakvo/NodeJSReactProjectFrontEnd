@@ -1,0 +1,155 @@
+.project {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.project_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.project_title {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.svg {
+  width: 20px;
+  height: 20px;
+  fill: #a6a6a6;
+}
+
+.input {
+  width: 150px;
+  background-color: transparent;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  outline: none;
+}
+
+.button_add_people {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: none;
+  background-color: transparent;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.text {
+  margin-left: 10px;
+  text-decoration: underline;
+}
+
+.sprint {
+  display: block;
+  padding: 20px 20px 10px 20px;
+  background-color: #fff;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+          box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sprint:hover {
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
+}
+
+.sprint .title {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.04em;
+  color: #181c27;
+}
+
+.sprint .time_block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.sprint .button_delete {
+  display: block;
+  margin-left: auto;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
+
+.sprint .svg {
+  padding: 4px;
+  background-color: #a6a6a6;
+  fill: #fff;
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 768px) {
+  .project_block {
+    padding-left: 20px;
+  }
+  .list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    gap: 20px;
+  }
+  .sprint {
+    margin-bottom: 0;
+    width: 216px;
+    padding: 18px 20px 10px 20px;
+  }
+  .title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .list {
+    gap: 30px;
+  }
+  .sprint {
+    width: 270px;
+    padding: 18px 30px 10px 30px;
+  }
+}
+/*# sourceMappingURL=Project.module.css.map */

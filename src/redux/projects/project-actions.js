@@ -86,7 +86,7 @@ const searchTaskByNameSuccess = createAction(
 );
 const searchTaskByNameError = createAction('projects/searchTaskByNameError');
 
-export {
+const projectActions = {
   fetchProjectsRequest,
   fetchProjectsSuccess,
   fetchProjectsError,
@@ -130,3 +130,5 @@ export {
   searchTaskByNameSuccess,
   searchTaskByNameError,
 };
+
+export default projectActions;

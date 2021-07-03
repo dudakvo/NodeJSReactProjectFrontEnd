@@ -28,7 +28,7 @@ const logIn = credentials => async dispatch => {
   dispatch(authActions.loginRequest());
 
   try {
-    const response = await await userApi.logIn(credentials);
+    const response = await userApi.logIn(credentials);
 
     token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));
