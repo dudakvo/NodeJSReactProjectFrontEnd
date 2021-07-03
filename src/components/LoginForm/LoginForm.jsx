@@ -6,6 +6,7 @@ import routes from '../../routes';
 import {
   form,
   title,
+  groupInput,
   label,
   input,
   button,
@@ -41,8 +42,11 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className={form} autoComplete="off">
       <h1 className={title}>Enter</h1>
-      <label className={label}>
-        E-mail
+
+      <div className={groupInput}>
+        <label className={label} htmlFor="email">
+          E-mail
+        </label>
         <input
           className={input}
           type="email"
@@ -50,10 +54,12 @@ export default function LoginForm() {
           value={email}
           onChange={handleInput}
         />
-      </label>
+      </div>
 
-      <label className={label}>
-        Password
+      <div className={groupInput}>
+        <label className={label} htmlFor="password">
+          Password
+        </label>
         <input
           className={input}
           type="password"
@@ -61,7 +67,7 @@ export default function LoginForm() {
           value={password}
           onChange={handleInput}
         />
-      </label>
+      </div>
 
       <button type="submit" className={button}>
         Enter

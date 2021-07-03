@@ -6,6 +6,7 @@ import routes from '../../routes';
 import {
   form,
   title,
+  groupInput,
   label,
   input,
   button,
@@ -30,9 +31,6 @@ export default function RegisterForm() {
         break;
       case 'repeatPassword':
         setRptPassword(value);
-        if (rptPassword !== password) {
-          console.log('Passwords do not match');
-        }
         break;
       default:
         alert('Enter correct data');
@@ -56,8 +54,11 @@ export default function RegisterForm() {
   return (
     <form onSubmit={handleSubmit} className={form} autoComplete="off">
       <h1 className={title}>Registration</h1>
-      <label className={label}>
-        E-mail
+
+      <div className={groupInput}>
+        <label className={label} htmlFor="email">
+          E-mail
+        </label>
         <input
           className={input}
           type="email"
@@ -65,10 +66,12 @@ export default function RegisterForm() {
           value={email}
           onChange={handleChange}
         />
-      </label>
+      </div>
 
-      <label className={label}>
-        Password
+      <div className={groupInput}>
+        <label className={label} htmlFor="password">
+          Password
+        </label>
         <input
           className={input}
           type="password"
@@ -76,19 +79,22 @@ export default function RegisterForm() {
           value={password}
           onChange={handleChange}
         />
-      </label>
+      </div>
 
-      <label className={label}>
-        Repeat password
-        <input
-          className={input}
-          type="password"
-          name="repeatPassword"
-          value={rptPassword}
-          onChange={handleChange}
-        />
-      </label>
+      <div className={groupInput}>
+        <label className={label} htmlFor="repeatPassword">
+          Repeat password
+          <input
+            className={input}
+            type="password"
+            name="repeatPassword"
+            value={rptPassword}
+            onChange={handleChange}
+          />
+        </label>
+      </div>
 
+      {/* {!matchPassword ? <p>Passwords do not match</p> : <p></p>} */}
       <button type="submit" className={button}>
         Register
       </button>
