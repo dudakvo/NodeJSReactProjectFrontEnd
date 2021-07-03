@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import projectReducer from './projects/project-reducer';
+import { modalReducer } from './modal';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -31,6 +32,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     projects: projectReducer,
+    modal: modalReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
