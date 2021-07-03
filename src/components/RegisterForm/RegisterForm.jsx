@@ -9,6 +9,7 @@ import {
   groupInput,
   label,
   input,
+  wrongPwd,
   button,
   link,
 } from './RegisterForm.module.scss';
@@ -20,8 +21,7 @@ export default function RegisterForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rptPassword, setRptPassword] = useState('');
-
-  let matchPassword = true;
+  const [matchPassword, setMatchPassword] = useState(true);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -50,11 +50,13 @@ export default function RegisterForm() {
     e.preventDefault();
 
     if (password !== rptPassword) {
-      matchPassword = false;
+      setMatchPassword(false);
+      console.log(matchPassword);
+    } else {
+      onRegister({ email, password });
+      setMatchPassword(true);
+      reset();
     }
-
-    onRegister({ email, password });
-    reset();
   };
 
   return (
@@ -98,9 +100,13 @@ export default function RegisterForm() {
             onChange={handleChange}
           />
         </label>
+        {!matchPassword ? (
+          <p className={wrongPwd}>Passwords do not match</p>
+        ) : (
+          <p className={wrongPwd}> </p>
+        )}
       </div>
 
-      {!matchPassword ? <p>Passwords do not match</p> : <p></p>}
       <button type="submit" className={button}>
         Register
       </button>
