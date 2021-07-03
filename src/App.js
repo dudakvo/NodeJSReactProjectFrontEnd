@@ -1,7 +1,6 @@
-import { Switch } from 'react-router-dom';
 // import { Switch, Route } from 'react-router-dom';
-import React, { lazy, Suspense, useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
+import { Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Container from './components/Container';
 import TaskPage from './pages/TaskPage/';
@@ -13,41 +12,39 @@ import PrivateRoute from './components/PrivateRoute';
 // import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 
-import routes from './routes';
-
 import Modal from './components/HOC/ModalHOC';
 
-=======
 import authOperations from './redux/auth/auth-operations';
 import routes from './routes';
 
-const LoginPage = lazy(() =>
-  import('./pages/LoginPage' /* webpackChunkName: "LoginPage" */),
-);
 const RegisterPage = lazy(() =>
-  import('./pages/RegisterPage'); /* webpackChunkName: "RegisterPage" */),
-const ProjectsView = lazy(() =>
-  import('./pages/ProjectsView' /* webpackChunkName: "ProjectsView" */),
+  import('./pages/RegisterPage'),
+); /* webpackChunkName: "RegisterPage" */
+const ProjectsView = lazy(
+  () => import('./pages/ProjectsView') /* webpackChunkName: "ProjectsView" */,
 );
 const ProjectDetailsView = lazy(() =>
   import(
     './pages/ProjectDetailsView' /* webpackChunkName: "ProjectDetailsView" */
   ),
 );
-const SprintView = lazy(() =>
-  import('./pages/SprintView/SprintView' /* webpackChunkName: "SprintView" */),
+const SprintView = lazy(
+  () =>
+    import(
+      './pages/SprintView/SprintView'
+    ) /* webpackChunkName: "SprintView" */,
 );
 
 function App() {
-   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const [showModalProject, setShowModalProject] = useState(false);
   const [showModalSprint, setShowModalSprint] = useState(false);
   const [showModalAddPeople, seShowModalAddPeople] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsOpen(prev => !prev);
-  };
+  // const handleOpenModal = () => {
+  //   setIsOpen(prev => !prev);
+  // };
 
   const handleCloseModal = () => {
     setIsOpen(false);
@@ -56,46 +53,45 @@ function App() {
     seShowModalAddPeople(false);
   };
 
-  const toggle = e => {
-    const dataSet = Object.keys(e.target.dataset)[0];
+  // const toggle = e => {
+  //   const dataSet = Object.keys(e.target.dataset)[0];
 
-    switch (dataSet) {
-      case 'project':
-        setShowModalProject(prev => !prev);
-        setShowModalSprint(false);
-        seShowModalAddPeople(false);
-        break;
+  //   switch (dataSet) {
+  //     case 'project':
+  //       setShowModalProject(prev => !prev);
+  //       setShowModalSprint(false);
+  //       seShowModalAddPeople(false);
+  //       break;
 
-      case 'sprint':
-        setShowModalSprint(prev => !prev);
-        setShowModalProject(false);
-        seShowModalAddPeople(false);
-        break;
+  //     case 'sprint':
+  //       setShowModalSprint(prev => !prev);
+  //       setShowModalProject(false);
+  //       seShowModalAddPeople(false);
+  //       break;
 
-      case 'people':
-        seShowModalAddPeople(prev => !prev);
-        setShowModalProject(false);
-        setShowModalSprint(false);
-        break;
+  //     case 'people':
+  //       seShowModalAddPeople(prev => !prev);
+  //       setShowModalProject(false);
+  //       setShowModalSprint(false);
+  //       break;
 
-      default:
-        break;
-    }
-  };
+  //     default:
+  //       break;
+  //   }
+  // };
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
- return (
+  return (
     <>
       <Header />
       {/* {ReactDOM.createPortal(<Modal />, document.getElementById('portal'))} */}
       <Suspense fallback={<p>loading...</p>}>
         <Switch>
-       
-       {/* <Route exact path={routes.home} component={LoginPage} />
+          {/* <Route exact path={routes.home} component={LoginPage} />
           <Route exact path={routes.register} component={RegisterPage} />
           <Route exact path={routes.login} component={LoginPage} />
           <Route exact path={routes.projects} component={ProjectsView} />
@@ -146,44 +142,42 @@ function App() {
         <ModalTaskPages>
           <TaskPage />
         </ModalTaskPages>
-  {/* Для тестировочного открытия модалок, удалится */}
-//         <button
-//           data-project
-//           onClick={e => {
-//             toggle(e);
-//             handleOpenModal();
-//           }}
-//         >
-//           Проект
-//         </button>
-//         <button
-//           data-sprint
-//           onClick={e => {
-//             toggle(e);
-//             handleOpenModal();
-//           }}
-//         >
-//           Спринт
-//         </button>
-//         <button
-//           data-people
-//           onClick={e => {
-//             toggle(e);
-//             handleOpenModal();
-//           }}
-//         >
-//           Люди
-//         </button>
-      </Container>
-      {isOpen && (
-        <Modal
-          project={showModalProject}
-          sprint={showModalSprint}
-          people={showModalAddPeople}
-          onCloseModal={handleCloseModal}
-          isOpen={isOpen}
-        />
-      )}
+        {/* <button
+           data-project
+           onClick={e => {
+             toggle(e);
+             handleOpenModal();
+           }}
+         >
+           Проект
+         </button>
+         <button
+           data-sprint
+           onClick={e => {
+             toggle(e);
+             handleOpenModal();
+           }}
+         >
+           Спринт
+         </button>
+         <button
+           data-people
+           onClick={e => {
+             toggle(e);
+             handleOpenModal();
+           }}
+         >
+           Люди
+         </button> */}
+        {isOpen && (
+          <Modal
+            project={showModalProject}
+            sprint={showModalSprint}
+            people={showModalAddPeople}
+            onCloseModal={handleCloseModal}
+            isOpen={isOpen}
+          />
+        )}
       </Container>
     </>
   );
