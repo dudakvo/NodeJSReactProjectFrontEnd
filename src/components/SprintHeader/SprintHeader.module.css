@@ -1,0 +1,138 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title_wraper {
+  /* max-width: 400px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.name {
+  font-family: var(--main-font);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: 0.04em;
+  color: --main-text-color;
+  margin-right: 20px;
+}
+@media screen and (min-width: 768px) {
+  .name {
+    font-size: 36px;
+    line-height: 44px;
+    align-items: center;
+    letter-spacing: 0.04em;
+    margin-right: 40px;
+  }
+}
+
+/* Change-btn */
+.change_btn {
+  border: none;
+  background-color: #f1f2f7;
+}
+.change_btn_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.change_btn_icon {
+  width: 20px;
+  height: 20px;
+  fill: #a6a6a6;
+}
+.add_task_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* add task btn */
+.add_task_btn {
+  position: fixed;
+  z-index: 2;
+  bottom: 20px;
+  right: 20px;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.button_plus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--button-color);
+}
+
+.icon_plus {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+.add_task_title {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .add_task_btn {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    margin-right: 20px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .add_task_title {
+    font-family: var(--main-font);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+
+    color: #121316;
+  }
+}
+
+/* SprintTableTitle */
+@media screen and (max-width: 767px) {
+  .table_title_container {
+    display: none;
+  }
+}
+.table_title_container {
+  position: relative;
+  border-bottom: 1px solid rgba(24, 28, 39, 0.1);
+  padding: 10px 0 10px;
+}
+@media screen and (min-widht: 768px) {
+  .table_title_container {
+    max-width: 869px;
+  }
+}
+
+.table_title_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+}
+.table_title_item {
+  font-family: var(--main-font);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: --main-text-color;
+}

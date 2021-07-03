@@ -1,6 +1,6 @@
 const routes = {
-  register: '/',
-  login: '/login',
+  register: '/register',
+  login: '/',
   projects: '/projects',
   projectDetails: '/projects/:projectId',
   sprint: '/projects/:projectId/:sprintId',

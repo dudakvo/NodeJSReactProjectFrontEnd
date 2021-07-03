@@ -2,7 +2,6 @@ import axios from 'axios';
 import authActions from './auth-actions';
 import * as userApi from '../../services/user-api';
 
-
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;

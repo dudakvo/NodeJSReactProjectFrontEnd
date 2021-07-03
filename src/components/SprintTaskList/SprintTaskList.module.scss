@@ -1,0 +1,114 @@
+.task_wrapper {
+    position: relative;
+    max-width: 1200px;
+    padding-top: 20px;
+
+}
+.task_card {
+    position: relative;
+    width: 280px;
+    padding: 20px;
+    margin-bottom: 10px;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 26px rgba(0, 5, 97, 0.1);
+    border-radius: 5px;
+    transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    &:hover {
+      transform: scale(1.1, 1.1);
+    }
+}
+.task_details {
+    display: block;
+}
+.task_details_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(24, 28, 39, 0.2);
+}
+
+.task_details_item:last-child {
+    border: none;
+}
+
+@media screen and (min-width: 768px) {
+    .task_card {
+        width: 210px;
+    }
+    .task_details_item {
+        display: flex;
+        align-items: center;
+    }
+    .task_list {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .task_card {
+        width: 869px;
+    }
+    .task_details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .task_details_item {
+        width: 100px;
+        margin-bottom: 0px;
+    }
+    .hide_title {
+        display: none;
+    }
+
+}
+.task_list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-content: center;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: #181c27;
+    max-width: 100%;
+    margin: auto;
+}
+.task_details_item:first-child {
+    font-size: 18px;
+    line-height: 22px;
+}
+input {
+    width: 13px;
+    border: none;
+    outline: none;
+}
+
+
+/* button delet task */
+.button_del_task {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: #A6A6A6 ;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.button_delete {
+    width: 12px;
+    height: 12px;
+    fill: #ffffff;
+}
+
