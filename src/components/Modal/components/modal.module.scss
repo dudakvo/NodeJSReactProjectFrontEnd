@@ -4,6 +4,8 @@
 
 .body {
   margin-bottom: 60px;
+  width: 100%;
+  padding: 20px;
   & p {
     font-size: 14px;
     line-height: 17px;
@@ -13,11 +15,17 @@
   }
 }
 
-.backdrop {
-  background: rgba(24, 28, 39, 0.25);
-  width: 100%;
-  height: 100%;
-}
+// .backdrop {
+//   position: fixed;
+//   width: 100%;
+//   height: 100%;
+//   background: rgba(24, 28, 39, 0.25);
+//   // transition: opacity 0.3s ease-in;
+//   top: 0;
+//   left: 0;
+//   z-index: 999999;
+//   overflow: auto;
+// }
 
 .wrapper {
   position: relative;
@@ -25,29 +33,27 @@
   font-style: normal;
   letter-spacing: 0.04em;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 530px;
-  height: 90vh;
+  width: 100%;
+  min-height: 100%;
   padding-top: 121px;
-  padding-bottom: 225px;
+  // padding-bottom: 225px;
   background: #ffffff;
   flex-direction: column;
   margin-left: auto;
 }
 
 .title {
-  font-weight: 500;
-  font-size: 36px;
-  line-height: 44px;
+  font-size: 26px;
+  line-height: 32px;
 }
 
 .formWrapper {
   & label {
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 20px;
     color: rgba(24, 28, 39, 0.6);
   }
 }
@@ -58,27 +64,28 @@
     border: none;
     outline: none;
     border-bottom: 1px solid rgba(24, 28, 39, 0.2);
-    width: 430px;
+    width: 100%;
     height: 30px;
     font-size: 18px;
     line-height: 22px;
     transition: 250ms ease-in-out;
   }
-
+  & .checkbox {
+    display: none;
+  }
   & .inputDurationWrapper {
     position: relative;
-    display: inline-block;
-    margin-left: 30px;
+    display: block;
     & input {
-      width: 200px;
+      width: 100%;
     }
     & .inputDuration {
-      display: inline-block;
+      display: block;
     }
   }
 
   & div input:last-child {
-    width: 200px;
+    width: 100%;
   }
 
   & div input::placeholder {
@@ -86,8 +93,10 @@
     font-size: 18px;
     line-height: 22px;
   }
-  & .inputWrapper:first-child {
-    margin-bottom: 50px;
+  & .inputWrapper,
+  & .datePickerWrapper,
+  & .checkboxWrapper {
+    margin-bottom: 40px;
   }
 
   & div {
@@ -95,7 +104,7 @@
     & label {
       position: absolute;
       top: 0;
-      left: 0;
+      left: 2px;
       pointer-events: none;
       transition: 250ms ease-in-out;
     }
@@ -107,6 +116,16 @@
     & input:focus,
     & input:hover {
       border-color: #000000;
+    }
+    & .checkboxLabel {
+      position: absolute;
+      top: 9px;
+      left: 70px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      color: rgba(24, 28, 39, 0.6);
     }
   }
 }
@@ -158,6 +177,7 @@
 }
 
 .datePickerWrapper {
+  display: block;
   & .react-datepicker__header {
     background-color: red;
   }
@@ -165,10 +185,12 @@
 
 .listEmail {
   & li {
-    margin-bottom: 10px;
     font-size: 18px;
     line-height: 22px;
     letter-spacing: 0.04em;
+  }
+  & li:not(:last-child) {
+    margin-bottom: 10px;
   }
 }
 
@@ -221,5 +243,81 @@
   & .modal {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+.checkboxIcon {
+  width: 34px;
+  height: 34px;
+
+  // border: 1px solid #d1d2d4;
+  // background: transparent;
+  // border-radius: 50%;
+}
+
+@media screen and (min-width: 768px) {
+  .backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(24, 28, 39, 0.25);
+    // transition: opacity 0.3s ease-in;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    overflow: auto;
+  }
+  .wrapper {
+    width: 512px;
+  }
+  .formWrapper {
+    & div input {
+      display: block;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid rgba(24, 28, 39, 0.2);
+      width: 430px;
+      height: 30px;
+      font-size: 18px;
+      line-height: 22px;
+      transition: 250ms ease-in-out;
+    }
+  }
+
+  .title {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .formWrapper {
+    & label {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+      color: rgba(24, 28, 39, 0.6);
+    }
+  }
+  .datePickerWrapper {
+    display: inline-block;
+  }
+
+  .formWrapper {
+    & .inputDurationWrapper {
+      display: inline-block;
+      margin-left: 30px;
+      & input {
+        width: 200px;
+      }
+      & .inputDuration {
+        display: inline-block;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1280px) {
+  .wrapper {
+    width: 530px;
   }
 }

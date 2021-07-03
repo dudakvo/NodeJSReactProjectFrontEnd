@@ -1,7 +1,7 @@
 .react-datepicker {
   display: inline-block;
-  width: 280px;
-  height: 280px;
+  width: 100%;
+  height: 340px;
   border: none;
   border-radius: 0px;
   background: rgba(235, 235, 235, 0.7);
@@ -17,7 +17,7 @@
   background: #ffffff;
   border-radius: 20px 20px 0px 0px;
   border: none;
-  width: 280px;
+  width: 100%;
   & > div:last-child div {
     color: rgba(255, 107, 8, 1);
     font-weight: 600;
@@ -32,8 +32,8 @@
 .react-datepicker__day-name,
 .react-datepicker__day,
 .react-datepicker__time-name {
-  width: 2.7rem;
-  line-height: 2.7rem;
+  width: 3.7rem;
+  line-height: 3.7rem;
 }
 
 .react-datepicker {
@@ -71,6 +71,7 @@
 }
 
 .react-datepicker-popper {
+  width: 100% !important;
   transform: translate(-10px, -10px) !important;
 }
 
@@ -87,4 +88,42 @@
 .exit-active {
   opacity: 0;
   transition: opacity 200ms;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__month-container {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .react-datepicker-wrapper {
+    width: unset;
+  }
+  .react-datepicker {
+    width: 280px;
+    height: 280px;
+  }
+
+  .react-datepicker-popper {
+    width: unset !important;
+    transform: translate(-10px, -10px) !important;
+  }
+
+  .react-datepicker__month-container {
+    width: unset;
+  }
+
+  .react-datepicker__header {
+    width: 280px;
+  }
+
+  .react-datepicker__day-name,
+  .react-datepicker__day,
+  .react-datepicker__time-name {
+    width: 2.7rem;
+    line-height: 2.7rem;
+  }
 }

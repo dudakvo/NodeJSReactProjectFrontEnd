@@ -1,18 +1,14 @@
-import { useState } from 'react';
-
-const ModalToggler = ({ children }) => {
-  const [showModalProject, setShowModalProject] = useState(false);
-  // const showModalProject = true;
-  const showModalSprint = false;
-  const showModalAddPeople = false;
-
-  const toggle = () => setShowModalProject(prev => !prev);
-
+const ModalToggler = ({
+  children,
+  togglePeopleModal,
+  toggleSprintModal,
+  toggleProjectModal,
+}) => {
   return children({
-    showModalProject,
-    showModalSprint,
-    showModalAddPeople,
-    toggle,
+    toggleProjectModal,
+    toggleSprintModal,
+    togglePeopleModal,
+    // toggle,
   });
 };
 
