@@ -1,5 +1,5 @@
 // import { Switch, Route } from 'react-router-dom';
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Container from './components/Container';
@@ -11,8 +11,8 @@ import PrivateRoute from './components/PrivateRoute';
 
 // import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
-
-import Modal from './components/HOC/ModalHOC';
+import Modal from './components/Modal/ModalHighComponent';
+// import Modal from './components/HOC/ModalHOC';
 
 import authOperations from './redux/auth/auth-operations';
 import routes from './routes';
@@ -36,50 +36,6 @@ const SprintView = lazy(
 );
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const [showModalProject, setShowModalProject] = useState(false);
-  const [showModalSprint, setShowModalSprint] = useState(false);
-  const [showModalAddPeople, seShowModalAddPeople] = useState(false);
-
-  // const handleOpenModal = () => {
-  //   setIsOpen(prev => !prev);
-  // };
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-    setShowModalProject(false);
-    setShowModalSprint(false);
-    seShowModalAddPeople(false);
-  };
-
-  // const toggle = e => {
-  //   const dataSet = Object.keys(e.target.dataset)[0];
-
-  //   switch (dataSet) {
-  //     case 'project':
-  //       setShowModalProject(prev => !prev);
-  //       setShowModalSprint(false);
-  //       seShowModalAddPeople(false);
-  //       break;
-
-  //     case 'sprint':
-  //       setShowModalSprint(prev => !prev);
-  //       setShowModalProject(false);
-  //       seShowModalAddPeople(false);
-  //       break;
-
-  //     case 'people':
-  //       seShowModalAddPeople(prev => !prev);
-  //       setShowModalProject(false);
-  //       setShowModalSprint(false);
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // };
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -142,6 +98,7 @@ function App() {
         <ModalTaskPages>
           <TaskPage />
         </ModalTaskPages>
+        <Modal />
         {/* <button
            data-project
            onClick={e => {
@@ -169,7 +126,7 @@ function App() {
          >
            Люди
          </button> */}
-        {isOpen && (
+        {/* {isOpen && (
           <Modal
             project={showModalProject}
             sprint={showModalSprint}
@@ -177,7 +134,7 @@ function App() {
             onCloseModal={handleCloseModal}
             isOpen={isOpen}
           />
-        )}
+        )} */}
       </Container>
     </>
   );

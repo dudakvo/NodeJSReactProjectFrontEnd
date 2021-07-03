@@ -1,10 +1,14 @@
 import styles from './ProjectsViewTitel.module.css';
-
 import ButtonAdd from '../ButtonAdd';
+import { useDispatch } from 'react-redux';
+import { modalActions } from '../../redux/modal';
 
 const ProjectsViewTitel = () => {
+  const dispatch = useDispatch();
+
   const handleAddProject = () => {
-    console.log('create a project');
+    dispatch(modalActions.isOpenModal());
+    dispatch(modalActions.openModalProject());
   };
 
   return (

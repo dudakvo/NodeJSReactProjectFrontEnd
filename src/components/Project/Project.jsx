@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import styles from './Project.module.scss';
 import sprite from '../../sprite.svg';
 import ButtonAdd from '../ButtonAdd';
+import { useDispatch } from 'react-redux';
+import { modalActions } from '../../redux/modal';
 
 const project = {
   id: 2,
@@ -40,6 +42,8 @@ const Project = ({ match, location }) => {
   const [changePojectName, setChangeProjectName] = useState(false);
   const [projectName, setProjectName] = useState(project.name);
 
+  const dispatch = useDispatch();
+
   const handleShowInput = () => {
     setChangeProjectName(prevState => !prevState);
   };
@@ -49,10 +53,12 @@ const Project = ({ match, location }) => {
   };
 
   const handleAddPeople = () => {
-    console.log('add peaple');
+    dispatch(modalActions.isOpenModal());
+    dispatch(modalActions.openModalAddPeople());
   };
   const handleAddSprint = () => {
-    console.log('add sprint');
+    dispatch(modalActions.isOpenModal());
+    dispatch(modalActions.openModalSprint());
   };
   const hendleDeleteSprint = e => {
     e.preventDefault();
