@@ -1,0 +1,19 @@
+.bgCircles {
+  background-color: #e5e5e5;
+}
+
+@media screen and (min-width: 768px) {
+  .bgCircles {
+    background-image: url('./bg-tablet.png');
+    padding: 114px 100px 292px;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bgCircles {
+    background-image: url('./bg-desktop.png');
+    padding: 56px 355px 110px;
+  }
+}
