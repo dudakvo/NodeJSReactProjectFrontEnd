@@ -21,7 +21,7 @@ export default function RegisterForm() {
   const [password, setPassword] = useState('');
   const [rptPassword, setRptPassword] = useState('');
 
-  // let matchPassword = true;
+  let matchPassword = true;
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -49,9 +49,9 @@ export default function RegisterForm() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // if (password !== rptPassword) {
-    //   matchPassword = false;
-    // }
+    if (password !== rptPassword) {
+      matchPassword = false;
+    }
 
     onRegister({ email, password });
     reset();
@@ -100,7 +100,7 @@ export default function RegisterForm() {
         </label>
       </div>
 
-      {/* {!matchPassword ? <p>Passwords do not match</p> : <p></p>} */}
+      {!matchPassword ? <p>Passwords do not match</p> : <p></p>}
       <button type="submit" className={button}>
         Register
       </button>
