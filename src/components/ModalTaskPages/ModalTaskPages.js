@@ -8,9 +8,9 @@ class ModalTaskPages extends Component {
   componentDidMount() {
     document.body.appendChild(this.modal);
   }
-  componentWilddUnmount() {
+   componentWilddUnmount() {
     document.body.removeChild(this.modal);
-  }
+     }
   render() {
     return ReactDOM.createPortal(this.props.children, this.modal);
   }
