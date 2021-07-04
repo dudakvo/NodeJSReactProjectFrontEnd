@@ -6,9 +6,10 @@ import routes from '../../routes';
 import {
   form,
   title,
-  groupInput,
+  field,
   label,
   input,
+  wrongPwd,
   button,
   link,
 } from './LoginForm.module.scss';
@@ -16,6 +17,8 @@ import {
 export default function LoginForm() {
   const dispatch = useDispatch();
   const onLogin = user => dispatch(authOperations.logIn(user));
+
+  let wrongPassword = false;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,31 +46,41 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit} className={form} autoComplete="off">
       <h1 className={title}>Enter</h1>
 
-      <div className={groupInput}>
-        <label className={label} htmlFor="email">
-          E-mail
-        </label>
+      <div className={field}>
         <input
           className={input}
           type="email"
           name="email"
           value={email}
           onChange={handleInput}
+          id="email"
+          placeholder=" "
         />
+        <label className={label} htmlFor="email">
+          E-mail
+        </label>
       </div>
 
-      <div className={groupInput}>
-        <label className={label} htmlFor="password">
-          Password
-        </label>
+      <div className={field}>
         <input
           className={input}
           type="password"
           name="password"
           value={password}
           onChange={handleInput}
+          id="password"
+          placeholder=" "
         />
+        <label className={label} htmlFor="password">
+          Password
+        </label>
       </div>
+
+      {wrongPassword ? (
+        <p className={wrongPwd}>Wrong password</p>
+      ) : (
+        <p className={wrongPwd}> </p>
+      )}
 
       <button type="submit" className={button}>
         Enter
