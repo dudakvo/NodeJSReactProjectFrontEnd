@@ -9,6 +9,7 @@ import {
   field,
   label,
   input,
+  wrongPwd,
   button,
   link,
 } from './LoginForm.module.scss';
@@ -16,6 +17,8 @@ import {
 export default function LoginForm() {
   const dispatch = useDispatch();
   const onLogin = user => dispatch(authOperations.logIn(user));
+
+  let wrongPassword = false;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -72,6 +75,12 @@ export default function LoginForm() {
           Password
         </label>
       </div>
+
+      {wrongPassword ? (
+        <p className={wrongPwd}>Wrong password</p>
+      ) : (
+        <p className={wrongPwd}> </p>
+      )}
 
       <button type="submit" className={button}>
         Enter
