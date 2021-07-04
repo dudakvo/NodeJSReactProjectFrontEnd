@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import Chart from '../../../Chart';
 import s from './ModalChart.module.css';
+import sprite from '../../../../sprite.svg';
 
 const data = {
   labels: [
@@ -81,6 +82,14 @@ const ModalChart = ({ onCloseModal, handleRef }) => {
 
   return (
     <div className={s.wrapper} ref={toggleContainer}>
+      <div className={s.header}>
+        <h2>Burndown Chart (Calendar Team)</h2>
+        <button type="button" onClick={onCloseModal}>
+          <svg className={s.button}>
+            <use href={sprite + '#icon-close-cross'} />
+          </svg>
+        </button>
+      </div>
       <Chart data={data} />
     </div>
   );
