@@ -30,6 +30,7 @@ const isAuthenticated = createReducer(false, {
   [authActions.registerSuccess]: () => false,
   [authActions.loginSuccess]: () => true,
   [authActions.getCurrentUserSuccess]: () => true,
+  // -----------------------------
   [authActions.registerError]: () => false,
   [authActions.loginError]: () => false,
   [authActions.getCurrentUserError]: () => false,
