@@ -5,6 +5,9 @@ import sprite from '../../sprite.svg';
 import styles from './Sidebar.module.scss';
 import routes from '../../routes';
 
+import { useDispatch } from 'react-redux';
+import { modalActions } from '../../redux/modal';
+
 const projects = [
   { id: 1, name: 'project1' },
   { id: 2, name: 'project2' },
@@ -20,12 +23,15 @@ const projects = [
   { id: 6, name: 'project3' },
 ];
 const Sidebar = ({ history }) => {
+  const dispatch = useDispatch();
+
   const HandleBackToProjects = () => {
     history.push(routes.projects);
   };
 
   const handleCreateProject = () => {
-    console.log('create a project');
+    dispatch(modalActions.isOpenModal());
+    dispatch(modalActions.openModalProject());
   };
 
   return (
