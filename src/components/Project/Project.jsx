@@ -55,10 +55,12 @@ const Project = ({ match, location }) => {
   const handleAddPeople = () => {
     dispatch(modalActions.isOpenModal());
     dispatch(modalActions.openModalAddPeople());
+    document.querySelector('body').classList.add('overflow__body');
   };
   const handleAddSprint = () => {
     dispatch(modalActions.isOpenModal());
     dispatch(modalActions.openModalSprint());
+    document.querySelector('body').classList.add('overflow__body');
   };
   const hendleDeleteSprint = e => {
     e.preventDefault();

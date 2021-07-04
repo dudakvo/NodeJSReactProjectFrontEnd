@@ -18,6 +18,7 @@ const ModalHighComponent = () => {
     dispatch(modalActions.closeModalProject());
     dispatch(modalActions.closeModalSprint());
     dispatch(modalActions.closeModalAddPeople());
+    document.querySelector('body').classList.remove('overflow__body');
   };
 
   return (
