@@ -1,8 +1,7 @@
 import React, { useRef } from 'react';
 import Modal from '../HOC/ModalHOC';
 import { modalSelectors, modalActions } from '../../redux/modal';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import './modal-animation.scss';
 

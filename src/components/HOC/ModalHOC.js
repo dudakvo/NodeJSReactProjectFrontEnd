@@ -5,6 +5,9 @@ import ModalProject from '../Modal/components/ModalProject';
 import ModalSprint from '../Modal/components/ModalSprint';
 import ModalAddPeople from '../Modal/components/ModalAddPeople';
 import s from '../Modal/components/modal.module.scss';
+import { projectOperations } from '../../redux/projects';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentProject } from '../../redux/projects/project-selectors';
 
 const ModalHOC = ({
   people,
@@ -14,12 +17,46 @@ const ModalHOC = ({
   isOpen,
   nodeRref,
 }) => {
-  const [startDate, setStartDate] = useState('');
   const [activeCheckbox, setActiveCheckbox] = useState(false);
 
-  const emailArr = ['test@gmail.com', 'test@gmail.com'];
+  const [projectName, seProjectName] = useState('');
+  const [description, setDescription] = useState('');
+
+  const [addPeopleEmail, setAddPeopleEmail] = useState('');
+
+  const [sprintName, setSprintName] = useState('');
+  const [startDate, setStartDate] = useState('');
+
+  const idProject = useSelector(currentProject);
+
+  const dispatch = useDispatch();
+
+  const emailArr = [];
   const message = 'You have not added any users yet';
   const ref = useRef(null);
+
+  const handleInputs = e => {
+    if (e.target.name === 'description') {
+      setDescription(e.target.value);
+    } else {
+      seProjectName(e.target.value);
+    }
+  };
+
+  const handleCreateProject = () => {
+    dispatch(projectOperations.createProject(projectName, description));
+    onCloseModal();
+  };
+
+  const handleAddPeople = () => {
+    dispatch(projectOperations.addPeopleToProject(addPeopleEmail));
+    onCloseModal();
+  };
+
+  const handleCreateSprint = () => {
+    dispatch(projectOperations.createSprint(sprintName, startDate, idProject));
+    onCloseModal();
+  };
 
   const onClickOutsideHandler = e => {
     if (ref.current) {
@@ -48,9 +85,13 @@ const ModalHOC = ({
           <div className={`${s.backdrop} backdrop`}>
             {toggleProjectModal && (
               <ModalProject
+                handleInputs={handleInputs}
                 onCloseModal={onCloseModal}
                 handleRef={ref}
                 nodeRef={nodeRref}
+                valueName={projectName}
+                valueDescription={description}
+                onCreateProject={handleCreateProject}
               />
             )}
             {togglePeopleModal && (
@@ -60,6 +101,9 @@ const ModalHOC = ({
                 onCloseModal={onCloseModal}
                 handleRef={ref}
                 nodeRef={nodeRref}
+                value={addPeopleEmail}
+                setPeopleEmail={setAddPeopleEmail}
+                handleAddPeople={handleAddPeople}
               />
             )}
             {toggleSprintModal && (
@@ -71,6 +115,9 @@ const ModalHOC = ({
                 startDate={startDate}
                 setStartDate={setStartDate}
                 nodeRef={nodeRref}
+                handleCreateSprint={handleCreateSprint}
+                handleGetName={setSprintName}
+                value={sprintName}
               />
             )}
           </div>
