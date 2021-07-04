@@ -10,6 +10,7 @@ const ModalHighComponent = () => {
   const isOpenModalAddPeople = useSelector(
     modalSelectors.getIsOpenModalAddPeople,
   );
+  const isOpenModalChart = useSelector(modalSelectors.getIsOpenModalChart);
 
   const dispatch = useDispatch();
 
@@ -18,6 +19,7 @@ const ModalHighComponent = () => {
     dispatch(modalActions.closeModalProject());
     dispatch(modalActions.closeModalSprint());
     dispatch(modalActions.closeModalAddPeople());
+    dispatch(modalActions.closeModalChart());
   };
 
   return (
@@ -27,6 +29,7 @@ const ModalHighComponent = () => {
           project={isOpenModalProject}
           sprint={isOpenModalSprint}
           people={isOpenModalAddPeople}
+          chart={isOpenModalChart}
           onCloseModal={handleCloseModal}
           isOpen={isOpen}
         />

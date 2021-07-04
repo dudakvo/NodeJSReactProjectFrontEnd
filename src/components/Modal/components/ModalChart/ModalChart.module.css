@@ -1,0 +1,12 @@
+.wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: auto;
+  padding: 10px 20px;
+
+  background: #ffffff;
+  border-radius: 3px;
+}

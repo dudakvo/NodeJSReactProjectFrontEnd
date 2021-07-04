@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import ModalToggler from '../Modal/ModalToggler';
 import ModalProject from '../Modal/components/ModalProject';
 import ModalSprint from '../Modal/components/ModalSprint';
+import ModalChart from '../Modal/components/ModalChart';
 import ModalAddPeople from '../Modal/components/ModalAddPeople';
 // import { CSSTransition } from 'react-transition-group';
 import s from '../Modal/components/modal.module.scss';
 
-const ModalHOC = ({ people, sprint, project, onCloseModal, isOpen }) => {
+const ModalHOC = ({ people, sprint, project, chart, onCloseModal, isOpen }) => {
   const emailArr = ['test@gmail.com', 'test@gmail.com'];
   const message = 'You have not added any users yet';
   // const [sprintContainer, setSprintContainer] = useState('');
@@ -42,8 +43,14 @@ const ModalHOC = ({ people, sprint, project, onCloseModal, isOpen }) => {
       togglePeopleModal={people}
       toggleSprintModal={sprint}
       toggleProjectModal={project}
+      toggleChartModal={chart}
     >
-      {({ toggleProjectModal, toggleSprintModal, togglePeopleModal }) => (
+      {({
+        toggleProjectModal,
+        toggleSprintModal,
+        togglePeopleModal,
+        toggleChartModal,
+      }) => (
         <>
           <div className={s.backdrop}>
             {toggleProjectModal && (
@@ -59,6 +66,9 @@ const ModalHOC = ({ people, sprint, project, onCloseModal, isOpen }) => {
                 onCloseModal={onCloseModal}
                 handleRef={getRef}
               />
+            )}
+            {toggleChartModal && (
+              <ModalChart onCloseModal={onCloseModal} handleRef={getRef} />
             )}
           </div>
         </>
