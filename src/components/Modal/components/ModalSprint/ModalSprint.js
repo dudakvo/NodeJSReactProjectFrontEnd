@@ -12,6 +12,9 @@ const ModalSprint = ({
   startDate,
   setStartDate,
   nodeRef,
+  handleCreateSprint,
+  handleGetName,
+  value,
 }) => {
   return (
     <div className={s.wrapper} ref={nodeRef}>
@@ -21,7 +24,13 @@ const ModalSprint = ({
       <div className={s.body}>
         <form className={s.formWrapper}>
           <div className={s.inputWrapper}>
-            <input type="text" id="name" placeholder=" " />
+            <input
+              type="text"
+              id="name"
+              placeholder=" "
+              defaultValue={value}
+              onChange={e => handleGetName(e.target.value)}
+            />
             <label htmlFor="name">The name of the sprint</label>
           </div>
           <div className={s.checkboxWrapper}>
@@ -76,7 +85,9 @@ const ModalSprint = ({
         </form>
       </div>
       <div className={s.footer}>
-        <button type="button">Ready</button>
+        <button type="button" onClick={handleCreateSprint}>
+          Ready
+        </button>
         <button type="button" onClick={onCloseModal}>
           Cancel
         </button>

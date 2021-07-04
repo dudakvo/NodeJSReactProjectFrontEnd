@@ -86,6 +86,11 @@ const searchTaskByNameSuccess = createAction(
 );
 const searchTaskByNameError = createAction('projects/searchTaskByNameError');
 
+//current ID
+
+const setCurrentProject = createAction('project/SetCurrentProject');
+const setCurrentSprint = createAction('project/SetCurrentSprint');
+
 const projectActions = {
   fetchProjectsRequest,
   fetchProjectsSuccess,
@@ -129,6 +134,8 @@ const projectActions = {
   searchTaskByNameRequest,
   searchTaskByNameSuccess,
   searchTaskByNameError,
+  setCurrentProject,
+  setCurrentSprint,
 };
 
 export default projectActions;

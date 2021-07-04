@@ -8,6 +8,9 @@ const ModalAddPeople = ({
   onCloseModal,
   handleRe,
   nodeRef,
+  setPeopleEmail,
+  value,
+  handleAddPeople,
 }) => {
   return (
     <div className={s.wrapper} ref={nodeRef}>
@@ -17,7 +20,13 @@ const ModalAddPeople = ({
       <div className={s.body}>
         <form className={s.formWrapper}>
           <div className={s.inputWrapper}>
-            <input type="text" id="name" placeholder=" " />
+            <input
+              type="text"
+              id="name"
+              placeholder=" "
+              onChange={e => setPeopleEmail(e.target.value)}
+              defaultValue={value}
+            />
             <label htmlFor="name">Enter e-mail</label>
           </div>
         </form>
@@ -34,7 +43,9 @@ const ModalAddPeople = ({
         )}
       </div>
       <div className={s.footer}>
-        <button type="button">Ready</button>
+        <button type="button" onClick={handleAddPeople}>
+          Ready
+        </button>
         <button type="button" onClick={onCloseModal}>
           Cancel
         </button>

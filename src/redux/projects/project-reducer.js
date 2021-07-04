@@ -49,6 +49,14 @@ const task = createReducer([], {
   [projectActions.searchTaskByNameSuccess]: (state, { payload }) => payload,
 });
 
+const currentProject = createReducer([], {
+  [projectActions.setCurrentProject]: (state, { payload }) => payload,
+});
+
+const currentSprint = createReducer([], {
+  [projectActions.setCurrentSprint]: (state, { payload }) => payload,
+});
+
 const isLoading = createReducer(false, {
   [projectActions.fetchProjectsRequest]: () => true,
   [projectActions.fetchProjectsSuccess]: () => false,
@@ -99,4 +107,6 @@ export default combineReducers({
   sprint,
   task,
   isLoading,
+  currentProject,
+  currentSprint,
 });
