@@ -11,9 +11,10 @@ const ModalSprint = ({
   handleCheckBox,
   startDate,
   setStartDate,
+  nodeRef,
 }) => {
   return (
-    <div className={s.wrapper}>
+    <div className={s.wrapper} ref={nodeRef}>
       <div className={s.header}>
         <h2 className={s.title}>Creating a sprint</h2>
       </div>

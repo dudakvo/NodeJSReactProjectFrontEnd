@@ -2,9 +2,9 @@ import React from 'react';
 import s from '../modal.module.scss';
 import svg from '../../../../sprite.svg';
 
-const ModalWrapper = ({ onCloseModal, handleRef }) => {
+const ModalWrapper = ({ onCloseModal, handleRef, nodeRef }) => {
   return (
-    <div className={s.wrapper} ref={handleRef}>
+    <div className={s.wrapper} ref={nodeRef}>
       <div className={s.header}>
         <h2 className={s.title}>Сreating a project</h2>
       </div>

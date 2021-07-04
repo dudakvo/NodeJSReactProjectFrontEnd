@@ -4,10 +4,16 @@ import ModalToggler from '../Modal/ModalToggler';
 import ModalProject from '../Modal/components/ModalProject';
 import ModalSprint from '../Modal/components/ModalSprint';
 import ModalAddPeople from '../Modal/components/ModalAddPeople';
-// import { CSSTransition } from 'react-transition-group';
 import s from '../Modal/components/modal.module.scss';
 
-const ModalHOC = ({ people, sprint, project, onCloseModal, isOpen }) => {
+const ModalHOC = ({
+  people,
+  sprint,
+  project,
+  onCloseModal,
+  isOpen,
+  nodeRref,
+}) => {
   const [startDate, setStartDate] = useState('');
   const [activeCheckbox, setActiveCheckbox] = useState(false);
 
@@ -16,7 +22,6 @@ const ModalHOC = ({ people, sprint, project, onCloseModal, isOpen }) => {
   const ref = useRef(null);
 
   const onClickOutsideHandler = e => {
-    console.log(ref);
     if (ref.current) {
       if (isOpen && !ref.current.contains(e.target)) {
         onCloseModal();
@@ -42,7 +47,11 @@ const ModalHOC = ({ people, sprint, project, onCloseModal, isOpen }) => {
         <>
           <div className={`${s.backdrop} backdrop`}>
             {toggleProjectModal && (
-              <ModalProject onCloseModal={onCloseModal} handleRef={ref} />
+              <ModalProject
+                onCloseModal={onCloseModal}
+                handleRef={ref}
+                nodeRef={nodeRref}
+              />
             )}
             {togglePeopleModal && (
               <ModalAddPeople
@@ -50,6 +59,7 @@ const ModalHOC = ({ people, sprint, project, onCloseModal, isOpen }) => {
                 message={message}
                 onCloseModal={onCloseModal}
                 handleRef={ref}
+                nodeRef={nodeRref}
               />
             )}
             {toggleSprintModal && (
@@ -60,6 +70,7 @@ const ModalHOC = ({ people, sprint, project, onCloseModal, isOpen }) => {
                 handleCheckBox={setActiveCheckbox}
                 startDate={startDate}
                 setStartDate={setStartDate}
+                nodeRef={nodeRref}
               />
             )}
           </div>

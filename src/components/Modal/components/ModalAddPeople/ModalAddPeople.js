@@ -2,9 +2,15 @@ import React from 'react';
 import s from '../modal.module.scss';
 import svg from '../../../../sprite.svg';
 
-const ModalAddPeople = ({ emailList, message, onCloseModal, handleRef }) => {
+const ModalAddPeople = ({
+  emailList,
+  message,
+  onCloseModal,
+  handleRe,
+  nodeRef,
+}) => {
   return (
-    <div className={s.wrapper} ref={handleRef}>
+    <div className={s.wrapper} ref={nodeRef}>
       <div className={s.header}>
         <h2 className={s.title}>Add people</h2>
       </div>
