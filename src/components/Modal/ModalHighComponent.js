@@ -1,7 +1,10 @@
+import React, { useRef } from 'react';
 import Modal from '../HOC/ModalHOC';
 import { modalSelectors, modalActions } from '../../redux/modal';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
+import './modal-animation.scss';
 
 const ModalHighComponent = () => {
   const isOpen = useSelector(modalSelectors.getIsOpenModal);
@@ -10,7 +13,7 @@ const ModalHighComponent = () => {
   const isOpenModalAddPeople = useSelector(
     modalSelectors.getIsOpenModalAddPeople,
   );
-
+  const nodeRef = useRef(null);
   const dispatch = useDispatch();
 
   const handleCloseModal = () => {
@@ -18,11 +21,28 @@ const ModalHighComponent = () => {
     dispatch(modalActions.closeModalProject());
     dispatch(modalActions.closeModalSprint());
     dispatch(modalActions.closeModalAddPeople());
+    document.querySelector('body').classList.remove('overflow__body');
   };
 
   return (
     <>
-      {isOpen && (
+      <CSSTransition
+        nodeRef={nodeRef}
+        in={isOpen}
+        timeout={300}
+        classNames="menu-modal"
+        unmountOnExit
+      >
+        <Modal
+          project={isOpenModalProject}
+          sprint={isOpenModalSprint}
+          people={isOpenModalAddPeople}
+          onCloseModal={handleCloseModal}
+          isOpen={isOpen}
+          nodeRref={nodeRef}
+        />
+      </CSSTransition>
+      {/* {isOpen && (
         <Modal
           project={isOpenModalProject}
           sprint={isOpenModalSprint}
@@ -30,7 +50,7 @@ const ModalHighComponent = () => {
           onCloseModal={handleCloseModal}
           isOpen={isOpen}
         />
-      )}
+      )} */}
     </>
   );
 };

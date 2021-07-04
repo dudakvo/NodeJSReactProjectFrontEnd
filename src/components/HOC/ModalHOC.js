@@ -1,41 +1,41 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import ModalToggler from '../Modal/ModalToggler';
 import ModalProject from '../Modal/components/ModalProject';
 import ModalSprint from '../Modal/components/ModalSprint';
 import ModalAddPeople from '../Modal/components/ModalAddPeople';
-// import { CSSTransition } from 'react-transition-group';
 import s from '../Modal/components/modal.module.scss';
 
-const ModalHOC = ({ people, sprint, project, onCloseModal, isOpen }) => {
+const ModalHOC = ({
+  people,
+  sprint,
+  project,
+  onCloseModal,
+  isOpen,
+  nodeRref,
+}) => {
+  const [startDate, setStartDate] = useState('');
+  const [activeCheckbox, setActiveCheckbox] = useState(false);
+
   const emailArr = ['test@gmail.com', 'test@gmail.com'];
   const message = 'You have not added any users yet';
-  // const [sprintContainer, setSprintContainer] = useState('');
-
-  // let container = '';
-
-  const getRef = ref => {
-    // container = ref;
-  };
-
-  // const sprintRef = document.getElementById('modal-sprint-wrapper');
+  const ref = useRef(null);
 
   const onClickOutsideHandler = e => {
-    // console.dir(container);
-    // if (container.current) {
-    //   if (
-    //     (isOpen && !container.current.contains(e.target)) ||
-    //     (isOpen && sprintRef.contains(e.target))
-    //   ) {
-    //     onCloseModal();
-    //     window.removeEventListener('click', onClickOutsideHandler);
-    //   }
-    // }
+    if (ref.current) {
+      if (isOpen && !ref.current.contains(e.target)) {
+        onCloseModal();
+      }
+    }
   };
 
-  window.addEventListener('click', onClickOutsideHandler);
-
-  //eslint-disable-next-line
+  useEffect(() => {
+    window.addEventListener('click', onClickOutsideHandler);
+    return () => {
+      window.removeEventListener('click', onClickOutsideHandler);
+    };
+    // eslint-disable-next-line
+  }, []);
 
   return ReactDOM.createPortal(
     <ModalToggler
@@ -45,19 +45,32 @@ const ModalHOC = ({ people, sprint, project, onCloseModal, isOpen }) => {
     >
       {({ toggleProjectModal, toggleSprintModal, togglePeopleModal }) => (
         <>
-          <div className={s.backdrop}>
+          <div className={`${s.backdrop} backdrop`}>
             {toggleProjectModal && (
-              <ModalProject onCloseModal={onCloseModal} handleRef={getRef} />
-            )}
-            {toggleSprintModal && (
-              <ModalSprint onCloseModal={onCloseModal} handleRef={getRef} />
+              <ModalProject
+                onCloseModal={onCloseModal}
+                handleRef={ref}
+                nodeRef={nodeRref}
+              />
             )}
             {togglePeopleModal && (
               <ModalAddPeople
                 emailList={emailArr}
                 message={message}
                 onCloseModal={onCloseModal}
-                handleRef={getRef}
+                handleRef={ref}
+                nodeRef={nodeRref}
+              />
+            )}
+            {toggleSprintModal && (
+              <ModalSprint
+                onCloseModal={onCloseModal}
+                handleRef={ref}
+                chechBoxStatus={activeCheckbox}
+                handleCheckBox={setActiveCheckbox}
+                startDate={startDate}
+                setStartDate={setStartDate}
+                nodeRef={nodeRref}
               />
             )}
           </div>

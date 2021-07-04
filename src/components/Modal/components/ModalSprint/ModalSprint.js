@@ -1,47 +1,47 @@
-import { useState, useRef } from 'react';
 import s from '../modal.module.scss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './date-picker.scss';
 import svg from '../../../../sprite.svg';
 
-const ModalSprint = ({ myParams, onCloseModal, handleRef }) => {
-  const [startDate, setStartDate] = useState('');
-  const [activeCheckbox, setActiveCheckbox] = useState(false);
-
-  const toggleCheckbox = e => {
-    setActiveCheckbox(prev => !prev);
-  };
-  let toggleContainer = useRef(null);
-  // useEffect(() => {
-  //   handleRef(toggleContainer);
-  //   // eslint-disable-next-line
-  // }, []);
-
+const ModalSprint = ({
+  onCloseModal,
+  handleRef,
+  chechBoxStatus,
+  handleCheckBox,
+  startDate,
+  setStartDate,
+  nodeRef,
+}) => {
   return (
-    <div className={s.wrapper} id="modal-sprint-wrapper">
+    <div className={s.wrapper} ref={nodeRef}>
       <div className={s.header}>
         <h2 className={s.title}>Creating a sprint</h2>
       </div>
-      <div className={s.body} ref={toggleContainer}>
+      <div className={s.body}>
         <form className={s.formWrapper}>
           <div className={s.inputWrapper}>
             <input type="text" id="name" placeholder=" " />
             <label htmlFor="name">The name of the sprint</label>
           </div>
           <div className={s.checkboxWrapper}>
-            <input
-              className={s.checkbox}
-              type="checkbox"
-              id="past-day"
-              onClick={toggleCheckbox}
-            />
-            {activeCheckbox ? (
-              <svg className={s.checkboxIcon} onClick={toggleCheckbox}>
+            <input className={s.checkbox} type="checkbox" id="past-day" />
+            {chechBoxStatus ? (
+              <svg
+                className={s.checkboxIcon}
+                onClick={() => {
+                  handleCheckBox(prev => !prev);
+                }}
+              >
                 <use href={`${svg}#checkbox-active`}></use>
               </svg>
             ) : (
-              <svg className={s.checkboxIcon} onClick={toggleCheckbox}>
+              <svg
+                className={s.checkboxIcon}
+                onClick={() => {
+                  handleCheckBox(prev => !prev);
+                }}
+              >
                 <use href={`${svg}#checkbox-unactive`}></use>
               </svg>
             )}
@@ -49,16 +49,23 @@ const ModalSprint = ({ myParams, onCloseModal, handleRef }) => {
             <span
               className={s.checkboxLabel}
               htmlFor="past-day"
-              onClick={toggleCheckbox}
+              onClick={() => {
+                handleCheckBox(prev => !prev);
+              }}
             >
               Past Day
             </span>
           </div>
           <div className={(s.inputWrapper, s.datePickerWrapper)}>
-            <DatePicker
+            {/* <DatePicker
               selected={startDate}
               onChange={date => setStartDate(date)}
               // isClearable
+              placeholderText="End date"
+            /> */}
+            <DatePicker
+              selected={startDate}
+              onChange={date => setStartDate(date)}
               placeholderText="End date"
             />
           </div>

@@ -1,16 +1,16 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import s from '../modal.module.scss';
 import svg from '../../../../sprite.svg';
 
-const ModalAddPeople = ({ emailList, message, onCloseModal, handleRef }) => {
-  let toggleContainer = useRef(null);
-  useEffect(() => {
-    handleRef(toggleContainer);
-    // eslint-disable-next-line
-  }, []);
-
+const ModalAddPeople = ({
+  emailList,
+  message,
+  onCloseModal,
+  handleRe,
+  nodeRef,
+}) => {
   return (
-    <div className={s.wrapper} ref={toggleContainer}>
+    <div className={s.wrapper} ref={nodeRef}>
       <div className={s.header}>
         <h2 className={s.title}>Add people</h2>
       </div>

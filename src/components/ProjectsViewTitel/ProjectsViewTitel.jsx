@@ -9,6 +9,7 @@ const ProjectsViewTitel = () => {
   const handleAddProject = () => {
     dispatch(modalActions.isOpenModal());
     dispatch(modalActions.openModalProject());
+    document.querySelector('body').classList.add('overflow__body');
   };
 
   return (
