@@ -1,29 +1,24 @@
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import ButtonBackspace from '../ButtonBackspace';
 import sprite from '../../sprite.svg';
 
 import styles from './Sidebar.module.scss';
 import routes from '../../routes';
 
-import { useDispatch } from 'react-redux';
 import { modalActions } from '../../redux/modal';
+import projectOperations from '../../redux/projects/project-operations';
+import { projectsData } from '../../redux/projects/project-selectors';
 
-const projects = [
-  { id: 1, name: 'project1' },
-  { id: 2, name: 'project2' },
-  {
-    id: 3,
-    name: 'Дуже довга назва ',
-  },
-  { id: 4, name: 'project3' },
-  {
-    id: 5,
-    name: 'Дуже довга назва ',
-  },
-  { id: 6, name: 'project3' },
-];
 const Sidebar = ({ history }) => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(projectOperations.fetchProjects());
+  }, [dispatch]);
+
+  const projects = useSelector(projectsData);
 
   const HandleBackToProjects = () => {
     history.push(routes.projects);
@@ -39,10 +34,10 @@ const Sidebar = ({ history }) => {
       <ButtonBackspace text="Show Projects" onClick={HandleBackToProjects} />
       <ul className={styles.list}>
         {projects.map(item => (
-          <li className={styles.item} key={item.id}>
+          <li className={styles.item} key={item._id}>
             <NavLink
               exact
-              to={`${routes.projects}/${item.id}`}
+              to={`${routes.projects}/${item._id}`}
               className={styles.link}
               activeClassName={styles.isActive}
             >
