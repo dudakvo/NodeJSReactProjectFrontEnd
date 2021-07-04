@@ -8,8 +8,8 @@ const projects = createReducer([], {
     ...data.projects,
     payload,
   ],
-  [projectActions.deleteProjectSuccess]: ({ data }, { payload }) =>
-    data.projects.filter(({ id }) => id !== payload),
+  [projectActions.deleteProjectSuccess]: (state, { payload }) =>
+    state.projects.projects.filter(({ id }) => id !== payload),
   [projectActions.fetchProjectByIdSuccess]: (state, { payload }) => payload,
   [projectActions.addPeopleToProjectSuccess]: (state, { payload }) => [
     ...state,

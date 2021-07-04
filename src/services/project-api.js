@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'http://localhost:4000';
 
 export async function fetchProjects() {
   const { data } = await axios.get('/projects');
-  return data;
+  return data.data.projects;
 }
 
 export async function createProject(project) {
