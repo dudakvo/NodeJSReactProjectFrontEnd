@@ -44,6 +44,7 @@ const findProjectById = projectId => async dispatch => {
   dispatch(projectActions.fetchProjectByIdRequest());
   try {
     const data = await projectApi.findProjecrById(projectId);
+    console.log(data);
     dispatch(projectActions.fetchProjectByIdSuccess(data));
   } catch (error) {
     dispatch(projectActions.fetchProjectByIdError(error.message));
