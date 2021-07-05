@@ -39,7 +39,7 @@ const ProjectsList = () => {
         >
           <Link
             className={styles.project}
-            to={`${routes.projects}/${item._id}`}
+            to={`${routes.projects}/${item._id}/sprints`}
           >
             <h3 className={styles.project_title}>{item.name}</h3>
             <p className={styles.project_text}>{item.description}</p>
