@@ -11,10 +11,28 @@
   border-top-style: none;
   border-left-style: none;
   border-right-style: none;
+  outline: none;
 }
 
 .modalLabelNumber {
   margin-bottom: 40px;
+}
+
+.modalInputNumberError {
+  border: 1px solid #ff2c0c;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+}
+
+.errorMessage {
+  display: block;
+  visibility: hidden;
+  color: #ff2c0c;
+}
+
+.isActiveErrorMessage {
+  visibility: visible;
 }
 
 .modalButtonBlock {
