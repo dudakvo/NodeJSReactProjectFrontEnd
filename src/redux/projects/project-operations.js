@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { BASE_URL } from '../../helpers/constants';
 import projectActions from './project-actions';
 import * as projectApi from '../../services/project-api';
 
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = BASE_URL;
 
 const fetchProjects = () => async dispatch => {
   dispatch(projectActions.fetchProjectsRequest());
