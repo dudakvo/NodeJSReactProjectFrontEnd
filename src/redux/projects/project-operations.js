@@ -181,6 +181,16 @@ const searchTaskByName = name => async dispatch => {
   }
 };
 
+// const getNextTaskPage = () => async dispatch => {
+//   dispatch(projectActions.fetchNextPageRequest());
+//   try {
+//     const data = await projectApi.fetchNextPageSuccess();
+//     dispatch(projectActions.searchTaskByNameSuccess(data));
+//   } catch (error) {
+//     dispatch(projectActions.searchTaskByNameError(error.message));
+//   }
+// };
+
 const projectOperations = {
   fetchProjects,
   createProject,
