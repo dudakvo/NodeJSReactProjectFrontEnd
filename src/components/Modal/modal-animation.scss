@@ -1,0 +1,14 @@
+.menu-modal-enter {
+  opacity: 0;
+}
+.menu-modal-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.menu-modal-exit {
+  opacity: 1;
+}
+.menu-modal-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}

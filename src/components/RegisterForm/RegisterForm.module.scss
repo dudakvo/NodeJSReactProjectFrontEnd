@@ -12,42 +12,68 @@
 
   .title {
     font-weight: 500;
-    margin-bottom: 30px;
     font-size: 26px;
-    line-height: 32px;
+    line-height: 1.23;
     letter-spacing: 0.04em;
     color: #181c27;
+    margin-bottom: 30px;
   }
 
-  .groupInput {
-    margin-bottom: 38px;
+  .field {
+    position: relative;
+    margin-bottom: 53px;
   }
 
-  .label {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: 0.04em;
-    color: rgba(24, 28, 39, 0.6);
+  .field:last-child {
+    margin-bottom: 40px;
   }
 
   .input {
     font: inherit;
-    color: rgba(24, 28, 39, 0.6);
+    color: #181c27;
     width: 100%;
     border: 0;
     border-bottom: 1px solid rgba(24, 28, 39, 0.2);
-    height: 20px;
     display: block;
     padding: 9px 4px;
+    margin: 0;
     min-width: 0;
     background: none;
     box-sizing: content-box;
     letter-spacing: inherit;
 
-    &:focus {
+    transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:focus
+    // &:not(:placeholder-shown)
+    {
       outline: none;
+      border-bottom: 1px solid #ff2c0c;
     }
+  }
+
+  .label {
+    position: absolute;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: rgba(24, 28, 39, 0.6);
+  }
+
+  .label {
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+  }
+
+  .input:focus ~ .label,
+  .input:not(:placeholder-shown) ~ .label {
+    transform: translate(-10px, -40px);
+    font-size: 12px;
+    line-height: 1.25;
   }
 
   .button {
@@ -68,7 +94,7 @@
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
-    line-height: 22px;
+    line-height: 1.22;
 
     text-align: center;
     letter-spacing: 0.04em;
@@ -83,7 +109,7 @@
 
   .wrongPwd {
     position: absolute;
-    top: 416px;
+    top: 386px;
     left: 70px;
     text-align: left;
   }
@@ -91,7 +117,7 @@
   p {
     font-weight: 400;
     font-size: 12px;
-    line-height: 15px;
+    line-height: 1.25;
     letter-spacing: 0.04em;
     color: rgba(24, 28, 39, 0.6);
 
@@ -110,17 +136,13 @@
 
     .title {
       font-size: 36px;
-      line-height: 44px;
+      line-height: 1.22;
+      margin-bottom: 53px;
     }
 
     .label {
       font-size: 18px;
-      line-height: 22px;
-    }
-
-    .input {
-      height: 30px;
-      padding: 6px 0 7px;
+      line-height: 1.22;
     }
   }
 }

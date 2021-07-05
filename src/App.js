@@ -98,7 +98,7 @@ function App() {
         <ModalTaskPages>
           <TaskPage />
         </ModalTaskPages>
-        <Modal />
+        {/* <Modal /> */}
         {/* <button
            data-project
            onClick={e => {

@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { BASE_URL } from '../helpers/constants';
 
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = BASE_URL;
 
 export async function register(credentials) {
   const { data } = await axios.post('/users/signup', credentials);

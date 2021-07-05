@@ -93,6 +93,10 @@ const fetchNextPageError = createAction('projects/fetchNextPageError');
 const fetchPrevPageRequest = createAction('projects/fetchPrevPageRequest');
 const fetchPrevPageSuccess = createAction('projects/fetchPrevPageSuccess');
 const fetchPrevPageError = createAction('projects/fetchPrevPageError');
+//current ID
+
+const setCurrentProject = createAction('project/SetCurrentProject');
+const setCurrentSprint = createAction('project/SetCurrentSprint');
 
 const projectActions = {
   fetchProjectsRequest,
@@ -143,6 +147,8 @@ const projectActions = {
   fetchPrevPageRequest,
   fetchPrevPageSuccess,
   fetchPrevPageError,
+  setCurrentProject,
+  setCurrentSprint,
 };
 
 export default projectActions;

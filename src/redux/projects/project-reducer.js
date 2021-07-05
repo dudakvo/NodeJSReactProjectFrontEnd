@@ -8,8 +8,8 @@ const projects = createReducer([], {
     ...data.projects,
     payload,
   ],
-  [projectActions.deleteProjectSuccess]: ({ data }, { payload }) =>
-    data.projects.filter(({ id }) => id !== payload),
+  [projectActions.deleteProjectSuccess]: (state, { payload }) =>
+    state.projects.projects.filter(({ id }) => id !== payload),
   [projectActions.fetchProjectByIdSuccess]: (state, { payload }) => payload,
   [projectActions.addPeopleToProjectSuccess]: (state, { payload }) => [
     ...state,
@@ -52,6 +52,13 @@ const task = createReducer([], {
 const page = createReducer(1, {
   [projectActions.fetchNextPageSuccess]: (state, { payload }) => state + 1,
   [projectActions.fetchPrevPageSuccess]: (state, { payload }) => state - 1,
+});
+const currentProject = createReducer([], {
+  [projectActions.setCurrentProject]: (state, { payload }) => payload,
+});
+
+const currentSprint = createReducer([], {
+  [projectActions.setCurrentSprint]: (state, { payload }) => payload,
 });
 
 const isLoading = createReducer(false, {
@@ -105,4 +112,6 @@ export default combineReducers({
   task,
   page,
   isLoading,
+  currentProject,
+  currentSprint,
 });

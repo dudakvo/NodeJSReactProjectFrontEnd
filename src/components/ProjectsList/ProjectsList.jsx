@@ -1,47 +1,53 @@
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './ProjectsList.module.scss';
 import sprite from '../../sprite.svg';
-import { Link } from 'react-router-dom';
 import routes from '../../routes';
-
-const projects = [
-  { id: 1, name: 'project1', description: 'Короткий опис проекту...' },
-  { id: 2, name: 'project2', description: 'Короткий опис проекту...' },
-  {
-    id: 3,
-    name: 'Дуже довга назва проекту',
-    description: 'Короткий опис проекту...',
-  },
-  { id: 4, name: 'project3', description: 'Короткий опис проекту...' },
-  {
-    id: 5,
-    name: 'Дуже довга назва проекту',
-    description: 'Короткий опис проекту...',
-  },
-  { id: 6, name: 'project3', description: 'Короткий опис проекту...' },
-];
+import projectOperations from '../../redux/projects/project-operations';
+import { projectsData } from '../../redux/projects/project-selectors';
+import { projectActions } from '../../redux/projects';
 
 const ProjectsList = () => {
-  const handleDeleteProject = e => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(projectOperations.fetchProjects());
+  }, [dispatch]);
+
+  const projects = useSelector(projectsData);
+
+  const handleDeleteProject = (e, id) => {
     e.preventDefault();
+    dispatch(projectOperations.deleteProject(id));
 
-    // if (
-    //   e.target.tagName === 'BUTTON' ||
-    //   e.target.tagName === 'svg' ||
-    //   e.target.tagName === 'use'
-    // ) {
-
-    // }
-    console.log('delete project');
+    console.log('delete project' + id);
   };
+
+  const getCurrentIdProject = id => {
+    dispatch(projectActions.setCurrentProject(id));
+  };
+
   return (
     <ul className={styles.list}>
-      {projects.map(item => (
-        <li className={styles.item} key={item.id}>
-          <Link className={styles.project} to={`${routes.projects}/${item.id}`}>
+      {projects?.map(item => (
+        <li
+          className={styles.item}
+          key={item._id}
+          onClick={() => {
+            getCurrentIdProject(item._id);
+          }}
+        >
+          <Link
+            className={styles.project}
+            to={`${routes.projects}/${item._id}`}
+          >
             <h3 className={styles.project_title}>{item.name}</h3>
             <p className={styles.project_text}>{item.description}</p>
 
-            <button type="button" onClick={handleDeleteProject}>
+            <button
+              type="button"
+              onClick={e => handleDeleteProject(e, item._id)}
+            >
               <svg className={styles.button_plus}>
                 <use href={sprite + '#icon-delete'} />
               </svg>

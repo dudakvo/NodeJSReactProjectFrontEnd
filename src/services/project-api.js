@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { BASE_URL } from '../helpers/constants';
 
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = BASE_URL;
 
 export async function fetchProjects() {
   const { data } = await axios.get('/projects');
-  return data;
+  return data.data.projects;
 }
 
 export async function createProject(project) {

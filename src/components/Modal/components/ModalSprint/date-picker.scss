@@ -72,7 +72,7 @@
 
 .react-datepicker-popper {
   width: 100% !important;
-  transform: translate(-10px, -10px) !important;
+  transform: translate(0px, 0px) !important;
 }
 
 .enter {
@@ -96,6 +96,10 @@
 
 .react-datepicker__month-container {
   width: 100%;
+}
+
+.overflow__body {
+  overflow: hidden;
 }
 
 @media screen and (min-width: 768px) {
