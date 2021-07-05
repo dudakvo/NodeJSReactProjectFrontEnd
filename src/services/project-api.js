@@ -71,3 +71,8 @@ export async function searchTaskByName(name) {
   const { data } = await axios.get('/task/search', name);
   return data;
 }
+
+export async function getNextTaskPage(sprintId, page) {
+  const { data } = await axios.get(`/task/${sprintId}?page=${page}`);
+  return data;
+}

@@ -49,6 +49,11 @@ const task = createReducer([], {
   [projectActions.searchTaskByNameSuccess]: (state, { payload }) => payload,
 });
 
+const page = createReducer(1, {
+  [projectActions.fetchNextPageSuccess]: (state, { payload }) => state + 1,
+  [projectActions.fetchPrevPageSuccess]: (state, { payload }) => state - 1,
+});
+
 const isLoading = createReducer(false, {
   [projectActions.fetchProjectsRequest]: () => true,
   [projectActions.fetchProjectsSuccess]: () => false,
@@ -98,5 +103,6 @@ export default combineReducers({
   projects,
   sprint,
   task,
+  page,
   isLoading,
 });

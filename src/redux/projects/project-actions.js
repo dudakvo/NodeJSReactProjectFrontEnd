@@ -86,6 +86,14 @@ const searchTaskByNameSuccess = createAction(
 );
 const searchTaskByNameError = createAction('projects/searchTaskByNameError');
 
+const fetchNextPageRequest = createAction('projects/fetchNextPageRequest');
+const fetchNextPageSuccess = createAction('projects/fetchNextPageSuccess');
+const fetchNextPageError = createAction('projects/fetchNextPageError');
+
+const fetchPrevPageRequest = createAction('projects/fetchPrevPageRequest');
+const fetchPrevPageSuccess = createAction('projects/fetchPrevPageSuccess');
+const fetchPrevPageError = createAction('projects/fetchPrevPageError');
+
 const projectActions = {
   fetchProjectsRequest,
   fetchProjectsSuccess,
@@ -129,6 +137,12 @@ const projectActions = {
   searchTaskByNameRequest,
   searchTaskByNameSuccess,
   searchTaskByNameError,
+  fetchNextPageRequest,
+  fetchNextPageSuccess,
+  fetchNextPageError,
+  fetchPrevPageRequest,
+  fetchPrevPageSuccess,
+  fetchPrevPageError,
 };
 
 export default projectActions;
