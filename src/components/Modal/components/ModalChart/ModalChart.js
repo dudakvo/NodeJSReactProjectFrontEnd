@@ -59,6 +59,8 @@ const data = {
     },
   ],
   options: {
+    maintainAspectRatio: false,
+    responsive: true,
     plugins: {
       title: {
         display: true,
@@ -84,13 +86,15 @@ const ModalChart = ({ onCloseModal, handleRef }) => {
     <div className={s.wrapper} ref={toggleContainer}>
       <div className={s.header}>
         <h2>Burndown Chart (Calendar Team)</h2>
-        <button type="button" onClick={onCloseModal}>
-          <svg className={s.button}>
+        <button className={s.button} type="button" onClick={onCloseModal}>
+          <svg className={s.button_icon}>
             <use href={sprite + '#icon-close-cross'} />
           </svg>
         </button>
       </div>
-      <Chart data={data} />
+      <div className={s.chartContainer}>
+        <Chart data={data} />
+      </div>
     </div>
   );
 };
