@@ -14,9 +14,7 @@ const deleteProjectRequest = createAction('projects/deleteProjectRequest');
 const deleteProjectSuccess = createAction('projects/deleteProjectSuccess');
 const deleteProjectError = createAction('projects/deleteProjectError');
 
-const fetchProjectByIdRequest = createAction(
-  'projects/fetchProjectByIdRequest',
-);
+const fetchProjectByIdRequest = createAction('project/fetchProjectByIdRequest');
 const fetchProjectByIdSuccess = createAction(
   'projects/fetchProjectByIdSuccess',
 );

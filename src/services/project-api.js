@@ -20,7 +20,7 @@ export async function deleteProject(projectId) {
 
 export async function findProjecrById(projectId) {
   const { data } = await axios.get(`/sprint/${projectId}`);
-  return data;
+  return data.data;
 }
 
 export async function updateProjectName(projectId, name) {

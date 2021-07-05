@@ -4,13 +4,14 @@ import projectActions from './project-actions';
 
 const projects = createReducer([], {
   [projectActions.fetchProjectsSuccess]: (state, { payload }) => payload,
-  [projectActions.createProjectSuccess]: ({ data }, { payload }) => [
-    ...data.projects,
+
+  [projectActions.createProjectSuccess]: (state, { payload }) => [
+    ...state,
     payload,
   ],
   [projectActions.deleteProjectSuccess]: (state, { payload }) =>
-    state.projects.projects.filter(({ id }) => id !== payload),
-  [projectActions.fetchProjectByIdSuccess]: (state, { payload }) => payload,
+    state.filter(({ _id }) => _id !== payload),
+
   [projectActions.addPeopleToProjectSuccess]: (state, { payload }) => [
     ...state,
     payload,
@@ -20,8 +21,12 @@ const projects = createReducer([], {
     payload,
   ],
 });
+const project = createReducer(null, {
+  [projectActions.fetchProjectByIdSuccess]: (state, { payload }) => payload,
+});
 
 const sprint = createReducer([], {
+ 
   [projectActions.createSprintSuccess]: (state, { payload }) => [
     ...state,
     payload,
@@ -108,6 +113,7 @@ const isLoading = createReducer(false, {
 
 export default combineReducers({
   projects,
+  project,
   sprint,
   task,
   page,
