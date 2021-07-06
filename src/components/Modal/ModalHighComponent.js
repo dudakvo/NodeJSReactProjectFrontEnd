@@ -9,6 +9,7 @@ const ModalHighComponent = () => {
   const isOpen = useSelector(modalSelectors.getIsOpenModal);
   const isOpenModalProject = useSelector(modalSelectors.getIsOpenModalProject);
   const isOpenModalSprint = useSelector(modalSelectors.getIsOpenModalSprint);
+  const isOpenModaTask = useSelector(modalSelectors.getIsOpenModalTask);
   const isOpenModalAddPeople = useSelector(
     modalSelectors.getIsOpenModalAddPeople,
   );
@@ -20,6 +21,7 @@ const ModalHighComponent = () => {
     dispatch(modalActions.closeModalProject());
     dispatch(modalActions.closeModalSprint());
     dispatch(modalActions.closeModalAddPeople());
+    dispatch(modalActions.closeModalTask());
     document.querySelector('body').classList.remove('overflow__body');
   };
 
@@ -36,6 +38,7 @@ const ModalHighComponent = () => {
           project={isOpenModalProject}
           sprint={isOpenModalSprint}
           people={isOpenModalAddPeople}
+          taks={isOpenModaTask}
           onCloseModal={handleCloseModal}
           isOpen={isOpen}
           nodeRref={nodeRef}
