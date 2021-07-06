@@ -44,7 +44,7 @@ const Project = ({ match }) => {
       <ul className={styles.list}>
         {sprints?.map(item => (
           <li key={item._id}>
-            <Link to={`${match.url}/${item.id}`} className={styles.sprint}>
+            <Link to={`${match.url}/${item._id}`} className={styles.sprint}>
               <h3 className={styles.title}>{item.sprint_name}</h3>
               <div className={styles.time_block}>
                 <p>Start date</p>
