@@ -29,8 +29,8 @@ const SprintHeader = () => {
    };
 
   const handleCreateTask = () => {
-    dispatch(modalActions.isOpenModal());
-    dispatch(modalActions.openModalSprint());
+    // dispatch(modalActions.isOpenModal());
+    dispatch(modalActions.openModalTask());
   };
 
     const getDate = () => {
