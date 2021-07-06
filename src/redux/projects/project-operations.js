@@ -15,6 +15,16 @@ const fetchProjects = () => async dispatch => {
   }
 };
 
+const fetchSprints = (id) => async dispatch => {
+  dispatch(projectActions.fetchSprintSByProjectIdRequest());
+  try {
+    const projects = await projectApi.fetchSprintsByProjectId(id);
+    dispatch(projectActions.fetchSprintByProjectIdSuccess(projects));
+  } catch (error) {
+    dispatch(projectActions.fetchSprintByProjectIdError(error.message));
+  }
+};
+
 const createProject = (name, description) => async dispatch => {
   console.log(name, description);
   const newProject = {
@@ -44,7 +54,6 @@ const findProjectById = projectId => async dispatch => {
   dispatch(projectActions.fetchProjectByIdRequest());
   try {
     const data = await projectApi.findProjecrById(projectId);
-    console.log(data);
     dispatch(projectActions.fetchProjectByIdSuccess(data));
   } catch (error) {
     dispatch(projectActions.fetchProjectByIdError(error.message));
@@ -204,6 +213,7 @@ const projectOperations = {
   deleteTask,
   updateTaskHours,
   searchTaskByName,
+  fetchSprints,
 };
 
 export default projectOperations;
