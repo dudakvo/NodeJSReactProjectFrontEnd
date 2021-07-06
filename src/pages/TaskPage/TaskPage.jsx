@@ -8,12 +8,12 @@ import TaskForm from '../../components/TaskForm/TaskForm';
 import Header from '../../components/Header';
 
 const TaskPage = ({ onSubmit }) => {
-  const isOpen = useSelector(modalSelectors.getIsOpenModalProject);
+  const isOpen = useSelector(modalSelectors.getIsOpenModalTask);
 
   const dispatch = useDispatch();
 
   const onCancel = () => {
-    dispatch(modalActions.closeModalProject());
+    dispatch(modalActions.closeModalTask());
   };
   // const [modalOpen, setModalOpen] = useState(false);
 
@@ -37,7 +37,7 @@ const TaskPage = ({ onSubmit }) => {
               </svg>
             </button>
           </div>
-          <h2 className="modalTitle">Створення задачі</h2>
+          <h2 className="modalTitle">Creating a task</h2>
           <TaskForm onCancel={onCancel} />
 
           {/* <div className="modalBody"></div> */}
