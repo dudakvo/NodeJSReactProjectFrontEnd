@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -9,19 +9,20 @@ import sprite from '../../sprite.svg';
 
 import { modalActions } from '../../redux/modal';
 import projectOperations from '../../redux/projects/project-operations';
-import { getProject } from '../../redux/projects/project-selectors';
 import ButtonAddPeople from '../ButtonAddPeople';
 import ProjectName from '../ProjectName';
 
 const Project = ({ match }) => {
   const dispatch = useDispatch();
+  const { projectId } = match.params;
 
   useEffect(() => {
-    console.log('rerender');
-    dispatch(projectOperations.findProjectById(match.params.projectId));
-  }, []);
+    dispatch(projectOperations.fetchSprints(projectId));
+  }, [projectId, dispatch]);
 
-  const project = useSelector(getProject);
+  const sprints = useSelector(state => state.projects.sprints);
+
+  console.log(sprints);
 
   const handleAddSprint = () => {
     dispatch(modalActions.isOpenModal());
@@ -36,14 +37,14 @@ const Project = ({ match }) => {
   return (
     <div className={styles.project_block}>
       <div className={styles.project_header}>
-        <ProjectName name={project?.project.name} />
+        <ProjectName projectId={projectId} />
         <ButtonAdd text="Create sprint" onClick={handleAddSprint} />
       </div>
       <ButtonAddPeople />
       <ul className={styles.list}>
-        {project?.sprints.sprints.map(item => (
-          <li key={item.id}>
-            <Link to={`${match.url}/${item.id}`} className={styles.sprint}>
+        {sprints?.map(item => (
+          <li key={item._id}>
+            <Link to={`${match.url}/${item._id}`} className={styles.sprint}>
               <h3 className={styles.title}>{item.sprint_name}</h3>
               <div className={styles.time_block}>
                 <p>Start date</p>

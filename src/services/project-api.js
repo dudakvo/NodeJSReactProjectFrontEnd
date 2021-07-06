@@ -20,7 +20,11 @@ export async function deleteProject(projectId) {
 
 export async function findProjecrById(projectId) {
   const { data } = await axios.get(`/sprint/${projectId}`);
-  return data.data;
+  return data.data.project;
+}
+export async function fetchSprintsByProjectId(projectId) {
+  const { data } = await axios.get(`/sprint/${projectId}`);
+  return data.data.sprints.sprints;
 }
 
 export async function updateProjectName(projectId, name) {
@@ -45,6 +49,7 @@ export async function deleteSprint(sprintId) {
 
 export async function findSprintById(sprintId) {
   const { data } = await axios.get(`/task/${sprintId}`);
+  console.log(data);
   return data;
 }
 

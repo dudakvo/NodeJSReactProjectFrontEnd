@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import ModalToggler from '../Modal/ModalToggler';
+import { useParams } from 'react-router-dom';
 import ModalProject from '../Modal/components/ModalProject';
 import ModalSprint from '../Modal/components/ModalSprint';
 import ModalAddPeople from '../Modal/components/ModalAddPeople';
+import ModalTask from '../Modal/components/ModalTask';
+
 import s from '../Modal/components/modal.module.scss';
 import { projectOperations } from '../../redux/projects';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,14 +16,20 @@ const ModalHOC = ({
   people,
   sprint,
   project,
+  taks,
   onCloseModal,
   isOpen,
   nodeRref,
 }) => {
+  const { sprintId } = useParams();
+
   const [activeCheckbox, setActiveCheckbox] = useState(false);
 
   const [projectName, seProjectName] = useState('');
   const [description, setDescription] = useState('');
+
+  const [taskName, setTaskName] = useState('');
+  const [scheduledHours, setScheduledHours] = useState('');
 
   const [addPeopleEmail, setAddPeopleEmail] = useState('');
 
@@ -43,6 +52,14 @@ const ModalHOC = ({
     }
   };
 
+  const handleInputsTask = e => {
+    if (e.target.name === 'description') {
+      setScheduledHours(e.target.value);
+    } else {
+      setTaskName(e.target.value);
+    }
+  };
+
   const handleCreateProject = () => {
     dispatch(projectOperations.createProject(projectName, description));
     onCloseModal();
@@ -50,6 +67,13 @@ const ModalHOC = ({
 
   const handleAddPeople = () => {
     dispatch(projectOperations.addPeopleToProject(addPeopleEmail));
+    onCloseModal();
+  };
+
+  const handleCreateTask = () => {
+    dispatch(
+      projectOperations.createSprint(taskName, scheduledHours, sprintId),
+    );
     onCloseModal();
   };
 
@@ -79,8 +103,14 @@ const ModalHOC = ({
       togglePeopleModal={people}
       toggleSprintModal={sprint}
       toggleProjectModal={project}
+      toggleTaskModal={taks}
     >
-      {({ toggleProjectModal, toggleSprintModal, togglePeopleModal }) => (
+      {({
+        toggleProjectModal,
+        toggleSprintModal,
+        togglePeopleModal,
+        toggleTaskModal,
+      }) => (
         <>
           <div className={`${s.backdrop} backdrop`}>
             {toggleProjectModal && (
@@ -118,6 +148,19 @@ const ModalHOC = ({
                 handleCreateSprint={handleCreateSprint}
                 handleGetName={setSprintName}
                 value={sprintName}
+              />
+            )}
+            {toggleTaskModal && (
+              <ModalTask
+                emailList={emailArr}
+                message={message}
+                onCloseModal={onCloseModal}
+                handleRef={ref}
+                nodeRef={nodeRref}
+                valueName={taskName}
+                taskScheduledHours={scheduledHours}
+                setTaskInput={handleInputsTask}
+                handleSubmitTask={handleCreateTask}
               />
             )}
           </div>
