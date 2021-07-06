@@ -50,9 +50,15 @@ const deleteSprintRequest = createAction('projects/deleteSprintRequest');
 const deleteSprintSuccess = createAction('projects/deleteSprintSuccess');
 const deleteSprintError = createAction('projects/deleteSprintError');
 
-const fetchSprintByIdRequest = createAction('projects/fetchSprintByIdRequest');
-const fetchSprintByIdSuccess = createAction('projects/fetchSprintByIdSuccess');
-const fetchSprintByIdError = createAction('projects/fetchSprintByIdError');
+const fetchSprintSByProjectIdRequest = createAction(
+  'projects/fetchSprintByProjectIdRequest',
+);
+const fetchSprintByProjectIdSuccess = createAction(
+  'projects/fetchSprintByProjectIdSuccess',
+);
+const fetchSprintByProjectIdError = createAction(
+  'projects/fetchSprintByProjectIdError',
+);
 
 const updateSprintNameRequest = createAction(
   'projects/updateSprintNameRequest',
@@ -96,7 +102,15 @@ const fetchPrevPageError = createAction('projects/fetchPrevPageError');
 const setCurrentProject = createAction('project/SetCurrentProject');
 const setCurrentSprint = createAction('project/SetCurrentSprint');
 
+// sprit
+const fetchSprintByIdRequest = createAction('projects/fetchSprintByIdRequest');
+const fetchSprintByIdSuccess = createAction('projects/fetchSprintByIdSuccess');
+const fetchSprintByIdError = createAction('projects/fetchSprintByIdError');
+
 const projectActions = {
+  fetchSprintByProjectIdSuccess,
+  fetchSprintByProjectIdError,
+  fetchSprintSByProjectIdRequest,
   fetchProjectsRequest,
   fetchProjectsSuccess,
   fetchProjectsError,
