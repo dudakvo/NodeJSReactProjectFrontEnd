@@ -87,6 +87,7 @@ const createSprint = (sprint_name, date_end, project_id) => async dispatch => {
   dispatch(projectActions.createSprintRequest());
   try {
     const data = await projectApi.createSprint(sprint);
+    console.log(data);
     dispatch(projectActions.createSprintSuccess(data));
   } catch (error) {
     dispatch(projectActions.createSprintError(error.message));
@@ -127,24 +128,20 @@ const updateSprintName = (sprintId, name) => async dispatch => {
   }
 };
 
-const createTask =
-  (task_name, scheduled_hours, sprintId, hours_spent, hours_spent_per_day) =>
-  async dispatch => {
-    const newTask = {
-      task_name,
-      scheduled_hours,
-      sprint: sprintId,
-      hours_spent,
-      hours_spent_per_day,
-    };
-    dispatch(projectActions.createTaskRequest());
-    try {
-      const data = await projectApi.createTask(newTask);
-      dispatch(projectActions.createTaskSuccess(data));
-    } catch (error) {
-      dispatch(projectActions.createTaskError(error.message));
-    }
+const createTask = (task_name, scheduled_hours, sprintId) => async dispatch => {
+  const newTask = {
+    task_name,
+    scheduled_hours,
+    sprint: sprintId,
   };
+  dispatch(projectActions.createTaskRequest());
+  try {
+    const data = await projectApi.createTask(newTask);
+    dispatch(projectActions.createTaskSuccess(data));
+  } catch (error) {
+    dispatch(projectActions.createTaskError(error.message));
+  }
+};
 
 const deleteTask = taskId => async dispatch => {
   dispatch(projectActions.deleteTaskRequest());

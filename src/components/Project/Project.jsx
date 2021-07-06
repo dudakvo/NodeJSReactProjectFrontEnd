@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -19,6 +19,7 @@ const Project = ({ match }) => {
   useEffect(() => {
     console.log('rerender');
     dispatch(projectOperations.findProjectById(match.params.projectId));
+    // eslint-disable-next-line
   }, []);
 
   const project = useSelector(getProject);
