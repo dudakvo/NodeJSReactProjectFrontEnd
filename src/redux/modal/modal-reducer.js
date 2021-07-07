@@ -27,15 +27,10 @@ const isOpenModal = createReducer(false, {
   [modalActions.isCloseModal]: () => false,
 });
 
-const isOpenModalTask = createReducer(false, {
-  [modalActions.openModalTask]: () => true,
-  [modalActions.closeModalTask]: () => false,
-});
 export default combineReducers({
   isOpenModalSprint,
   isOpenModalAddPeople,
   isOpenModalProject,
   isOpenModalTask,
   isOpenModal,
-  isOpenModalTask,
 });
