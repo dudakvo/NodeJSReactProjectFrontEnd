@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { BASE_URL } from '../helpers/constants';
 
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = BASE_URL;
 
 export async function fetchProjects() {
   const { data } = await axios.get('/projects');
-  return data;
+  return data.data.projects;
 }
 
 export async function createProject(project) {
@@ -19,7 +20,11 @@ export async function deleteProject(projectId) {
 
 export async function findProjecrById(projectId) {
   const { data } = await axios.get(`/sprint/${projectId}`);
-  return data;
+  return data.data.project;
+}
+export async function fetchSprintsByProjectId(projectId) {
+  const { data } = await axios.get(`/sprint/${projectId}`);
+  return data.data.sprints.sprints;
 }
 
 export async function updateProjectName(projectId, name) {
@@ -44,6 +49,7 @@ export async function deleteSprint(sprintId) {
 
 export async function findSprintById(sprintId) {
   const { data } = await axios.get(`/task/${sprintId}`);
+  console.log(data);
   return data;
 }
 
@@ -69,5 +75,10 @@ export async function updateTaskHours(taskId, hours) {
 
 export async function searchTaskByName(name) {
   const { data } = await axios.get('/task/search', name);
+  return data;
+}
+
+export async function getNextTaskPage(sprintId, page) {
+  const { data } = await axios.get(`/task/${sprintId}?page=${page}`);
   return data;
 }

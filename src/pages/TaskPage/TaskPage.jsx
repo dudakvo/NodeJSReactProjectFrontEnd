@@ -1,14 +1,21 @@
 // import { useState, useEffect } from 'react';
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { modalSelectors, modalActions } from '../../redux/modal';
 
 import sprite from '../../sprite.svg';
 import TaskForm from '../../components/TaskForm/TaskForm';
 import Header from '../../components/Header';
 
 const TaskPage = ({ onSubmit }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const isOpen = useSelector(modalSelectors.getIsOpenModalTask);
+
+  const dispatch = useDispatch();
+
+  const onCancel = () => {
+    dispatch(modalActions.closeModalTask());
+  };
   // const [modalOpen, setModalOpen] = useState(false);
-  const onCancel = () => setIsOpen(false);
 
   // useEffect(() => {
   //   setModalOpen(true);
@@ -24,12 +31,13 @@ const TaskPage = ({ onSubmit }) => {
             <Header />
           </div>
           <div className="iconCloseBlock">
-            <svg className="iconClose" onClick={onCancel}>
-              <use href={sprite + '#icon-close-cross'}></use>
-            </svg>
+            <button type="button" onClick={onCancel}>
+              <svg className="iconClose">
+                <use href={sprite + '#icon-close-cross'}></use>
+              </svg>
+            </button>
           </div>
-          <h2 className="modalTitle">Створення задачі</h2>
-          {/* <TaskForm onCancel={handelCancel} /> */}
+          <h2 className="modalTitle">Creating a task</h2>
           <TaskForm onCancel={onCancel} />
 
           {/* <div className="modalBody"></div> */}

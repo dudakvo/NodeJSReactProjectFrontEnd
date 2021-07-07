@@ -1,4 +1,5 @@
 .modalOverlay {
+  z-index: 101;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -42,7 +43,6 @@
 
 .iconCloseBlock {
   position: relative;
-  /* height: 100%; */
 }
 
 .iconClose {

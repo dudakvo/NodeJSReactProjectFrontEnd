@@ -3,13 +3,7 @@ import Chart from '../../../Chart';
 import s from './ModalChart.module.css';
 import sprite from '../../../../sprite.svg';
 
-const ModalChart = ({ onCloseModal, handleRef }) => {
-  let toggleContainer = useRef(null);
-  useEffect(() => {
-    handleRef(toggleContainer);
-    // eslint-disable-next-line
-  }, []);
-
+const ModalChart = ({ onCloseModal, nodeRef }) => {
   const data = {
     labels: [
       '22 July',
@@ -83,7 +77,7 @@ const ModalChart = ({ onCloseModal, handleRef }) => {
   };
 
   return (
-    <div className={s.wrapper} ref={toggleContainer}>
+    <div className={s.wrapper} ref={nodeRef}>
       <div className={s.header}>
         <h2>Burndown Chart (Calendar Team)</h2>
         <button className={s.button} type="button" onClick={onCloseModal}>

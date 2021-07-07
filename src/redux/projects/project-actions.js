@@ -14,9 +14,7 @@ const deleteProjectRequest = createAction('projects/deleteProjectRequest');
 const deleteProjectSuccess = createAction('projects/deleteProjectSuccess');
 const deleteProjectError = createAction('projects/deleteProjectError');
 
-const fetchProjectByIdRequest = createAction(
-  'projects/fetchProjectByIdRequest',
-);
+const fetchProjectByIdRequest = createAction('project/fetchProjectByIdRequest');
 const fetchProjectByIdSuccess = createAction(
   'projects/fetchProjectByIdSuccess',
 );
@@ -52,9 +50,15 @@ const deleteSprintRequest = createAction('projects/deleteSprintRequest');
 const deleteSprintSuccess = createAction('projects/deleteSprintSuccess');
 const deleteSprintError = createAction('projects/deleteSprintError');
 
-const fetchSprintByIdRequest = createAction('projects/fetchSprintByIdRequest');
-const fetchSprintByIdSuccess = createAction('projects/fetchSprintByIdSuccess');
-const fetchSprintByIdError = createAction('projects/fetchSprintByIdError');
+const fetchSprintSByProjectIdRequest = createAction(
+  'projects/fetchSprintByProjectIdRequest',
+);
+const fetchSprintByProjectIdSuccess = createAction(
+  'projects/fetchSprintByProjectIdSuccess',
+);
+const fetchSprintByProjectIdError = createAction(
+  'projects/fetchSprintByProjectIdError',
+);
 
 const updateSprintNameRequest = createAction(
   'projects/updateSprintNameRequest',
@@ -86,7 +90,27 @@ const searchTaskByNameSuccess = createAction(
 );
 const searchTaskByNameError = createAction('projects/searchTaskByNameError');
 
+const fetchNextPageRequest = createAction('projects/fetchNextPageRequest');
+const fetchNextPageSuccess = createAction('projects/fetchNextPageSuccess');
+const fetchNextPageError = createAction('projects/fetchNextPageError');
+
+const fetchPrevPageRequest = createAction('projects/fetchPrevPageRequest');
+const fetchPrevPageSuccess = createAction('projects/fetchPrevPageSuccess');
+const fetchPrevPageError = createAction('projects/fetchPrevPageError');
+//current ID
+
+const setCurrentProject = createAction('project/SetCurrentProject');
+const setCurrentSprint = createAction('project/SetCurrentSprint');
+
+// sprit
+const fetchSprintByIdRequest = createAction('projects/fetchSprintByIdRequest');
+const fetchSprintByIdSuccess = createAction('projects/fetchSprintByIdSuccess');
+const fetchSprintByIdError = createAction('projects/fetchSprintByIdError');
+
 const projectActions = {
+  fetchSprintByProjectIdSuccess,
+  fetchSprintByProjectIdError,
+  fetchSprintSByProjectIdRequest,
   fetchProjectsRequest,
   fetchProjectsSuccess,
   fetchProjectsError,
@@ -129,6 +153,14 @@ const projectActions = {
   searchTaskByNameRequest,
   searchTaskByNameSuccess,
   searchTaskByNameError,
+  fetchNextPageRequest,
+  fetchNextPageSuccess,
+  fetchNextPageError,
+  fetchPrevPageRequest,
+  fetchPrevPageSuccess,
+  fetchPrevPageError,
+  setCurrentProject,
+  setCurrentSprint,
 };
 
 export default projectActions;

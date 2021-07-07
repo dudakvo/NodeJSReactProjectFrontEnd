@@ -25,7 +25,8 @@ p {
 body {
   font-family: var(--main-font);
   color: var(--main-text-color);
-  background-color: #F1F2F7
+  background-color: #F1F2F7;
+  padding-top: 80px;
 }
 
 ul {

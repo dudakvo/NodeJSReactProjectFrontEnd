@@ -4,12 +4,14 @@ const ModalToggler = ({
   toggleSprintModal,
   toggleProjectModal,
   toggleChartModal,
+  toggleTaskModal,
 }) => {
   return children({
     toggleProjectModal,
     toggleSprintModal,
     togglePeopleModal,
     toggleChartModal,
+    toggleTaskModal,
     // toggle,
   });
 };

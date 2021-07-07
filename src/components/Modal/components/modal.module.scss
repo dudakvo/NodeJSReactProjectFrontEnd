@@ -15,17 +15,17 @@
   }
 }
 
-// .backdrop {
-//   position: fixed;
-//   width: 100%;
-//   height: 100%;
-//   background: rgba(24, 28, 39, 0.25);
-//   // transition: opacity 0.3s ease-in;
-//   top: 0;
-//   left: 0;
-//   z-index: 999999;
-//   overflow: auto;
-// }
+.backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(24, 28, 39, 0.25);
+  // transition: opacity 0.3s ease-in;
+  top: 61px;
+  left: 0;
+  z-index: 999999;
+  overflow: auto;
+}
 
 .wrapper {
   position: relative;

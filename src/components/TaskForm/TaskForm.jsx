@@ -1,22 +1,48 @@
 import { useState } from 'react';
+import { createTask } from '../../services/project-api';
+import { useDispatch } from 'react-redux';
 
 import './TaskForm.css';
+import { modalActions } from '../../redux/modal';
 
-const TaskForm = ( {onCancel} ) => {
+const TaskForm = ({ onCancel }) => {
   const [task, setTask] = useState('');
-  const [number, setNumber] = useState('');
+  const [scheduledHours, setScheduledHours] = useState('');
+  const [cssError, setCssError] = useState(['modalInputNumber']);
+  const [cssErrorMessage, setErrorMessage] = useState(['errorMessage']);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleTaskChange = e => setTask(e.target.value);
-  const handleNumberChange = e => setNumber(e.target.value);
+  const handleNumberChange = e => {
+    if (e.target.value > 0 || e.target.value === '') {
+      setScheduledHours(e.target.value);
+      setCssError(['modalInputNumber']);
+      setErrorMessage(['errorMessage']);
+    } else {
+      setCssError(['modalInputNumber', 'modalInputNumberError']);
+      setErrorMessage(['errorMessage', 'isActiveErrorMessage']);
+    }
+  };
+  // useEffect(() => {
+  //   setModalOpen(true);
+  // }, []);
+
   const handleSubmit = e => {
     e.preventDefault();
-    if (task === '') return;
+    if (task === '' || scheduledHours === '') return;
+    createTask({ task, scheduledHours });
+    dispatch(modalActions.closeModalTask());
     setTask('');
-    setNumber('');
+    setScheduledHours('');
   };
-  const handelCancel = () => onCancel();
+  const handelCancel = () => {
+    onCancel();
+    setTask('');
+    setScheduledHours('');
+    setCssError(['modalInputNumber']);
+    setErrorMessage(['errorMessage']);
+  };
 
   return (
     <form className="modalForm" onSubmit={handleSubmit}>
@@ -24,26 +50,33 @@ const TaskForm = ( {onCancel} ) => {
         <input
           className="modalInputTask"
           type="text"
-          placeholder="Назва задачі"
+          placeholder="Task name"
           onChange={handleTaskChange}
           value={task}
         />
       </label>
       <label className="modalLabelNumber">
         <input
-          className="modalInputNumber"
-          type="number"
-          placeholder="Заплановано годин"
+          className={cssError.join(' ')}
+          type="text"
+          placeholder="Scheduled hours"
           onChange={handleNumberChange}
-          value={number}
+          value={scheduledHours}
         />
+        <span className={cssErrorMessage.join(' ')}>
+          will accept only numbers
+        </span>
       </label>
       <div className="modalButtonBlock">
         <button className="modalButtonSubmit" type="submit">
-          Готово
+          Ready
         </button>
-        <button onClick={handelCancel} className="modalButtonReset" type="reset">
-          Відміна
+        <button
+          onClick={handelCancel}
+          className="modalButtonReset"
+          type="button"
+        >
+          Cancel
         </button>
       </div>
     </form>

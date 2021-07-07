@@ -4,17 +4,19 @@ import svg from '../../../../sprite.svg';
 
 const ModalWrapper = ({
   onCloseModal,
-  handleRef,
   nodeRef,
   handleInputs,
   valueName,
-  valueDescription,
+  taskScheduledHours,
   onCreateProject,
+  setTaskName,
+  handleSubmitTask,
+  setTaskInput,
 }) => {
   return (
     <div className={s.wrapper} ref={nodeRef}>
       <div className={s.header}>
-        <h2 className={s.title}>Сreating a project</h2>
+        <h2 className={s.title}>Сreating Task</h2>
       </div>
       <div className={s.body}>
         <form className={s.formWrapper}>
@@ -24,10 +26,10 @@ const ModalWrapper = ({
               id="name"
               placeholder=" "
               name="project"
-              onChange={handleInputs}
+              onChange={e => setTaskInput(e)}
               defaultValue={valueName}
             />
-            <label htmlFor="name">Project name</label>
+            <label htmlFor="name">Task name</label>
           </div>
           <div className={s.inputWrapper}>
             <input
@@ -35,15 +37,15 @@ const ModalWrapper = ({
               id="description"
               placeholder=" "
               name="description"
-              onChange={handleInputs}
-              value={valueDescription}
+              onChange={e => setTaskInput(e)}
+              defaultValue={taskScheduledHours}
             />
             <label htmlFor="description">Description</label>
           </div>
         </form>
       </div>
       <div className={s.footer}>
-        <button type="button" onClick={onCreateProject}>
+        <button type="button" onClick={handleSubmitTask}>
           Ready
         </button>
         <button type="button" onClick={onCloseModal}>

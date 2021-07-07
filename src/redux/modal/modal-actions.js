@@ -14,6 +14,8 @@ const closeModalProject = createAction('modal/closeProject');
 
 const openModalChart = createAction('modal/openChart');
 const closeModalChart = createAction('modal/closeChart');
+const openModalTask = createAction('modal/openTask');
+const closeModalTask = createAction('modal/closeTask');
 
 const modalActions = {
   openModalSprint,
@@ -26,6 +28,8 @@ const modalActions = {
   isCloseModal,
   openModalChart,
   closeModalChart,
+  openModalTask,
+  closeModalTask,
 };
 
 export default modalActions;
