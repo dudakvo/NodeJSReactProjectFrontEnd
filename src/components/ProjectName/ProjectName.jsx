@@ -13,25 +13,34 @@ const ProjectName = ({ projectId }) => {
   useEffect(() => {
     dispatch(projectOperations.findProjectById(projectId));
   }, [projectId, dispatch]);
+ 
+ 
 
   const project = useSelector(state => state.projects.project);
 
   const [changePojectName, setChangeProjectName] = useState(false);
-  // const [projectName, setProjectName] = useState(project?.name);
+  const [projectName, setProjectName] = useState(project?.name);
+
+  useEffect(() => {
+    dispatch(projectOperations.updateProjectName(projectName));
+  }, [projectName, dispatch]);
+
 
   const handleShowInput = () => {
     setChangeProjectName(prevState => !prevState);
   };
 
   const handleChangeProjectName = e => {
-    // setProjectName(e.target.value);
+   
+    setProjectName(e.target.value);
+    
   };
   return (
     <div className={styles.project}>
       {changePojectName ? (
         <input
           className={styles.input}
-          value={project?.project.name}
+          // value={project?.name}
           onChange={handleChangeProjectName}
         />
       ) : (

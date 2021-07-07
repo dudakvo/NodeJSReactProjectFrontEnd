@@ -35,11 +35,11 @@
   visibility: visible;
 }
 
-.modalButtonBlock {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-}
+/* .modalButtonBlock {
+  display: flex; 
+   flex-direction: column; 
+   justify-content: center;
+} */
 
 .modalButtonSubmit {
   margin-bottom: 20px;
