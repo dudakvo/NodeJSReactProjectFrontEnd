@@ -4,14 +4,14 @@ import styles from './SprintHeader.module.css';
 import sprite from '../../sprite.svg';
 import ButtonAdd from '../ButtonAdd';
 import { modalActions } from '../../redux/modal';
-import {projectSelectors } from '../../redux/projects';
+import { projectSelectors } from '../../redux/projects';
 
 const SprintHeader = () => {
   const [changeSprintName, setChangeSprintName] = useState(false);
   // const [query, setQuery] = useState("");
   const [sprintName, setSprintName] = useState('hello');
 
-  const currentPage  =  useSelector(projectSelectors.getCurrentPage);
+  const currentPage = useSelector(projectSelectors.getCurrentPage);
 
   const dispatch = useDispatch();
 
@@ -19,46 +19,42 @@ const SprintHeader = () => {
     setChangeSprintName(prevState => !prevState);
   };
 
-
   const handleChangeSprintName = e => {
     setSprintName(e.target.value);
   };
 
-   const handleSearchTask= e => {
+  const handleSearchTask = e => {
     //  setQuery(e.target.value);
-   };
+  };
 
   const handleCreateTask = () => {
     // dispatch(modalActions.isOpenModal());
     dispatch(modalActions.openModalTask());
   };
 
-    const getDate = () => {
-      let date = new Date();
-      const dd = String(date.getDate()).padStart(2, '0');
-      const mm = String(date.getMonth() + 1).padStart(2, '0');
-      const yyyy = date.getFullYear();
-      date = `${dd}.${mm}.${yyyy}`;
-      return date;
-    };
+  const getDate = () => {
+    let date = new Date();
+    const dd = String(date.getDate()).padStart(2, '0');
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const yyyy = date.getFullYear();
+    date = `${dd}.${mm}.${yyyy}`;
+    return date;
+  };
 
   return (
     <div>
       <div className={styles.task_page_data}>
         <div className={styles.pagination}>
-          <button
-            type="button"
-            className={styles.button}>
+          <button type="button" className={styles.button}>
             <svg className={styles.svg_arrow}>
               <use href={sprite + '#icon-arrow-left'} />
             </svg>
           </button>
           <span className={styles.pages}>
-            <span className={styles.current_page}>{currentPage}</span> / {'backend'}
+            <span className={styles.current_page}>{currentPage}</span> /{' '}
+            {'backend'}
           </span>
-          <button
-            type="button"
-            className={styles.button}>
+          <button type="button" className={styles.button}>
             <svg className={styles.svg_arrow}>
               <use href={sprite + '#icon-arrow-right'} />
             </svg>
