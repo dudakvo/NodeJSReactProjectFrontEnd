@@ -1,46 +1,80 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './SprintHeader.module.css';
 import sprite from '../../sprite.svg';
 import ButtonAdd from '../ButtonAdd';
 import { modalActions } from '../../redux/modal';
-import {projectSelectors } from '../../redux/projects';
+import { projectSelectors } from '../../redux/projects';
+import { projectOperations } from '../../redux/projects';
 
 const SprintHeader = () => {
   const [changeSprintName, setChangeSprintName] = useState(false);
-  // const [query, setQuery] = useState("");
-  const [sprintName, setSprintName] = useState('hello');
+  const [searchValue, setSearchValue] = useState('');
+  const [name, setName] = useState('');
 
-  const currentPage  =  useSelector(projectSelectors.getCurrentPage);
+  const currentPage = useSelector(projectSelectors.getCurrentPage);
+  const totalPages = useSelector(projectSelectors.getTotalPages);
+  const sprintName = useSelector(projectSelectors.getSprintName);
 
+  const { sprintId } = useParams();
+  
   const dispatch = useDispatch();
+
+  useEffect(
+    () => dispatch(projectOperations.fetchSprint(sprintId)),
+    [sprintId, dispatch],
+  );
+
+   useEffect(
+     () => dispatch(projectOperations.fetchTotalTasks(sprintId)),
+     [sprintId, dispatch],
+   );
 
   const handleShowInput = () => {
     setChangeSprintName(prevState => !prevState);
   };
 
-
   const handleChangeSprintName = e => {
-    setSprintName(e.target.value);
+    dispatch(projectOperations.updateSprintName(sprintId, name));
+    console.log(name)
   };
 
-   const handleSearchTask= e => {
-    //  setQuery(e.target.value);
-   };
+  const handleSearchTask = e => {
+    if (searchValue === '') {
+      dispatch(projectOperations.findSprintById(sprintId, currentPage));
+    }
+    dispatch(projectOperations.searchTaskByName(searchValue));
+  };
 
   const handleCreateTask = () => {
     dispatch(modalActions.isOpenModal());
     dispatch(modalActions.openModalSprint());
   };
 
-    const getDate = () => {
-      let date = new Date();
-      const dd = String(date.getDate()).padStart(2, '0');
-      const mm = String(date.getMonth() + 1).padStart(2, '0');
-      const yyyy = date.getFullYear();
-      date = `${dd}.${mm}.${yyyy}`;
-      return date;
+  const getDate = () => {
+    let date = new Date();
+    const dd = String(date.getDate()).padStart(2, '0');
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const yyyy = date.getFullYear();
+    date = `${dd}.${mm}.${yyyy}`;
+    return date;
+  };
+
+  const handlePrevTaskPage = () => {
+    if (currentPage === 1) {
+      return;
     };
+    dispatch(projectOperations.getPrevTaskPage(sprintId, currentPage));
+  };
+  
+ const handleNextTaskPage = () => {
+   if (currentPage === totalPages) {
+     return;
+   }
+   dispatch(projectOperations.getNextTaskPage(sprintId, currentPage));
+ };
+
 
   return (
     <div>
@@ -48,17 +82,21 @@ const SprintHeader = () => {
         <div className={styles.pagination}>
           <button
             type="button"
-            className={styles.button}>
+            className={styles.button}
+            onClick={handlePrevTaskPage}
+          >
             <svg className={styles.svg_arrow}>
               <use href={sprite + '#icon-arrow-left'} />
             </svg>
           </button>
           <span className={styles.pages}>
-            <span className={styles.current_page}>{currentPage}</span> / {'backend'}
+            <span className={styles.current_page}>{currentPage}</span> / {totalPages}
           </span>
           <button
             type="button"
-            className={styles.button}>
+            className={styles.button}
+            onClick={handleNextTaskPage}
+          >
             <svg className={styles.svg_arrow}>
               <use href={sprite + '#icon-arrow-right'} />
             </svg>
@@ -73,7 +111,8 @@ const SprintHeader = () => {
             <input
               type="text"
               className={styles.search_input}
-              onChange={handleSearchTask}
+              onChange={e => setSearchValue(e.target.value)}
+              onBlur={handleSearchTask}
             />
           </label>
         </div>
@@ -83,8 +122,9 @@ const SprintHeader = () => {
           {changeSprintName ? (
             <input
               className={styles.input}
-              value={sprintName}
-              onChange={handleChangeSprintName}
+              defaultValue={sprintName}
+              onChange={e => setName(e.target.value)}
+              onBlur={handleChangeSprintName}
             />
           ) : (
             <p className={styles.name}>{sprintName}</p>

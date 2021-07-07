@@ -111,6 +111,8 @@ input {
         justify-content: space-between;
         align-items: center;
         width: 869px;
+        padding-left: 30px;
+        padding-right: 30px;
     }
     .task_card:not(:last-child) {
         margin-bottom: 10px
@@ -140,6 +142,7 @@ input {
 }
 
 .search_input {
+  font-size: 12px;
   position: relative;
   width: 100px;
   height: 30px;

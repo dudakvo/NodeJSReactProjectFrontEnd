@@ -14,7 +14,7 @@ export async function createProject(project) {
 }
 
 export async function deleteProject(projectId) {
-  const { data } = await axios.delete(`/projects/${projectId}`);
+  const data = await axios.delete(`/projects/${projectId}`);
   return data;
 }
 
@@ -43,8 +43,8 @@ export async function deleteSprint(sprintId) {
   return data;
 }
 
-export async function findSprintById(sprintId) {
-  const { data } = await axios.get(`/task/${sprintId}`);
+export async function findSprintById(sprintId, page) {
+  const { data } = await axios.get(`/task/${sprintId}?page=${page}&limit=4`);
   return data;
 }
 
@@ -69,11 +69,30 @@ export async function updateTaskHours(taskId, hours) {
 }
 
 export async function searchTaskByName(name) {
-  const { data } = await axios.get('/task/search', name);
+  const { data } = await axios.get(`/task/search?task_name=${name}`);
   return data;
 }
 
 export async function getNextTaskPage(sprintId, page) {
-  const { data } = await axios.get(`/task/${sprintId}?page=${page}`);
+  const { data } = await axios.get(
+    `/task/${sprintId}?page=${page + 1}&limit=4`,
+  );
+  return data;
+}
+
+export async function getPrevTaskPage(sprintId, page) {
+  const { data } = await axios.get(
+    `/task/${sprintId}?page=${page - 1}&limit=4`,
+  );
+  return data;
+}
+
+export async function fetchSprint(sprintId) {
+  const { data } = await axios.get(`/task/${sprintId}`);
+  return data;
+}
+
+export async function fetchTotalTasks(sprintId) {
+  const { data } = await axios.get(`/task/${sprintId}`);
   return data;
 }

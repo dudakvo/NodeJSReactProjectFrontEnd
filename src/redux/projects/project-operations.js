@@ -43,21 +43,21 @@ const deleteProject = projectId => async dispatch => {
 const findProjectById = projectId => async dispatch => {
   dispatch(projectActions.fetchProjectByIdRequest());
   try {
-    const data = await projectApi.findProjecrById(projectId);
-    dispatch(projectActions.fetchProjectByIdSuccess(data));
+    await projectApi.findProjecrById(projectId);
+    dispatch(projectActions.fetchProjectByIdSuccess(projectId));
   } catch (error) {
     dispatch(projectActions.fetchProjectByIdError(error.message));
   }
 };
-
+  
 const updateProjectName = (projectId, name) => async dispatch => {
   const newName = {
     name,
   };
   dispatch(projectActions.updateProjectNameRequest());
   try {
-    const data = await projectApi.updateProjectName(projectId, newName);
-    dispatch(projectActions.updateProjectNameSuccess(data));
+    await projectApi.updateProjectName(projectId, newName);
+    dispatch(projectActions.updateProjectNameSuccess(newName));
   } catch (error) {
     dispatch(projectActions.updateProjectNameError(error.message));
   }
@@ -95,18 +95,18 @@ const createSprint = (sprint_name, date_end, project_id) => async dispatch => {
 const deleteSprint = sprintId => async dispatch => {
   dispatch(projectActions.deleteSprintRequest());
   try {
-    const data = await projectApi.deleteSprint(sprintId);
-    dispatch(projectActions.deleteSprintSuccess(data));
+    await projectApi.deleteSprint(sprintId);
+    dispatch(projectActions.deleteSprintSuccess(sprintId));
   } catch (error) {
     dispatch(projectActions.deleteSprintError(error.message));
   }
 };
 
-const findSprintById = sprintId => async dispatch => {
+const findSprintById = (sprintId, page) => async dispatch => {
   dispatch(projectActions.fetchSprintByIdRequest());
   try {
-    const data = await projectApi.findProjecrById(sprintId);
-    dispatch(projectActions.fetchSprintByIdSuccess(data));
+    const data = await projectApi.findSprintById(sprintId, page);
+    dispatch(projectActions.fetchSprintByIdSuccess(data.data.task.task));
   } catch (error) {
     dispatch(projectActions.fetchSprintByIdError(error.message));
   }
@@ -114,13 +114,13 @@ const findSprintById = sprintId => async dispatch => {
 
 const updateSprintName = (sprintId, name) => async dispatch => {
   const newName = {
-    name,
+    sprint_name: name,
   };
   dispatch(projectActions.updateSprintNameRequest());
 
   try {
     const data = await projectApi.updateSprintName(sprintId, newName);
-    dispatch(projectActions.updateSprintNameSuccess(data));
+    dispatch(projectActions.updateSprintNameSuccess(data.data));
   } catch (error) {
     dispatch(projectActions.updateSprintNameError(error.message));
   }
@@ -148,8 +148,8 @@ const createTask =
 const deleteTask = taskId => async dispatch => {
   dispatch(projectActions.deleteTaskRequest());
   try {
-    const data = await projectApi.deleteTask(taskId);
-    dispatch(projectActions.deleteTaskSuccess(data));
+     await projectApi.deleteTask(taskId);
+     dispatch(projectActions.deleteTaskSuccess(taskId));
   } catch (error) {
     dispatch(projectActions.deleteTaskError(error.message));
   }
@@ -169,27 +169,54 @@ const updateTaskHours = (taskId, hours) => async dispatch => {
 };
 
 const searchTaskByName = name => async dispatch => {
-  const query = {
-    task_name: name,
-  };
   dispatch(projectActions.searchTaskByNameRequest());
   try {
-    const data = await projectApi.searchTaskByName(query);
-    dispatch(projectActions.searchTaskByNameSuccess(data));
+    const data = await projectApi.searchTaskByName(name);
+    dispatch(projectActions.searchTaskByNameSuccess(data.data));
   } catch (error) {
     dispatch(projectActions.searchTaskByNameError(error.message));
   }
 };
 
-// const getNextTaskPage = () => async dispatch => {
-//   dispatch(projectActions.fetchNextPageRequest());
-//   try {
-//     const data = await projectApi.fetchNextPageSuccess();
-//     dispatch(projectActions.searchTaskByNameSuccess(data));
-//   } catch (error) {
-//     dispatch(projectActions.searchTaskByNameError(error.message));
-//   }
-// };
+const getNextTaskPage = (sprintId, page) => async dispatch => {
+  dispatch(projectActions.fetchNextPageRequest());
+  try {
+    const data = await projectApi.getNextTaskPage(sprintId, page);
+    dispatch(projectActions.fetchNextPageSuccess(data.data.task.task));
+  } catch (error) {
+    dispatch(projectActions.searchTaskByNameError(error.message));
+  }
+};
+
+const getPrevTaskPage = (sprintId, page) => async dispatch => {
+  dispatch(projectActions.fetchPrevPageRequest());
+  try {
+    const data = await projectApi.getPrevTaskPage(sprintId, page);
+    dispatch(projectActions.fetchPrevPageSuccess(data.data.task.task));
+  } catch (error) {
+    dispatch(projectActions.fetchPrevPageError(error.message));
+  }
+};
+
+const fetchSprint = sprintId => async dispatch => {
+  dispatch(projectActions.fetchSprintRequest());
+  try {
+    const data = await projectApi.fetchSprint(sprintId);
+    dispatch(projectActions.fetchSprintSuccess(data.data.sprint));
+  } catch (error) {
+    dispatch(projectActions.fetchSprintError(error.message));
+  }
+};
+
+const fetchTotalTasks = sprintId => async dispatch => {
+  dispatch(projectActions.fetchTotalTasksRequest());
+  try {
+    const data = await projectApi.fetchTotalTasks(sprintId);
+    dispatch(projectActions.fetchTotalTasksSuccess(data.data.task.total));
+  } catch (error) {
+    dispatch(projectActions.fetchTotalTasksError(error.message));
+  }
+};
 
 const projectOperations = {
   fetchProjects,
@@ -206,6 +233,10 @@ const projectOperations = {
   deleteTask,
   updateTaskHours,
   searchTaskByName,
+  getNextTaskPage,
+  getPrevTaskPage,
+  fetchSprint,
+  fetchTotalTasks,
 };
 
 export default projectOperations;

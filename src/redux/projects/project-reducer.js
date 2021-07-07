@@ -28,31 +28,38 @@ const sprint = createReducer([], {
   ],
   [projectActions.deleteSprintSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
-  [projectActions.fetchSprintByIdSuccess]: (state, { payload }) => payload,
-  [projectActions.updateSprintNameSuccess]: (state, { payload }) => [
-    ...state,
-    payload,
-  ],
+  [projectActions.updateSprintNameSuccess]: (state, { payload }) => 
+    state.map(sprint => (sprint.id === payload.id ? payload : sprint)),
+  [projectActions.fetchSprintSuccess]: (state, { payload }) => payload,
 });
 
+
 const task = createReducer([], {
+  [projectActions.fetchSprintByIdSuccess]: (state, { payload }) => payload,
   [projectActions.createTaskSuccess]: (state, { payload }) => [
     ...state,
     payload,
   ],
   [projectActions.deleteTaskSuccess]: (state, { payload }) =>
-    state.filter(({ id }) => id !== payload),
-  [projectActions.updateTaskTimeSuccess]: (state, { payload }) => [
-    ...state,
+     state.filter(({ id }) => id !== payload),
+  [projectActions.updateTaskTimeSuccess]: (state, { payload }) => {
+    state.map(task => (task.id === payload.id ? payload : task));
+  },
+   [projectActions.searchTaskByNameSuccess]: (state, { payload }) =>
     payload,
-  ],
-  [projectActions.searchTaskByNameSuccess]: (state, { payload }) => payload,
 });
 
+
 const page = createReducer(1, {
-  [projectActions.fetchNextPageSuccess]: (state, { payload }) => state + 1,
-  [projectActions.fetchPrevPageSuccess]: (state, { payload }) => state - 1,
+  [projectActions.fetchNextPageSuccess]: (state, { payload }) => state+1,
+  [projectActions.fetchPrevPageSuccess]: (state, { payload }) => state-1,
 });
+
+const totalTasks = createReducer(0, {
+  [projectActions.fetchTotalTasksSuccess]: (state, { payload }) => payload,
+});
+
+
 const currentProject = createReducer([], {
   [projectActions.setCurrentProject]: (state, { payload }) => payload,
 });
@@ -111,6 +118,7 @@ export default combineReducers({
   sprint,
   task,
   page,
+  totalTasks,
   isLoading,
   currentProject,
   currentSprint,
