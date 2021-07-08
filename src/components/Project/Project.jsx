@@ -32,7 +32,6 @@ const Project = ({ match }) => {
   const hendleDeleteSprint = (e, id) => {
     e.preventDefault();
      dispatch(projectOperations.deleteSprint(id))
-    console.log(`delete sprint id=${id}`);
   };
 
   return (

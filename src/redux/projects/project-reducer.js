@@ -33,7 +33,7 @@ const sprints = createReducer([], {
     payload,
   ],
   [projectActions.deleteSprintSuccess]: (state, { payload }) =>
-    state.filter(({ id }) => id !== payload),
+    state.filter(({ _id }) => _id !== payload),
   [projectActions.updateSprintNameSuccess]: (state, { payload }) =>
     state.map(sprint => (sprint.id === payload.id ? payload : sprint)),
   [projectActions.fetchSprintSuccess]: (state, { payload }) => payload,
