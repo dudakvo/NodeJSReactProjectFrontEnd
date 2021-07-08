@@ -18,7 +18,7 @@ const SprintHeader = () => {
   const sprintName = useSelector(projectSelectors.getSprintName);
 
   const { sprintId } = useParams();
-  
+
   const dispatch = useDispatch();
 
   useEffect(
@@ -26,10 +26,10 @@ const SprintHeader = () => {
     [sprintId, dispatch],
   );
 
-   useEffect(
-     () => dispatch(projectOperations.fetchTotalTasks(sprintId)),
-     [sprintId, dispatch],
-   );
+  useEffect(
+    () => dispatch(projectOperations.fetchTotalTasks(sprintId)),
+    [sprintId, dispatch],
+  );
 
   const handleShowInput = () => {
     setChangeSprintName(prevState => !prevState);
@@ -37,7 +37,7 @@ const SprintHeader = () => {
 
   const handleChangeSprintName = e => {
     dispatch(projectOperations.updateSprintName(sprintId, name));
-    console.log(name)
+    console.log(name);
   };
 
   const handleSearchTask = e => {
@@ -45,11 +45,12 @@ const SprintHeader = () => {
       dispatch(projectOperations.findSprintById(sprintId, currentPage));
     }
     dispatch(projectOperations.searchTaskByName(searchValue));
+    //  setQuery(e.target.value);
   };
 
   const handleCreateTask = () => {
-    dispatch(modalActions.isOpenModal());
-    dispatch(modalActions.openModalSprint());
+    // dispatch(modalActions.isOpenModal());
+    dispatch(modalActions.openModalTask());
   };
 
   const getDate = () => {
@@ -64,17 +65,16 @@ const SprintHeader = () => {
   const handlePrevTaskPage = () => {
     if (currentPage === 1) {
       return;
-    };
+    }
     dispatch(projectOperations.getPrevTaskPage(sprintId, currentPage));
   };
-  
- const handleNextTaskPage = () => {
-   if (currentPage === totalPages) {
-     return;
-   }
-   dispatch(projectOperations.getNextTaskPage(sprintId, currentPage));
- };
 
+  const handleNextTaskPage = () => {
+    if (currentPage === totalPages) {
+      return;
+    }
+    dispatch(projectOperations.getNextTaskPage(sprintId, currentPage));
+  };
 
   return (
     <div>
@@ -90,7 +90,8 @@ const SprintHeader = () => {
             </svg>
           </button>
           <span className={styles.pages}>
-            <span className={styles.current_page}>{currentPage}</span> / {totalPages}
+            <span className={styles.current_page}>{currentPage}</span> /{' '}
+            {totalPages}
           </span>
           <button
             type="button"

@@ -4,13 +4,14 @@ import projectActions from './project-actions';
 
 const projects = createReducer([], {
   [projectActions.fetchProjectsSuccess]: (state, { payload }) => payload,
-  [projectActions.createProjectSuccess]: ({ data }, { payload }) => [
-    ...data.projects,
+
+  [projectActions.createProjectSuccess]: (state, { payload }) => [
+    ...state,
     payload,
   ],
   [projectActions.deleteProjectSuccess]: (state, { payload }) =>
-    state.projects.projects.filter(({ id }) => id !== payload),
-  [projectActions.fetchProjectByIdSuccess]: (state, { payload }) => payload,
+    state.filter(({ _id }) => _id !== payload),
+
   [projectActions.addPeopleToProjectSuccess]: (state, { payload }) => [
     ...state,
     payload,
@@ -20,19 +21,27 @@ const projects = createReducer([], {
     payload,
   ],
 });
+const project = createReducer(null, {
+  [projectActions.fetchProjectByIdSuccess]: (state, { payload }) => payload,
+});
 
-const sprint = createReducer([], {
+const sprints = createReducer([], {
+  [projectActions.fetchSprintByProjectIdSuccess]: (state, { payload }) =>
+    payload,
   [projectActions.createSprintSuccess]: (state, { payload }) => [
     ...state,
     payload,
   ],
   [projectActions.deleteSprintSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
-  [projectActions.updateSprintNameSuccess]: (state, { payload }) => 
+  [projectActions.updateSprintNameSuccess]: (state, { payload }) =>
     state.map(sprint => (sprint.id === payload.id ? payload : sprint)),
   [projectActions.fetchSprintSuccess]: (state, { payload }) => payload,
 });
 
+const sprint = createReducer(null, {
+  [projectActions.fetchSprintByIdSuccess]: (state, { payload }) => payload,
+});
 
 const task = createReducer([], {
   [projectActions.fetchSprintByIdSuccess]: (state, { payload }) => payload,
@@ -41,24 +50,21 @@ const task = createReducer([], {
     payload,
   ],
   [projectActions.deleteTaskSuccess]: (state, { payload }) =>
-     state.filter(({ id }) => id !== payload),
+    state.filter(({ id }) => id !== payload),
   [projectActions.updateTaskTimeSuccess]: (state, { payload }) => {
     state.map(task => (task.id === payload.id ? payload : task));
   },
-   [projectActions.searchTaskByNameSuccess]: (state, { payload }) =>
-    payload,
+  [projectActions.searchTaskByNameSuccess]: (state, { payload }) => payload,
 });
 
-
 const page = createReducer(1, {
-  [projectActions.fetchNextPageSuccess]: (state, { payload }) => state+1,
-  [projectActions.fetchPrevPageSuccess]: (state, { payload }) => state-1,
+  [projectActions.fetchNextPageSuccess]: (state, { payload }) => state + 1,
+  [projectActions.fetchPrevPageSuccess]: (state, { payload }) => state - 1,
 });
 
 const totalTasks = createReducer(0, {
   [projectActions.fetchTotalTasksSuccess]: (state, { payload }) => payload,
 });
-
 
 const currentProject = createReducer([], {
   [projectActions.setCurrentProject]: (state, { payload }) => payload,
@@ -69,6 +75,8 @@ const currentSprint = createReducer([], {
 });
 
 const isLoading = createReducer(false, {
+  [projectActions.fetchSprintSByProjectIdRequest]: () => true,
+  [projectActions.fetchSprintByProjectIdError]: () => false,
   [projectActions.fetchProjectsRequest]: () => true,
   [projectActions.fetchProjectsSuccess]: () => false,
   [projectActions.fetchProjectsError]: () => false,
@@ -115,6 +123,8 @@ const isLoading = createReducer(false, {
 
 export default combineReducers({
   projects,
+  project,
+  sprints,
   sprint,
   task,
   page,

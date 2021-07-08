@@ -15,6 +15,16 @@ const fetchProjects = () => async dispatch => {
   }
 };
 
+const fetchSprints = id => async dispatch => {
+  dispatch(projectActions.fetchSprintSByProjectIdRequest());
+  try {
+    const projects = await projectApi.fetchSprintsByProjectId(id);
+    dispatch(projectActions.fetchSprintByProjectIdSuccess(projects));
+  } catch (error) {
+    dispatch(projectActions.fetchSprintByProjectIdError(error.message));
+  }
+};
+
 const createProject = (name, description) => async dispatch => {
   console.log(name, description);
   const newProject = {
@@ -49,7 +59,7 @@ const findProjectById = projectId => async dispatch => {
     dispatch(projectActions.fetchProjectByIdError(error.message));
   }
 };
-  
+
 const updateProjectName = (projectId, name) => async dispatch => {
   const newName = {
     name,
@@ -86,6 +96,7 @@ const createSprint = (sprint_name, date_end, project_id) => async dispatch => {
   dispatch(projectActions.createSprintRequest());
   try {
     const data = await projectApi.createSprint(sprint);
+    console.log(data);
     dispatch(projectActions.createSprintSuccess(data));
   } catch (error) {
     dispatch(projectActions.createSprintError(error.message));
@@ -126,30 +137,26 @@ const updateSprintName = (sprintId, name) => async dispatch => {
   }
 };
 
-const createTask =
-  (task_name, scheduled_hours, sprintId, hours_spent, hours_spent_per_day) =>
-  async dispatch => {
-    const newTask = {
-      task_name,
-      scheduled_hours,
-      sprint: sprintId,
-      hours_spent,
-      hours_spent_per_day,
-    };
-    dispatch(projectActions.createTaskRequest());
-    try {
-      const data = await projectApi.createTask(newTask);
-      dispatch(projectActions.createTaskSuccess(data));
-    } catch (error) {
-      dispatch(projectActions.createTaskError(error.message));
-    }
+const createTask = (task_name, scheduled_hours, sprintId) => async dispatch => {
+  const newTask = {
+    task_name,
+    scheduled_hours,
+    sprint: sprintId,
   };
+  dispatch(projectActions.createTaskRequest());
+  try {
+    const data = await projectApi.createTask(newTask);
+    dispatch(projectActions.createTaskSuccess(data));
+  } catch (error) {
+    dispatch(projectActions.createTaskError(error.message));
+  }
+};
 
 const deleteTask = taskId => async dispatch => {
   dispatch(projectActions.deleteTaskRequest());
   try {
-     await projectApi.deleteTask(taskId);
-     dispatch(projectActions.deleteTaskSuccess(taskId));
+    await projectApi.deleteTask(taskId);
+    dispatch(projectActions.deleteTaskSuccess(taskId));
   } catch (error) {
     dispatch(projectActions.deleteTaskError(error.message));
   }
@@ -237,6 +244,7 @@ const projectOperations = {
   getPrevTaskPage,
   fetchSprint,
   fetchTotalTasks,
+  fetchSprints,
 };
 
 export default projectOperations;

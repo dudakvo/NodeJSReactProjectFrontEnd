@@ -1,0 +1,19 @@
+.button_add_people {
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.svg {
+  width: 20px;
+  height: 20px;
+  fill: #a6a6a6;
+}
+
+.text {
+  margin-left: 10px;
+  text-decoration: underline;
+}
