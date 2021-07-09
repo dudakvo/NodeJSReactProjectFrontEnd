@@ -18,20 +18,20 @@ const Project = ({ match }) => {
 
   useEffect(() => {
     dispatch(projectOperations.fetchSprints(projectId));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectId, dispatch]);
 
-  const sprints = useSelector(state => state.projects.sprints);
-
-  console.log(sprints);
+   const sprints = useSelector(state => state.projects.sprints);
 
   const handleAddSprint = () => {
     dispatch(modalActions.isOpenModal());
     dispatch(modalActions.openModalSprint());
     document.querySelector('body').classList.add('overflow__body');
   };
-  const hendleDeleteSprint = e => {
+  
+  const hendleDeleteSprint = (e, id) => {
     e.preventDefault();
-    console.log('delete sprint');
+     dispatch(projectOperations.deleteSprint(id))
   };
 
   return (
@@ -60,7 +60,7 @@ const Project = ({ match }) => {
               </div>
               <button
                 type="button"
-                onClick={hendleDeleteSprint}
+                onClick={e=>hendleDeleteSprint(e,item._id)}
                 className={styles.button_delete}
               >
                 <svg className={styles.svg}>

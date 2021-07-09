@@ -19,8 +19,6 @@ const ProjectsList = () => {
   const handleDeleteProject = (e, id) => {
     e.preventDefault();
     dispatch(projectOperations.deleteProject(id));
-
-    console.log('delete project' + id);
   };
 
   const getCurrentIdProject = id => {

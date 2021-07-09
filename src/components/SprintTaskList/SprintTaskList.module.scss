@@ -208,6 +208,29 @@ input {
   input {
     text-align: left;
   }
+  .task_list {
+    display: unset;
+  }
+  .task_card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 869px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .task_card:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  .task_table {
+    display: none;
+  }
+  .button_del_task {
+    position: unset;
+  }
+  input {
+    text-align: left;
+  }
   .task_naming {
     display: flex;
     justify-content: space-around;
@@ -224,6 +247,18 @@ input {
   }
 
   .search_input {
+    position: relative;
+    width: 100px;
+    height: 30px;
+    background-color: transparent;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 1px solid rgba(24, 28, 39, 0.1);
+    outline: none;
+  }
+  .search_input {
+    font-size: 12px;
     position: relative;
     width: 100px;
     height: 30px;
