@@ -26,7 +26,6 @@ const fetchSprints = id => async dispatch => {
 };
 
 const createProject = (name, description) => async dispatch => {
-  console.log(name, description);
   const newProject = {
     name,
     description,
@@ -34,7 +33,7 @@ const createProject = (name, description) => async dispatch => {
   dispatch(projectActions.createProjectRequest());
   try {
     const project = await projectApi.createProject(newProject);
-    dispatch(projectActions.createProjectSuccess(project));
+    dispatch(projectActions.createProjectSuccess(project.data.project));
   } catch (error) {
     dispatch(projectActions.createProjectError(error.message));
   }
@@ -53,8 +52,8 @@ const deleteProject = projectId => async dispatch => {
 const findProjectById = projectId => async dispatch => {
   dispatch(projectActions.fetchProjectByIdRequest());
   try {
-    await projectApi.findProjecrById(projectId);
-    dispatch(projectActions.fetchProjectByIdSuccess(projectId));
+    const project = await projectApi.findProjecrById(projectId);
+    dispatch(projectActions.fetchProjectByIdSuccess(project));
   } catch (error) {
     dispatch(projectActions.fetchProjectByIdError(error.message));
   }
