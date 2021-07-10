@@ -17,6 +17,10 @@ const isOpenModalProject = createReducer(false, {
   [modalActions.closeModalProject]: () => false,
 });
 
+const isOpenModalChart = createReducer(false, {
+  [modalActions.openModalChart]: () => true,
+  [modalActions.closeModalChart]: () => false,
+});
 const isOpenModalTask = createReducer(false, {
   [modalActions.openModalTask]: () => true,
   [modalActions.closeModalTask]: () => false,
@@ -33,4 +37,5 @@ export default combineReducers({
   isOpenModalProject,
   isOpenModalTask,
   isOpenModal,
+  isOpenModalChart,
 });

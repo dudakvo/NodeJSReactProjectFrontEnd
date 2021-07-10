@@ -12,6 +12,8 @@ const closeModalAddPeople = createAction('modal/closeAddPeople');
 const openModalProject = createAction('modal/openProject');
 const closeModalProject = createAction('modal/closeProject');
 
+const openModalChart = createAction('modal/openChart');
+const closeModalChart = createAction('modal/closeChart');
 const openModalTask = createAction('modal/openTask');
 const closeModalTask = createAction('modal/closeTask');
 
@@ -24,6 +26,8 @@ const modalActions = {
   closeModalProject,
   isOpenModal,
   isCloseModal,
+  openModalChart,
+  closeModalChart,
   openModalTask,
   closeModalTask,
 };
