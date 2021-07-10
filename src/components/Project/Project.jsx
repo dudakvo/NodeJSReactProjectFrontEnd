@@ -7,6 +7,8 @@ import ButtonAdd from '../ButtonAdd';
 import styles from './Project.module.scss';
 import sprite from '../../sprite.svg';
 
+import { projectActions } from '../../redux/projects';
+
 import { modalActions } from '../../redux/modal';
 import projectOperations from '../../redux/projects/project-operations';
 import ButtonAddPeople from '../ButtonAddPeople';
@@ -18,20 +20,21 @@ const Project = ({ match }) => {
 
   useEffect(() => {
     dispatch(projectOperations.fetchSprints(projectId));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectId, dispatch]);
 
-   const sprints = useSelector(state => state.projects.sprints);
+  const sprints = useSelector(state => state.projects.sprints);
 
   const handleAddSprint = () => {
+    dispatch(projectActions.setCurrentProject(projectId));
     dispatch(modalActions.isOpenModal());
     dispatch(modalActions.openModalSprint());
     document.querySelector('body').classList.add('overflow__body');
   };
-  
+
   const hendleDeleteSprint = (e, id) => {
     e.preventDefault();
-     dispatch(projectOperations.deleteSprint(id))
+    dispatch(projectOperations.deleteSprint(id));
   };
 
   return (
@@ -66,7 +69,7 @@ const Project = ({ match }) => {
               </div>
               <button
                 type="button"
-                onClick={e=>hendleDeleteSprint(e,item._id)}
+                onClick={e => hendleDeleteSprint(e, item._id)}
                 className={styles.button_delete}
               >
                 <svg className={styles.svg}>

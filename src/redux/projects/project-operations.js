@@ -26,7 +26,6 @@ const fetchSprints = id => async dispatch => {
 };
 
 const createProject = (name, description) => async dispatch => {
-  console.log(name, description);
   const newProject = {
     name,
     description,
@@ -34,7 +33,7 @@ const createProject = (name, description) => async dispatch => {
   dispatch(projectActions.createProjectRequest());
   try {
     const project = await projectApi.createProject(newProject);
-    dispatch(projectActions.createProjectSuccess(project));
+    dispatch(projectActions.createProjectSuccess(project.data.project));
   } catch (error) {
     dispatch(projectActions.createProjectError(error.message));
   }
@@ -53,8 +52,8 @@ const deleteProject = projectId => async dispatch => {
 const findProjectById = projectId => async dispatch => {
   dispatch(projectActions.fetchProjectByIdRequest());
   try {
-    await projectApi.findProjecrById(projectId);
-    dispatch(projectActions.fetchProjectByIdSuccess(projectId));
+    const project = await projectApi.findProjecrById(projectId);
+    dispatch(projectActions.fetchProjectByIdSuccess(project));
   } catch (error) {
     dispatch(projectActions.fetchProjectByIdError(error.message));
   }
@@ -87,7 +86,7 @@ const addPeopleToProject = (projectId, name) => async dispatch => {
 };
 
 const createSprint = (sprint_name, date_end, project_id) => async dispatch => {
-  console.log(sprint_name, date_end, project_id);
+  // console.log(sprint_name, date_end, project_id);
   const sprint = {
     sprint_name,
     date_end,
@@ -96,8 +95,7 @@ const createSprint = (sprint_name, date_end, project_id) => async dispatch => {
   dispatch(projectActions.createSprintRequest());
   try {
     const data = await projectApi.createSprint(sprint);
-    console.log(data);
-    dispatch(projectActions.createSprintSuccess(data));
+    dispatch(projectActions.createSprintSuccess(data.data));
   } catch (error) {
     dispatch(projectActions.createSprintError(error.message));
   }
