@@ -13,6 +13,8 @@ const ModalHighComponent = () => {
   const isOpenModalAddPeople = useSelector(
     modalSelectors.getIsOpenModalAddPeople,
   );
+  const isOpenModalChart = useSelector(modalSelectors.getIsOpenModalChart);
+
   const nodeRef = useRef(null);
   const dispatch = useDispatch();
 
@@ -21,6 +23,7 @@ const ModalHighComponent = () => {
     dispatch(modalActions.closeModalProject());
     dispatch(modalActions.closeModalSprint());
     dispatch(modalActions.closeModalAddPeople());
+    dispatch(modalActions.closeModalChart());
     dispatch(modalActions.closeModalTask());
     document.querySelector('body').classList.remove('overflow__body');
   };
@@ -39,6 +42,7 @@ const ModalHighComponent = () => {
           sprint={isOpenModalSprint}
           people={isOpenModalAddPeople}
           taks={isOpenModaTask}
+          chart={isOpenModalChart}
           onCloseModal={handleCloseModal}
           isOpen={isOpen}
           nodeRref={nodeRef}
@@ -49,6 +53,7 @@ const ModalHighComponent = () => {
           project={isOpenModalProject}
           sprint={isOpenModalSprint}
           people={isOpenModalAddPeople}
+          chart={isOpenModalChart}
           onCloseModal={handleCloseModal}
           isOpen={isOpen}
         />

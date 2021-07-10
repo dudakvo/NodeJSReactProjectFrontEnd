@@ -4,6 +4,7 @@ import ModalToggler from '../Modal/ModalToggler';
 import { useParams } from 'react-router-dom';
 import ModalProject from '../Modal/components/ModalProject';
 import ModalSprint from '../Modal/components/ModalSprint';
+import ModalChart from '../Modal/components/ModalChart';
 import ModalAddPeople from '../Modal/components/ModalAddPeople';
 import ModalTask from '../Modal/components/ModalTask';
 
@@ -17,6 +18,7 @@ const ModalHOC = ({
   sprint,
   project,
   taks,
+  chart,
   onCloseModal,
   isOpen,
   nodeRref,
@@ -103,12 +105,14 @@ const ModalHOC = ({
       togglePeopleModal={people}
       toggleSprintModal={sprint}
       toggleProjectModal={project}
+      toggleChartModal={chart}
       toggleTaskModal={taks}
     >
       {({
         toggleProjectModal,
         toggleSprintModal,
         togglePeopleModal,
+        toggleChartModal,
         toggleTaskModal,
       }) => (
         <>
@@ -162,6 +166,9 @@ const ModalHOC = ({
                 setTaskInput={handleInputsTask}
                 handleSubmitTask={handleCreateTask}
               />
+            )}
+            {toggleChartModal && (
+              <ModalChart onCloseModal={onCloseModal} nodeRef={nodeRref} />
             )}
           </div>
         </>

@@ -48,15 +48,21 @@ const Project = ({ match }) => {
               <h3 className={styles.title}>{item.sprint_name}</h3>
               <div className={styles.time_block}>
                 <p>Start date</p>
-                <p>{item.date_start}</p>
+                <p>{new Date(item.date_start).toUTCString().slice(5, 11)}</p>
               </div>
               <div className={styles.time_block}>
                 <p>End date</p>
-                <p>{item.date_end}</p>
+                <p>{new Date(item.date_end).toUTCString().slice(5, 11)}</p>
               </div>
               <div className={styles.time_block}>
                 <p>duration</p>
-                <p>{item.date_start + item.date_end}</p>
+                <p>
+                  {Math.round(
+                    (Date.parse(item.date_end) - Date.parse(item.date_start)) /
+                      3600 /
+                      1000,
+                  )}
+                </p>
               </div>
               <button
                 type="button"
