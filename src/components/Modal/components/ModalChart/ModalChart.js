@@ -1,8 +1,24 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Chart from '../../../Chart';
 import s from './ModalChart.module.css';
 import sprite from '../../../../sprite.svg';
+import projectOperations from '../../../../redux/projects/project-operations'
 
-const ModalChart = ({ onCloseModal, nodeRef }) => {
+const ModalChart = ({ onCloseModal, nodeRef, sprintID }) => {
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(projectOperations.fetchTotalTasks(sprintID));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sprintID, dispatch]);
+  const task = useSelector(state => state.projects.task);
+
+
+      console.log(task)
+
+
   const data = {
     labels: [
       '22 July',
