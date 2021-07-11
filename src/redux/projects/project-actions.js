@@ -113,11 +113,6 @@ const fetchTotalTasksRequest = createAction('projects/fetchTotalTasksRequest');
 const fetchTotalTasksSuccess = createAction('projects/fetchTotalTasksSuccess');
 const fetchTotalTasksError = createAction('projects/fetchTotalTasksError');
 
-//current ID
-
-const setCurrentProject = createAction('project/SetCurrentProject');
-const setCurrentSprint = createAction('project/SetCurrentSprint');
-
 // sprit
 const fetchSprintByIdRequest = createAction('projects/fetchSprintByIdRequest');
 const fetchSprintByIdSuccess = createAction('projects/fetchSprintByIdSuccess');
@@ -175,8 +170,6 @@ const projectActions = {
   fetchPrevPageRequest,
   fetchPrevPageSuccess,
   fetchPrevPageError,
-  setCurrentProject,
-  setCurrentSprint,
   fetchSprintRequest,
   fetchSprintSuccess,
   fetchSprintError,

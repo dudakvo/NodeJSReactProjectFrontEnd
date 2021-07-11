@@ -1,4 +1,3 @@
-import { useRef, useEffect } from 'react';
 import Chart from '../../../Chart';
 import s from './ModalChart.module.css';
 import sprite from '../../../../sprite.svg';

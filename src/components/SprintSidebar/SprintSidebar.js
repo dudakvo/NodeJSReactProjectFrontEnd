@@ -3,6 +3,8 @@ import ButtonBackspace from '../ButtonBackspace';
 import s from './SprintSidebar.module.scss';
 import sprite from '../../sprite.svg';
 import routes from '../../routes';
+import { modalActions } from '../../redux/modal';
+import { useDispatch } from 'react-redux';
 
 const sprints = [
   { id: 1, name: 'sprint 1' },
@@ -13,12 +15,18 @@ const sprints = [
   },
 ];
 
-const SprintSidebar = ({ history }) => {
+const SprintSidebar = ({ history, match }) => {
+  const dispatch = useDispatch();
+
   const HandleBackToSprints = () => {
-    history.push(routes.projectDetails);
+    history.push(`${routes.projects}/${projectId}`);
   };
 
+  const projectId = match.params.projectId;
+
   const handleCreateSprint = () => {
+    dispatch(modalActions.isOpenModal());
+    dispatch(modalActions.openModalSprint(projectId));
     console.log('create a sprint');
   };
   return (
@@ -29,7 +37,7 @@ const SprintSidebar = ({ history }) => {
           <li className={s.item} key={item.id}>
             <NavLink
               exact
-              to={`${routes.projectDetails}/${item.id}`}
+              to={`${routes.projects}/${projectId}/${item.id}`}
               className={s.link}
               activeClassName={s.isActive}
             >
