@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import styles from './ButtonAddPeople.module.scss';
 import sprite from '../../sprite.svg';
 
-const ButtonAddPeople = () => {
+const ButtonAddPeople = ({ projectId }) => {
   const dispatch = useDispatch();
   const handleAddPeople = () => {
     dispatch(modalActions.isOpenModal());
-    dispatch(modalActions.openModalAddPeople());
+    dispatch(modalActions.openModalAddPeople(projectId));
     document.querySelector('body').classList.add('overflow__body');
   };
   return (

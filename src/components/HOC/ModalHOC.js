@@ -1,17 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import ModalToggler from '../Modal/ModalToggler';
-import { useParams } from 'react-router-dom';
 import ModalProject from '../Modal/components/ModalProject';
 import ModalSprint from '../Modal/components/ModalSprint';
 import ModalChart from '../Modal/components/ModalChart';
 import ModalAddPeople from '../Modal/components/ModalAddPeople';
 import ModalTask from '../Modal/components/ModalTask';
-
 import s from '../Modal/components/modal.module.scss';
 import { projectOperations } from '../../redux/projects';
 import { useDispatch, useSelector } from 'react-redux';
-import { currentProject } from '../../redux/projects/project-selectors';
+import modalSelectors from '../../redux/modal/modal-selectors';
 
 const ModalHOC = ({
   people,
@@ -23,7 +21,7 @@ const ModalHOC = ({
   isOpen,
   nodeRref,
 }) => {
-  const { sprintId } = useParams();
+  const [emptyInputs, setEmptyInputs] = useState(false);
 
   const [activeCheckbox, setActiveCheckbox] = useState(false);
 
@@ -38,10 +36,13 @@ const ModalHOC = ({
   const [sprintName, setSprintName] = useState('');
   const [startDate, setStartDate] = useState('');
 
-  const idProject = useSelector(currentProject);
+  const idProject = useSelector(modalSelectors.getIsOpenModalSprint);
+  const idSprint = useSelector(modalSelectors.getIsOpenModalTask);
+  const idProjectAddPeople = useSelector(
+    modalSelectors.getIsOpenModalAddPeople,
+  );
 
   const dispatch = useDispatch();
-
   const emailArr = [];
   const message = 'You have not added any users yet';
   const ref = useRef(null);
@@ -63,23 +64,40 @@ const ModalHOC = ({
   };
 
   const handleCreateProject = () => {
+    if (projectName.trim() === '' || description.trim() === '') {
+      setEmptyInputs(true);
+      return;
+    }
+    setEmptyInputs(false);
     dispatch(projectOperations.createProject(projectName, description));
     onCloseModal();
   };
 
   const handleAddPeople = () => {
-    dispatch(projectOperations.addPeopleToProject(addPeopleEmail));
-    onCloseModal();
+    if (addPeopleEmail.trim() === '') {
+      setEmptyInputs(true);
+      return;
+    }
+    setEmptyInputs(false);
+    dispatch(
+      projectOperations.addPeopleToProject(idProjectAddPeople, addPeopleEmail),
+    );
   };
 
   const handleCreateTask = () => {
-    dispatch(
-      projectOperations.createSprint(taskName, scheduledHours, sprintId),
-    );
+    if (taskName.trim() === '' || scheduledHours.trim() === '') {
+      setEmptyInputs(true);
+      return;
+    }
+    dispatch(projectOperations.createTask(taskName, scheduledHours, idSprint));
     onCloseModal();
   };
 
   const handleCreateSprint = () => {
+    if (sprintName.trim() === '' || startDate === '') {
+      setEmptyInputs(true);
+      return;
+    }
     dispatch(projectOperations.createSprint(sprintName, startDate, idProject));
     onCloseModal();
   };
@@ -126,6 +144,7 @@ const ModalHOC = ({
                 valueName={projectName}
                 valueDescription={description}
                 onCreateProject={handleCreateProject}
+                emptyInputs={emptyInputs}
               />
             )}
             {togglePeopleModal && (
@@ -138,6 +157,7 @@ const ModalHOC = ({
                 value={addPeopleEmail}
                 setPeopleEmail={setAddPeopleEmail}
                 handleAddPeople={handleAddPeople}
+                emptyInputs={emptyInputs}
               />
             )}
             {toggleSprintModal && (
@@ -152,6 +172,7 @@ const ModalHOC = ({
                 handleCreateSprint={handleCreateSprint}
                 handleGetName={setSprintName}
                 value={sprintName}
+                emptyInputs={emptyInputs}
               />
             )}
             {toggleTaskModal && (
@@ -165,6 +186,7 @@ const ModalHOC = ({
                 taskScheduledHours={scheduledHours}
                 setTaskInput={handleInputsTask}
                 handleSubmitTask={handleCreateTask}
+                emptyInputs={emptyInputs}
               />
             )}
             {toggleChartModal && (
@@ -179,20 +201,3 @@ const ModalHOC = ({
 };
 
 export default ModalHOC;
-
-/* <CSSTransition
-            in={showModalSprint}
-            timeout={300}
-            classNames="user__menu-modal"
-            unmountOnExit
-          >
-            <ModalSprint />
-          </CSSTransition>
-          <CSSTransition
-            in={showModalAddPeople}
-            timeout={300}
-            classNames="user__menu-modal"
-            unmountOnExit
-          >
-            <ModalAddPeople listEmail={emailArr} mes={message} />
-          </CSSTransition> */

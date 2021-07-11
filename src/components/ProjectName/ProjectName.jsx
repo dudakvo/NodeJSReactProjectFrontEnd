@@ -12,7 +12,6 @@ const ProjectName = () => {
   const dispatch = useDispatch();
 
   const { projectId } = useParams();
-  console.log(projectId);
 
   useEffect(() => {
     dispatch(projectOperations.findProjectById(projectId));
@@ -21,46 +20,52 @@ const ProjectName = () => {
   const project = useSelector(state => state.projects.project);
 
   const [changePojectName, setChangeProjectName] = useState(false);
-  // const [projectName, setProjectName] = useState(project?.name);
+  const [projectName, setProjectName] = useState('');
 
   const handleShowInput = () => {
     setChangeProjectName(prevState => !prevState);
+    if (changePojectName) {
+      dispatch(projectOperations.updateProjectName(projectId, projectName));
+    }
   };
 
   const handleChangeProjectName = e => {
-    // setProjectName(e.target.value);
+    setProjectName(e.target.value);
   };
+
+  // const submitChangePrjectName = () => {};
   return (
     <div className={styles.project}>
       {changePojectName ? (
-        <input
-          className={styles.input}
-          value={project?.project.name}
-          onChange={handleChangeProjectName}
-        />
+        <>
+          <input
+            className={styles.input}
+            value={projectName}
+            onChange={handleChangeProjectName}
+          />
+          <button
+            type="button"
+            className={styles.button}
+            onClick={handleShowInput}
+          >
+            <svg className={styles.svg}>
+              <use href={sprite + '#icon-plus'} />
+            </svg>
+          </button>
+        </>
       ) : (
-        <p className={styles.project_title}>{project?.name}</p>
-      )}
-      {changePojectName ? (
-        <button
-          type="button"
-          className={styles.button}
-          onClick={handleShowInput}
-        >
-          <svg className={styles.svg}>
-            <use href={sprite + '#icon-plus'} />
-          </svg>
-        </button>
-      ) : (
-        <button
-          type="button"
-          className={styles.button}
-          onClick={handleShowInput}
-        >
-          <svg className={styles.svg}>
-            <use href={sprite + '#icon-pen'} />
-          </svg>
-        </button>
+        <>
+          <p className={styles.project_title}>{project?.name}</p>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={handleShowInput}
+          >
+            <svg className={styles.svg}>
+              <use href={sprite + '#icon-pen'} />
+            </svg>
+          </button>
+        </>
       )}
     </div>
   );

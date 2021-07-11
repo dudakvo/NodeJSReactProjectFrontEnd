@@ -15,6 +15,7 @@ const ModalSprint = ({
   handleCreateSprint,
   handleGetName,
   value,
+  emptyInputs,
 }) => {
   return (
     <div className={s.wrapper} ref={nodeRef}>
@@ -75,7 +76,7 @@ const ModalSprint = ({
             <DatePicker
               selected={startDate}
               onChange={date => setStartDate(date)}
-              placeholderText="End date"
+              placeholderText="  date"
             />
           </div>
           <div className={s.inputDurationWrapper}>
@@ -84,6 +85,11 @@ const ModalSprint = ({
           </div>
         </form>
       </div>
+      {emptyInputs && (
+        <span className={s.emptyInput}>
+          You have empty field. Please input something.
+        </span>
+      )}
       <div className={s.footer}>
         <button type="button" onClick={handleCreateSprint}>
           Ready

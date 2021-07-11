@@ -35,7 +35,7 @@ const SprintView = lazy(
     ) /* webpackChunkName: "SprintView" */,
 );
 
-function App() {
+function App(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -95,43 +95,7 @@ function App() {
       </Suspense>
 
       <Container>
-        <Modal />
-        {/* <button
-           data-project
-           onClick={e => {
-             toggle(e);
-             handleOpenModal();
-           }}
-         >
-           Проект
-         </button>
-         <button
-           data-sprint
-           onClick={e => {
-             toggle(e);
-             handleOpenModal();
-           }}
-         >
-           Спринт
-         </button>
-         <button
-           data-people
-           onClick={e => {
-             toggle(e);
-             handleOpenModal();
-           }}
-         >
-           Люди
-         </button> */}
-        {/* {isOpen && (
-          <Modal
-            project={showModalProject}
-            sprint={showModalSprint}
-            people={showModalAddPeople}
-            onCloseModal={handleCloseModal}
-            isOpen={isOpen}
-          />
-        )} */}
+        <Modal {...props} />
       </Container>
     </>
   );

@@ -65,8 +65,9 @@ const updateProjectName = (projectId, name) => async dispatch => {
   };
   dispatch(projectActions.updateProjectNameRequest());
   try {
-    await projectApi.updateProjectName(projectId, newName);
-    dispatch(projectActions.updateProjectNameSuccess(newName));
+    const data = await projectApi.updateProjectName(projectId, newName);
+
+    dispatch(projectActions.updateProjectNameSuccess(data.data.project));
   } catch (error) {
     dispatch(projectActions.updateProjectNameError(error.message));
   }
@@ -138,13 +139,13 @@ const updateSprintName = (sprintId, name) => async dispatch => {
 const createTask = (task_name, scheduled_hours, sprintId) => async dispatch => {
   const newTask = {
     task_name,
-    scheduled_hours,
+    scheduled_hours: Number(scheduled_hours),
     sprint: sprintId,
   };
   dispatch(projectActions.createTaskRequest());
   try {
     const data = await projectApi.createTask(newTask);
-    dispatch(projectActions.createTaskSuccess(data));
+    dispatch(projectActions.createTaskSuccess(data.data));
   } catch (error) {
     dispatch(projectActions.createTaskError(error.message));
   }

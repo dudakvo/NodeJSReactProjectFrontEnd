@@ -3,7 +3,7 @@
 }
 
 .body {
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   width: 100%;
   padding: 20px;
   & p {
@@ -315,6 +315,13 @@
       }
     }
   }
+}
+
+.emptyInput {
+  margin-bottom: 40px;
+  font-size: 16px;
+  color: #ff6b08;
+  transition: 250ms ease-in-out;
 }
 @media screen and (min-width: 1280px) {
   .wrapper {
