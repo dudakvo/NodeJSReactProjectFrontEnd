@@ -17,6 +17,7 @@ const projects = createReducer([], {
     payload,
   ],
 });
+
 const project = createReducer(null, {
   [projectActions.fetchProjectByIdSuccess]: (state, { payload }) => payload,
   [projectActions.updateProjectNameSuccess]: (state, { payload }) => payload,
@@ -33,15 +34,31 @@ const sprints = createReducer([], {
     state.filter(({ _id }) => _id !== payload),
   [projectActions.updateSprintNameSuccess]: (state, { payload }) =>
     state.map(sprint => (sprint.id === payload.id ? payload : sprint)),
-  [projectActions.fetchSprintSuccess]: (state, { payload }) => payload,
+  // отключаю перезапись масива спринтов на текущий спринт
+  // [projectActions.fetchSprintSuccess]: (state, { payload }) => payload,
 });
+
+// создаём редюсер для хранения текущего спринта
+const currentSprint = createReducer(
+  {},
+  {
+    [projectActions.fetchCurrentSprintSuccess]: (state, { payload }) => {
+      console.log(`current sprint= ${payload}`);
+      return payload;
+    },
+  },
+);
 
 const sprint = createReducer(null, {
   [projectActions.fetchSprintByIdSuccess]: (state, { payload }) => payload,
 });
 
+// создаём масив задачь спринта
 const task = createReducer([], {
-  [projectActions.fetchSprintByIdSuccess]: (state, { payload }) => payload,
+  [projectActions.fetchSprintByIdSuccess]: (state, { payload }) => {
+    console.log(`payload=${payload}`);
+    return payload;
+  },
   [projectActions.createTaskSuccess]: (state, { payload }) => [
     ...state,
     payload,
@@ -113,6 +130,7 @@ const isLoading = createReducer(false, {
 export default combineReducers({
   projects,
   project,
+  currentSprint,
   sprints,
   sprint,
   task,

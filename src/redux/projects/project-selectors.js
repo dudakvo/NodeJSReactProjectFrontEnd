@@ -1,7 +1,13 @@
 const getCurrentPage = state => state.projects.page;
 const getTasks = state => state.projects.task;
-const getSprintName = state =>
-  state.projects.sprints.map(({ sprint_name }) => sprint_name);
+
+// const getSprintName = state =>
+//   state.projects.sprints.map(({ sprint_name }) => sprint_name);
+
+// новая версия селектора getSprintName
+const getSprintName = state => state.projects.currentSprint.sprint_name;
+
+const getSprints = state => state.projects.sprints;
 
 const getTotalPages = state => {
   const totalTasks = state.projects.totalTasks;
@@ -15,6 +21,7 @@ const projectSelectors = {
   getTasks,
   getSprintName,
   getTotalPages,
+  getSprints,
 };
 
 export default projectSelectors;
