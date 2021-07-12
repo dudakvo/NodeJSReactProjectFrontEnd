@@ -118,6 +118,15 @@ const fetchSprintByIdRequest = createAction('projects/fetchSprintByIdRequest');
 const fetchSprintByIdSuccess = createAction('projects/fetchSprintByIdSuccess');
 const fetchSprintByIdError = createAction('projects/fetchSprintByIdError');
 
+//current sprint
+const fetchCurrentSprintRequest = createAction(
+  'project/fetchCurrentSprintRequest',
+);
+const fetchCurrentSprintSuccess = createAction(
+  'project/fetchCurrentSprintSuccess',
+);
+const fetchCurrentSprintError = createAction('project/fetchCurrentSprintError');
+
 const projectActions = {
   fetchSprintByProjectIdSuccess,
   fetchSprintByProjectIdError,
@@ -176,6 +185,9 @@ const projectActions = {
   fetchTotalTasksRequest,
   fetchTotalTasksSuccess,
   fetchTotalTasksError,
+  fetchCurrentSprintRequest,
+  fetchCurrentSprintSuccess,
+  fetchCurrentSprintError,
 };
 
 export default projectActions;
