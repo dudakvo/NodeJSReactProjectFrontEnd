@@ -6,19 +6,32 @@ import s from './ModalChart.module.css';
 import sprite from '../../../../sprite.svg';
 import projectOperations from '../../../../redux/projects/project-operations'
 
-const ModalChart = ({ onCloseModal, nodeRef, sprintID }) => {
+const ModalChart = ({ onCloseModal, nodeRef, sprintID, projectID }) => {
   
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(projectOperations.fetchTotalTasks(sprintID));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sprintID, dispatch]);
   const task = useSelector(state => state.projects.task);
+  // console.log(task[0].scheduled_hours)
+  
+useEffect(() => {
+    dispatch(projectOperations.fetchSprints(projectID));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [projectID, dispatch]);
+  const sprints = useSelector(state => state.projects.sprints);
+      console.log(sprints)
+  
+  const allScheduledTime = task.reduce((acc, task) => acc + task.scheduled_hours, 0);
+  console.log(allScheduledTime)
+  const duration = sprints.map(sprint=>Math.round((Date.parse(sprint.date_end) - Date.parse(sprint.date_start)) /
+  3600 /1000,))
+  const totalDay = sprints.map(sprint => Math.round((Date.parse(sprint.date_end) - Date.parse(sprint.date_start)) /
+    3600 / 1000) / 24);
 
-
-      console.log(task)
-
-
+    
   const data = {
     labels: [
       '22 July',
