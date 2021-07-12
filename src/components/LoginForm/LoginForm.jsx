@@ -56,6 +56,8 @@ export default function LoginForm() {
             onChange={handleInput}
             id="email"
             placeholder=" "
+            required
+            minLength="2"
           />
           <label className={label} htmlFor="email">
             E-mail
@@ -71,6 +73,8 @@ export default function LoginForm() {
             onChange={handleInput}
             id="password"
             placeholder=" "
+            required
+            minLength="2"
           />
           <label className={label} htmlFor="password">
             Password
