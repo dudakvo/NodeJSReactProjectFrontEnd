@@ -10,6 +10,7 @@ const ModalWrapper = ({
   valueName,
   valueDescription,
   onCreateProject,
+  emptyInputs,
 }) => {
   return (
     <div className={s.wrapper} ref={nodeRef}>
@@ -42,6 +43,12 @@ const ModalWrapper = ({
           </div>
         </form>
       </div>
+      {emptyInputs && (
+        <span className={s.emptyInput}>
+          You have empty field. Please input something.
+        </span>
+      )}
+
       <div className={s.footer}>
         <button type="button" onClick={onCreateProject}>
           Ready

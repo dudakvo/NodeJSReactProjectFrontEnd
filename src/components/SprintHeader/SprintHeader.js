@@ -18,18 +18,12 @@ const SprintHeader = () => {
   const sprintName = useSelector(projectSelectors.getSprintName);
 
   const { sprintId } = useParams();
-
   const dispatch = useDispatch();
 
-  useEffect(
-    () => dispatch(projectOperations.fetchSprint(sprintId)),
-    [sprintId, dispatch],
-  );
-
-  useEffect(
-    () => dispatch(projectOperations.fetchTotalTasks(sprintId)),
-    [sprintId, dispatch],
-  );
+  useEffect(() => {
+    dispatch(projectOperations.fetchSprint(sprintId));
+    dispatch(projectOperations.fetchTotalTasks(sprintId));
+  }, [sprintId, dispatch]);
 
   const handleShowInput = () => {
     setChangeSprintName(prevState => !prevState);
@@ -37,7 +31,6 @@ const SprintHeader = () => {
 
   const handleChangeSprintName = e => {
     dispatch(projectOperations.updateSprintName(sprintId, name));
-    console.log(name);
   };
 
   const handleSearchTask = e => {
@@ -49,8 +42,8 @@ const SprintHeader = () => {
   };
 
   const handleCreateTask = () => {
-    // dispatch(modalActions.isOpenModal());
-    dispatch(modalActions.openModalTask());
+    dispatch(modalActions.isOpenModal());
+    dispatch(modalActions.openModalTask(sprintId));
   };
 
   const getDate = () => {

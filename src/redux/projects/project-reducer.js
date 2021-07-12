@@ -16,13 +16,10 @@ const projects = createReducer([], {
     ...state,
     payload,
   ],
-  [projectActions.updateProjectNameSuccess]: (state, { payload }) => [
-    ...state,
-    payload,
-  ],
 });
 const project = createReducer(null, {
   [projectActions.fetchProjectByIdSuccess]: (state, { payload }) => payload,
+  [projectActions.updateProjectNameSuccess]: (state, { payload }) => payload,
 });
 
 const sprints = createReducer([], {
@@ -64,14 +61,6 @@ const page = createReducer(1, {
 
 const totalTasks = createReducer(0, {
   [projectActions.fetchTotalTasksSuccess]: (state, { payload }) => payload,
-});
-
-const currentProject = createReducer([], {
-  [projectActions.setCurrentProject]: (state, { payload }) => payload,
-});
-
-const currentSprint = createReducer([], {
-  [projectActions.setCurrentSprint]: (state, { payload }) => payload,
 });
 
 const isLoading = createReducer(false, {
@@ -130,6 +119,4 @@ export default combineReducers({
   page,
   totalTasks,
   isLoading,
-  currentProject,
-  currentSprint,
 });

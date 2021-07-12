@@ -5,13 +5,11 @@ import svg from '../../../../sprite.svg';
 const ModalWrapper = ({
   onCloseModal,
   nodeRef,
-  handleInputs,
   valueName,
   taskScheduledHours,
-  onCreateProject,
-  setTaskName,
   handleSubmitTask,
   setTaskInput,
+  emptyInputs,
 }) => {
   return (
     <div className={s.wrapper} ref={nodeRef}>
@@ -33,7 +31,7 @@ const ModalWrapper = ({
           </div>
           <div className={s.inputWrapper}>
             <input
-              type="text"
+              type="number"
               id="description"
               placeholder=" "
               name="description"
@@ -44,6 +42,11 @@ const ModalWrapper = ({
           </div>
         </form>
       </div>
+      {emptyInputs && (
+        <span className={s.emptyInput}>
+          You have empty field. Please input something.
+        </span>
+      )}
       <div className={s.footer}>
         <button type="button" onClick={handleSubmitTask}>
           Ready
