@@ -2,25 +2,22 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { projectOperations } from '../../redux/projects';
-import { projectSelectors } from '../../redux/projects'
+import { projectSelectors } from '../../redux/projects';
 import sprite from '../../sprite.svg';
 import s from './SprintTaskList.module.scss';
 
-
-
 const SprintTaskList = () => {
   const [hourValue, setHourValue] = useState(0);
-  const [searchValue, setSearchValue] = useState("");
-  const [taskId, setTaskId] = useState("");
+  const [searchValue, setSearchValue] = useState('');
+  const [taskId, setTaskId] = useState('');
 
-  const tasks = useSelector(projectSelectors.getTasks);
+  const tasks = useSelector(projectSelectors.getTasks); // получаем масив задач через селектор
   const currentPage = useSelector(projectSelectors.getCurrentPage);
-  
+
   const dispatch = useDispatch();
 
   const { sprintId } = useParams();
-  
- 
+
   useEffect(
     () => dispatch(projectOperations.findSprintById(sprintId, currentPage)),
     [sprintId, dispatch, currentPage],
@@ -42,14 +39,13 @@ const SprintTaskList = () => {
     }
     dispatch(projectOperations.updateTaskHours(id, hourValue));
   };
-  
+
   const handleSearchTask = e => {
-    if (searchValue === "") {
-     dispatch(projectOperations.findSprintById(sprintId, currentPage));
+    if (searchValue === '') {
+      dispatch(projectOperations.findSprintById(sprintId, currentPage));
     }
     dispatch(projectOperations.searchTaskByName(searchValue));
   };
-
 
   return (
     <div className={s.task_wrapper}>
