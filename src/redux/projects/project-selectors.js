@@ -2,6 +2,7 @@ const getCurrentPage = state => state.projects.page;
 const getTasks = state => state.projects.task;
 
 const getSprintName = state => state.projects.currentSprint.sprint_name;
+export const getCurrentSprint = state => state.projects.currentSprint;
 
 const getSprints = state => state.projects.sprints;
 
