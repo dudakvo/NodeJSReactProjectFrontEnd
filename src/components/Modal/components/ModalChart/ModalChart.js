@@ -12,40 +12,77 @@ const ModalChart = ({ onCloseModal, nodeRef, sprintID, projectID }) => {
   
   useEffect(() => {
     dispatch(projectOperations.fetchTotalTasks(sprintID));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [sprintID, dispatch]);
   const task = useSelector(state => state.projects.task);
-  // console.log(task[0].scheduled_hours)
+
   
 useEffect(() => {
     dispatch(projectOperations.fetchSprints(projectID));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [projectID, dispatch]);
   const sprints = useSelector(state => state.projects.sprints);
-      console.log(sprints)
+   
   
   const allScheduledTime = task.reduce((acc, task) => acc + task.scheduled_hours, 0);
   console.log(allScheduledTime)
   const duration = sprints.map(sprint=>Math.round((Date.parse(sprint.date_end) - Date.parse(sprint.date_start)) /
   3600 /1000,))
-  const totalDay = sprints.map(sprint => Math.round((Date.parse(sprint.date_end) - Date.parse(sprint.date_start)) /
+  const totalDaly = sprints.map(sprint => Math.round((Date.parse(sprint.date_end) - Date.parse(sprint.date_start)) /
     3600 / 1000) / 24);
+
+  let startDate = sprints[0].date_start;
+  let endDate = sprints[0].date_end;
+
+
+
+    let dates = [];
+    const datesRange = (startDate_, endDate_) => {
+      let startDate = new Date(startDate_ + ' 00:00:00 UTC');
+      let endDate = new Date(endDate_ + ' 00:00:00 UTC');
+      const options = {
+        month: 'short',
+        day: 'numeric',
+      };
+      while (startDate <= endDate) {
+        const locateUs = startDate.toLocaleString('en-US', options);
+        dates.push(locateUs);
+        startDate = new Date(
+          Date.UTC(
+            startDate.getFullYear(),
+            startDate.getMonth(),
+            startDate.getDate() + 1,
+          ),
+        );
+      }
+    };
+    datesRange(startDate, endDate);
+  
+
+    const  redLineArray = new Array(duration)
+    .fill(allScheduledTime)
+    .map((el, i, arr) =>
+      i > 0 ? allScheduledTime - (allScheduledTime / arr.length) * i : el,
+    )
+    .concat([0]);
+
+  const blueLineArray = new Array(duration)
+    .fill(allScheduledTime)
+    .map((el, i, arr) => {
+      let temp = 0;
+      for (let j = i; j >= 0; j--) {
+        temp += Object.values(totalDaly[j])[0];
+      }
+      return arr[i] - temp;
+    });
 
     
   const data = {
-    labels: [
-      '22 July',
-      '23 July',
-      '24 July',
-      '25 July',
-      '26 July',
-      '27 July',
-      '28 July',
-    ],
+    labels: dates ,
     datasets: [
       {
         label: 'Current labor costs remaining',
-        data: [20, 17, 14, 12, 6, 2, 0],
+        data: redLineArray,
         backgroundColor: [
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 99, 132, 0.2)',
@@ -67,7 +104,7 @@ useEffect(() => {
       },
       {
         label: 'Planned labor costs remaining',
-        data: [20, 16.66, 13.33, 10, 6.66, 3.33, 0],
+        data: blueLineArray,
         backgroundColor: [
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 99, 132, 0.2)',
