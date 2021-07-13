@@ -56,13 +56,7 @@ const Project = ({ match }) => {
               </div>
               <div className={styles.time_block}>
                 <p>duration</p>
-                <p>
-                  {Math.round(
-                    (Date.parse(item.date_end) - Date.parse(item.date_start)) /
-                      3600 /
-                      1000,
-                  )}
-                </p>
+                <p>{item.duration}</p>
               </div>
               <button
                 type="button"

@@ -86,20 +86,24 @@ const addPeopleToProject = (projectId, name) => async dispatch => {
   }
 };
 
-const createSprint = (sprint_name, date_end, project_id) => async dispatch => {
-  const sprint = {
-    sprint_name,
-    date_end,
-    project_id,
+const createSprint =
+  (sprint_name, date_start, date_end, duration, project_id) =>
+  async dispatch => {
+    const sprint = {
+      sprint_name,
+      date_start,
+      date_end,
+      project_id,
+      duration,
+    };
+    dispatch(projectActions.createSprintRequest());
+    try {
+      const data = await projectApi.createSprint(sprint);
+      dispatch(projectActions.createSprintSuccess(data.data));
+    } catch (error) {
+      dispatch(projectActions.createSprintError(error.message));
+    }
   };
-  dispatch(projectActions.createSprintRequest());
-  try {
-    const data = await projectApi.createSprint(sprint);
-    dispatch(projectActions.createSprintSuccess(data.data));
-  } catch (error) {
-    dispatch(projectActions.createSprintError(error.message));
-  }
-};
 
 const deleteSprint = sprintId => async dispatch => {
   dispatch(projectActions.deleteSprintRequest());
