@@ -26,19 +26,21 @@ const SprintSidebar = ({ history, match }) => {
     <div className={s.sidebar_wrapper}>
       <ButtonBackspace text="Show sprints" onClick={HandleBackToSprints} />
       <ul className={s.sidebar_list}>
-        {sprints.map(item => (
-          <li className={s.item} key={item._id}>
-            <NavLink
-              exact
-              to={`${routes.projects}/${projectId}/${item._id}`}
-              className={s.link}
-              activeClassName={s.isActive}
-            >
-              <div className={s.square}></div>
-              <p className={s.title}>{item.sprint_name}</p>
-            </NavLink>
-          </li>
-        ))}
+        {sprints.map(item => {
+          return (
+            <li className={s.item} key={item._id}>
+              <NavLink
+                exact
+                to={`${routes.projects}/${projectId}/${item._id}`}
+                className={s.link}
+                activeClassName={s.isActive}
+              >
+                <div className={s.square}></div>
+                <p className={s.title}>{item.sprint_name}</p>
+              </NavLink>
+            </li>
+          );
+        })}
       </ul>
       <div>
         <button
