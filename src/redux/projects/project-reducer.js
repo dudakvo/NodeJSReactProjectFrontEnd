@@ -43,7 +43,6 @@ const currentSprint = createReducer(
   {},
   {
     [projectActions.fetchCurrentSprintSuccess]: (state, { payload }) => {
-      console.log(`current sprint= ${payload}`);
       return payload;
     },
   },
@@ -53,7 +52,7 @@ const sprint = createReducer(null, {
   [projectActions.fetchSprintByIdSuccess]: (state, { payload }) => payload,
 });
 
-// создаём масив задачь спринта
+// создаём масив задач спринта
 const task = createReducer([], {
   [projectActions.fetchSprintByIdSuccess]: (state, { payload }) => {
     console.log(`payload=${payload}`);
