@@ -72,6 +72,8 @@ export default function RegisterForm() {
           onChange={handleChange}
           id="email"
           placeholder=" "
+          required
+          minLength="2"
         />
         <label className={label} htmlFor="email">
           E-mail
@@ -87,6 +89,8 @@ export default function RegisterForm() {
           onChange={handleChange}
           id="password"
           placeholder=" "
+          required
+          minLength="2"
         />
         <label className={label} htmlFor="password">
           Password
@@ -102,6 +106,8 @@ export default function RegisterForm() {
           onChange={handleChange}
           id="rptPassword"
           placeholder=" "
+          required
+          minLength="2"
         />
         <label className={label} htmlFor="rptPassword">
           Repeat password
