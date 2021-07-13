@@ -43,54 +43,60 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={form} autoComplete="off">
-      <h1 className={title}>Enter</h1>
+    <>
+      <form onSubmit={handleSubmit} className={form} autoComplete="off">
+        <h1 className={title}>Enter</h1>
 
-      <div className={field}>
-        <input
-          className={input}
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleInput}
-          id="email"
-          placeholder=" "
-        />
-        <label className={label} htmlFor="email">
-          E-mail
-        </label>
-      </div>
+        <div className={field}>
+          <input
+            className={input}
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleInput}
+            id="email"
+            placeholder=" "
+            required
+            minLength="2"
+          />
+          <label className={label} htmlFor="email">
+            E-mail
+          </label>
+        </div>
 
-      <div className={field}>
-        <input
-          className={input}
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleInput}
-          id="password"
-          placeholder=" "
-        />
-        <label className={label} htmlFor="password">
-          Password
-        </label>
-      </div>
+        <div className={field}>
+          <input
+            className={input}
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleInput}
+            id="password"
+            placeholder=" "
+            required
+            minLength="2"
+          />
+          <label className={label} htmlFor="password">
+            Password
+          </label>
+        </div>
 
-      {wrongPassword ? (
-        <p className={wrongPwd}>Wrong password</p>
-      ) : (
-        <p className={wrongPwd}> </p>
-      )}
+        {wrongPassword ? (
+          <p className={wrongPwd}>Wrong password</p>
+        ) : (
+          <p className={wrongPwd}> </p>
+        )}
 
-      <button type="submit" className={button}>
-        Enter
-      </button>
-      <p>
-        No account?
-        <NavLink className={link} to={routes.register} exact>
-          Register
-        </NavLink>
-      </p>
-    </form>
+        <button type="submit" className={button}>
+          Enter
+        </button>
+        <p>
+          No account?
+          <NavLink className={link} to={routes.register} exact>
+            Register
+          </NavLink>
+        </p>
+      </form>
+    </>
   );
 }

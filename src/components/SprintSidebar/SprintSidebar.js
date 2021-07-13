@@ -4,19 +4,12 @@ import s from './SprintSidebar.module.scss';
 import sprite from '../../sprite.svg';
 import routes from '../../routes';
 import { modalActions } from '../../redux/modal';
-import { useDispatch } from 'react-redux';
-
-const sprints = [
-  { id: 1, name: 'sprint 1' },
-  { id: 2, name: 'sprint 2' },
-  {
-    id: 3,
-    name: 'sprint 3',
-  },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { projectSelectors } from '../../redux/projects';
 
 const SprintSidebar = ({ history, match }) => {
   const dispatch = useDispatch();
+  const sprints = useSelector(projectSelectors.getSprints);
 
   const HandleBackToSprints = () => {
     history.push(`${routes.projects}/${projectId}`);
@@ -33,19 +26,21 @@ const SprintSidebar = ({ history, match }) => {
     <div className={s.sidebar_wrapper}>
       <ButtonBackspace text="Show sprints" onClick={HandleBackToSprints} />
       <ul className={s.sidebar_list}>
-        {sprints.map(item => (
-          <li className={s.item} key={item.id}>
-            <NavLink
-              exact
-              to={`${routes.projects}/${projectId}/${item.id}`}
-              className={s.link}
-              activeClassName={s.isActive}
-            >
-              <div className={s.square}></div>
-              <p className={s.title}>{item.name}</p>
-            </NavLink>
-          </li>
-        ))}
+        {sprints.map(item => {
+          return (
+            <li className={s.item} key={item._id}>
+              <NavLink
+                exact
+                to={`${routes.projects}/${projectId}/${item._id}`}
+                className={s.link}
+                activeClassName={s.isActive}
+              >
+                <div className={s.square}></div>
+                <p className={s.title}>{item.sprint_name}</p>
+              </NavLink>
+            </li>
+          );
+        })}
       </ul>
       <div>
         <button

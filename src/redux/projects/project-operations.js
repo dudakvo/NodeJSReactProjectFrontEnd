@@ -87,7 +87,6 @@ const addPeopleToProject = (projectId, name) => async dispatch => {
 };
 
 const createSprint = (sprint_name, date_end, project_id) => async dispatch => {
-  // console.log(sprint_name, date_end, project_id);
   const sprint = {
     sprint_name,
     date_end,
@@ -116,7 +115,10 @@ const findSprintById = (sprintId, page) => async dispatch => {
   dispatch(projectActions.fetchSprintByIdRequest());
   try {
     const data = await projectApi.findSprintById(sprintId, page);
+    // какого хера создаётсья
     dispatch(projectActions.fetchSprintByIdSuccess(data.data.task.task));
+    // сохраняем текуший спринт
+    dispatch(projectActions.fetchCurrentSprintSuccess(data.data.sprint[0]));
   } catch (error) {
     dispatch(projectActions.fetchSprintByIdError(error.message));
   }
@@ -131,6 +133,7 @@ const updateSprintName = (sprintId, name) => async dispatch => {
   try {
     const data = await projectApi.updateSprintName(sprintId, newName);
     dispatch(projectActions.updateSprintNameSuccess(data.data));
+    dispatch(projectActions.updateSprintsNameSuccess(data.data));
   } catch (error) {
     dispatch(projectActions.updateSprintNameError(error.message));
   }
@@ -208,6 +211,7 @@ const fetchSprint = sprintId => async dispatch => {
   dispatch(projectActions.fetchSprintRequest());
   try {
     const data = await projectApi.fetchSprint(sprintId);
+    // происходит замена масива спринтов на на объект одного спринта и в этом причина флеша !!!!!
     dispatch(projectActions.fetchSprintSuccess(data.data.sprint));
   } catch (error) {
     dispatch(projectActions.fetchSprintError(error.message));
