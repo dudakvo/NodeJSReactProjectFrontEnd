@@ -62,14 +62,14 @@ const fetchSprintByProjectIdSuccess = createAction(
 const fetchSprintByProjectIdError = createAction(
   'projects/fetchSprintByProjectIdError',
 );
-
-const updateSprintNameRequest = createAction(
+// вношу изменения, переношу в Current sprint
+const updateSprintsNameRequest = createAction(
   'projects/updateSprintNameRequest',
 );
-const updateSprintNameSuccess = createAction(
+const updateSprintsNameSuccess = createAction(
   'projects/updateSprintNameSuccess',
 );
-const updateSprintNameError = createAction('projects/updateSprintNameError');
+const updateSprintsNameError = createAction('projects/updateSprintNameError');
 
 // Tasks
 
@@ -126,6 +126,14 @@ const fetchCurrentSprintSuccess = createAction(
   'project/fetchCurrentSprintSuccess',
 );
 const fetchCurrentSprintError = createAction('project/fetchCurrentSprintError');
+
+const updateSprintNameRequest = createAction(
+  'projects/updateSprintNameRequest',
+);
+const updateSprintNameSuccess = createAction(
+  'projects/updateSprintNameSuccess',
+);
+const updateSprintNameError = createAction('projects/updateSprintNameError');
 
 const projectActions = {
   fetchSprintByProjectIdSuccess,
@@ -188,6 +196,9 @@ const projectActions = {
   fetchCurrentSprintRequest,
   fetchCurrentSprintSuccess,
   fetchCurrentSprintError,
+  updateSprintsNameRequest,
+  updateSprintsNameSuccess,
+  updateSprintsNameError,
 };
 
 export default projectActions;

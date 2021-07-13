@@ -133,6 +133,7 @@ const updateSprintName = (sprintId, name) => async dispatch => {
   try {
     const data = await projectApi.updateSprintName(sprintId, newName);
     dispatch(projectActions.updateSprintNameSuccess(data.data));
+    dispatch(projectActions.updateSprintsNameSuccess(data.data));
   } catch (error) {
     dispatch(projectActions.updateSprintNameError(error.message));
   }
