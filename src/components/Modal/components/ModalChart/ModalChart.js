@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Chart from '../../../Chart';
 import moment from 'moment';
 import s from './ModalChart.module.css';
 import sprite from '../../../../sprite.svg';
-import projectOperations from '../../../../redux/projects/project-operations';
+// import projectOperations from '../../../../redux/projects/project-operations';
 
 import { getCurrentSprint } from '../../../../redux/projects/project-selectors';
 
@@ -28,6 +28,8 @@ const ModalChart = ({ onCloseModal, nodeRef, sprintID, projectID }) => {
     (acc, task) => acc + task.scheduled_hours,
     0,
   );
+
+  // Масив дат для оси X
   const dates = dateInterval(sprint.date_start, sprint.date_end);
 
   const duration = sprints.map(sprint =>
