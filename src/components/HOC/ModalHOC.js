@@ -39,6 +39,7 @@ const ModalHOC = ({
 
   const idProject = useSelector(modalSelectors.getIsOpenModalSprint);
   const idSprint = useSelector(modalSelectors.getIsOpenModalTask);
+  const idProjectPeople = useSelector(modalSelectors.getIsOpenModalAddPeople);
   const peopleList = useSelector(projectsData);
 
   const idProjectAddPeople = useSelector(
@@ -48,10 +49,13 @@ const ModalHOC = ({
   const dispatch = useDispatch();
   const emailArr = [];
 
-  peopleList.forEach(({ participants }) => {
-    participants.forEach(({ name }) => {
-      emailArr.push(name);
-    });
+  peopleList.forEach(el => {
+    console.log(el._id, idProjectPeople);
+    if (el._id === idProjectPeople) {
+      el.participants.forEach(({ name }) => {
+        emailArr.push(name);
+      });
+    }
   });
 
   const message = 'You have not added any users yet';
