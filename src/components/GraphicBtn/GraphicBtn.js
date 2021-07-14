@@ -7,7 +7,6 @@ const GraphicBtn = () => {
   const dispatch = useDispatch();
 
   const handleShowChart = () => {
-    console.log('show chart');
     dispatch(modalActions.isOpenModal());
     dispatch(modalActions.openModalChart());
   };

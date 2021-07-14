@@ -1,11 +1,9 @@
-// import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Chart from '../../../Chart';
 import moment from 'moment';
 import s from './ModalChart.module.css';
 import sprite from '../../../../sprite.svg';
-// import projectOperations from '../../../../redux/projects/project-operations';
 
 import { getCurrentSprint } from '../../../../redux/projects/project-selectors';
 
@@ -19,87 +17,45 @@ function dateInterval(start, end) {
   return interval;
 }
 
-const ModalChart = ({ onCloseModal, nodeRef, sprintID, projectID }) => {
+const ModalChart = ({ onCloseModal, nodeRef }) => {
   const sprint = useSelector(getCurrentSprint);
   const task = useSelector(state => state.projects.task);
-  const sprints = useSelector(state => state.projects.sprints);
+
+  // Масив дат для оси X
+  const dates = dateInterval(sprint.date_start, sprint.date_end);
+
+  // Длительность в днях
+  const totalSprintDays = dates.length;
 
   const allScheduledTime = task.reduce(
     (acc, task) => acc + task.scheduled_hours,
     0,
   );
 
-  // Масив дат для оси X
-  const dates = dateInterval(sprint.date_start, sprint.date_end);
-
-  const duration = sprints.map(sprint =>
-    Math.round(
-      (Date.parse(sprint.date_end) - Date.parse(sprint.date_start)) /
-        3600 /
-        1000,
-    ),
+  const allSpentTime = task.reduce(
+    (acc, task) => acc + task.hours_spent_per_day * totalSprintDays,
+    0,
   );
 
-  const totalDaly = sprints.map(
-    sprint =>
-      Math.round(
-        (Date.parse(sprint.date_end) - Date.parse(sprint.date_start)) /
-          3600 /
-          1000,
-      ) / 24,
-  );
+  const graphLine = (totalHoure, totalSprintDays) => {
+    const ar = [totalHoure];
+    const gradient = totalHoure / totalSprintDays;
+    while (totalHoure > 0) {
+      totalHoure -= gradient;
+      ar.push(totalHoure);
+    }
+    return ar;
+  };
 
-  // const dates = dateInterval(startDate, endDate);
-
-  // const datesRange = (startDate_, endDate_) => {
-  //   let startDate = new Date(startDate_ + ' 00:00:00 UTC');
-  //   let endDate = new Date(endDate_ + ' 00:00:00 UTC');
-  //   const options = {
-  //     month: 'short',
-  //     day: 'numeric',
-  //   };
-
-  //   while (startDate <= endDate) {
-  //     console.log(`cille`);
-  //     const locateUs = startDate.toLocaleString('en-US', options);
-  //     dates.push(locateUs);
-  //     startDate = new Date(
-  //       Date.UTC(
-  //         startDate.getFullYear(),
-  //         startDate.getMonth(),
-  //         startDate.getDate() + 1,
-  //       ),
-  //     );
-  //   }
-  // };
-  // datesRange(startDate, endDate);
-
-  const redLineArray = new Array(duration)
-    .fill(allScheduledTime)
-    .map((el, i, arr) =>
-      i > 0 ? allScheduledTime - (allScheduledTime / arr.length) * i : el,
-    )
-    .concat([0]);
-
-  const blueLineArray = new Array(duration)
-    .fill(allScheduledTime)
-    .map((el, i, arr) => {
-      let temp = 0;
-      for (let j = i; j >= 0; j--) {
-        temp += Object.values(totalDaly[j])[0];
-      }
-      return arr[i] - temp;
-    });
-  console.table(`redline`, redLineArray);
-  console.table('blue line', blueLineArray);
-  console.log(`dates=${dates}`);
+  const redLineArray = graphLine(allScheduledTime, totalSprintDays);
+  const blueLineArray = graphLine(allSpentTime, totalSprintDays);
 
   const data = {
     labels: dates,
     datasets: [
       {
         label: 'Current labor costs remaining',
-        data: redLineArray,
+        data: blueLineArray,
         backgroundColor: [
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 99, 132, 0.2)',
@@ -121,7 +77,7 @@ const ModalChart = ({ onCloseModal, nodeRef, sprintID, projectID }) => {
       },
       {
         label: 'Planned labor costs remaining',
-        data: blueLineArray,
+        data: redLineArray,
         backgroundColor: [
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 99, 132, 0.2)',
