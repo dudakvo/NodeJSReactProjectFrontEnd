@@ -36,6 +36,7 @@ const ModalHOC = ({
 
   const [sprintName, setSprintName] = useState('');
   const [startDate, setStartDate] = useState('');
+  const [duration, setDuration] = useState(0);
 
   const idProject = useSelector(modalSelectors.getIsOpenModalSprint);
   const idSprint = useSelector(modalSelectors.getIsOpenModalTask);
@@ -112,7 +113,22 @@ const ModalHOC = ({
       setEmptyInputs(true);
       return;
     }
-    dispatch(projectOperations.createSprint(sprintName, startDate, idProject));
+
+    const dateEnd = new Date(
+      Number(Date.parse(startDate) + Number(duration) * 24 * 3600 * 1000),
+    ).toString();
+    console.log(dateEnd);
+
+    dispatch(
+      projectOperations.createSprint(
+        sprintName,
+        startDate,
+        dateEnd,
+        duration,
+        idProject,
+      ),
+    );
+
     onCloseModal();
   };
 
@@ -182,6 +198,8 @@ const ModalHOC = ({
                 handleCheckBox={setActiveCheckbox}
                 startDate={startDate}
                 setStartDate={setStartDate}
+                duration={duration}
+                setDuration={setDuration}
                 nodeRef={nodeRref}
                 handleCreateSprint={handleCreateSprint}
                 handleGetName={setSprintName}

@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { projectOperations } from '../../redux/projects';
 import { projectSelectors } from '../../redux/projects';
+import moment from 'moment';
+
 import sprite from '../../sprite.svg';
 import s from './SprintTaskList.module.scss';
 
@@ -13,6 +15,7 @@ const SprintTaskList = () => {
 
   const tasks = useSelector(projectSelectors.getTasks); // получаем масив задач через селектор
   const currentPage = useSelector(projectSelectors.getCurrentPage);
+  const sprint = useSelector(projectSelectors.getCurrentSprint);
 
   const dispatch = useDispatch();
 
@@ -92,7 +95,12 @@ const SprintTaskList = () => {
             </div>
             <div className={s.task_description}>
               <p className={s.task_table}>Hours spent</p>
-              <p className={s.task_hours}>0</p>
+              <p className={s.task_hours}>
+                {moment(sprint.date_end).diff(
+                  moment(sprint.date_start),
+                  'days',
+                ) * task.hours_spent_per_day}
+              </p>
             </div>
             <button
               type="button"

@@ -9,6 +9,8 @@ const ModalSprint = ({
   handleRef,
   chechBoxStatus,
   handleCheckBox,
+  duration,
+  setDuration,
   startDate,
   setStartDate,
   nodeRef,
@@ -76,11 +78,18 @@ const ModalSprint = ({
             <DatePicker
               selected={startDate}
               onChange={date => setStartDate(date)}
-              placeholderText="  date"
+              placeholderText="Start date"
             />
           </div>
           <div className={s.inputDurationWrapper}>
-            <input className={s.inputDuration} type="text" placeholder=" " />
+            <input
+              className={s.inputDuration}
+              type="number"
+              value={duration}
+              onChange={e => setDuration(e.target.value)}
+              placeholder=" "
+            />
+
             <label>Duration</label>
           </div>
         </form>

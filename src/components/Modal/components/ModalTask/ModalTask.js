@@ -38,7 +38,7 @@ const ModalWrapper = ({
               onChange={e => setTaskInput(e)}
               defaultValue={taskScheduledHours}
             />
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description">Sheduled hours</label>
           </div>
         </form>
       </div>

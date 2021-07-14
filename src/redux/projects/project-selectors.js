@@ -19,6 +19,7 @@ const projectSelectors = {
   getSprintName,
   getTotalPages,
   getSprints,
+  getCurrentSprint,
 };
 
 export default projectSelectors;

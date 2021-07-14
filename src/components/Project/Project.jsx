@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import moment from 'moment';
+
 import ButtonAdd from '../ButtonAdd';
 
 import styles from './Project.module.scss';
@@ -48,21 +50,15 @@ const Project = ({ match }) => {
               <h3 className={styles.title}>{item.sprint_name}</h3>
               <div className={styles.time_block}>
                 <p>Start date</p>
-                <p>{new Date(item.date_start).toUTCString().slice(5, 11)}</p>
+                <p>{moment(new Date(item.date_start)).format(" D MMMM  ")}</p>
               </div>
               <div className={styles.time_block}>
                 <p>End date</p>
-                <p>{new Date(item.date_end).toUTCString().slice(5, 11)}</p>
+                <p>{moment(new Date(item.date_end)).format("D MMMM")}</p>
               </div>
               <div className={styles.time_block}>
                 <p>duration</p>
-                <p>
-                  {Math.round(
-                    (Date.parse(item.date_end) - Date.parse(item.date_start)) /
-                      3600 /
-                      1000,
-                  )}
-                </p>
+                <p>{moment(item.date_end).diff(moment(item.date_start), 'days')}</p>
               </div>
               <button
                 type="button"
