@@ -11,11 +11,13 @@ const projects = createReducer([], {
   ],
   [projectActions.deleteProjectSuccess]: (state, { payload }) =>
     state.filter(({ _id }) => _id !== payload),
-
-  [projectActions.addPeopleToProjectSuccess]: (state, { payload }) => [
-    ...state,
-    payload,
-  ],
+  [projectActions.addPeopleToProjectSuccess]: (state, { payload }) =>
+    state.map(project => {
+      if (project._id === payload._id) {
+        return payload;
+      }
+      return project;
+    }),
 });
 
 const project = createReducer(null, {
