@@ -6,6 +6,7 @@ const getTasks = state => state.projects.task;
 
 // новая версия селектора getSprintName
 const getSprintName = state => state.projects.currentSprint.sprint_name;
+const getCurrentSprint = state => state.projects.currentSprint;
 
 const getSprints = state => state.projects.sprints;
 
@@ -22,6 +23,7 @@ const projectSelectors = {
   getSprintName,
   getTotalPages,
   getSprints,
+  getCurrentSprint,
 };
 
 export default projectSelectors;

@@ -94,7 +94,6 @@ const createSprint =
       date_start,
       date_end,
       project_id,
-      duration,
     };
     dispatch(projectActions.createSprintRequest());
     try {
