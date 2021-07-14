@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { authOperations } from '../../redux/auth';
+import  authSelectors  from '../../redux/auth/auth-selectors';
 import { NavLink } from 'react-router-dom';
 import routes from '../../routes';
 import {
@@ -16,9 +17,8 @@ import {
 
 export default function LoginForm() {
   const dispatch = useDispatch();
+  const loginError = useSelector(authSelectors.loginError)
   const onLogin = user => dispatch(authOperations.logIn(user));
-
-  let wrongPassword = false;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -81,8 +81,8 @@ export default function LoginForm() {
           </label>
         </div>
 
-        {wrongPassword ? (
-          <p className={wrongPwd}>Wrong password</p>
+        {loginError ? (
+          <p className={wrongPwd}>Authorisation Error</p>
         ) : (
           <p className={wrongPwd}> </p>
         )}
