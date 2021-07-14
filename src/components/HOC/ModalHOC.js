@@ -204,7 +204,7 @@ const ModalHOC = ({
               />
             )}
             {toggleChartModal && (
-              <ModalChart onCloseModal={onCloseModal} nodeRef={nodeRref} />
+              <ModalChart onCloseModal={onCloseModal} nodeRef={nodeRref} sprintID={idSprint} projectID={idProject} />
             )}
           </div>
         </>
