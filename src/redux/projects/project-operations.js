@@ -80,7 +80,8 @@ const addPeopleToProject = (projectId, name) => async dispatch => {
   dispatch(projectActions.addPeopleToProjectRequest());
   try {
     const data = await projectApi.addPeopleToProject(projectId, collaborator);
-    dispatch(projectActions.addPeopleToProjectSuccess(data));
+    console.log(data.data);
+    dispatch(projectActions.addPeopleToProjectSuccess(data.data.project));
   } catch (error) {
     dispatch(projectActions.addPeopleToProjectError(error.message));
   }
@@ -136,6 +137,7 @@ const updateSprintName = (sprintId, name) => async dispatch => {
   try {
     const data = await projectApi.updateSprintName(sprintId, newName);
     dispatch(projectActions.updateSprintNameSuccess(data.data));
+    dispatch(projectActions.updateSprintsNameSuccess(data.data));
   } catch (error) {
     dispatch(projectActions.updateSprintNameError(error.message));
   }

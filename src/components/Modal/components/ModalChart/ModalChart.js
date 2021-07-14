@@ -1,22 +1,61 @@
+import { useSelector } from 'react-redux';
+
 import Chart from '../../../Chart';
+import moment from 'moment';
 import s from './ModalChart.module.css';
 import sprite from '../../../../sprite.svg';
 
+import { getCurrentSprint } from '../../../../redux/projects/project-selectors';
+
+function dateInterval(start, end) {
+  start = moment(start);
+  end = moment(end);
+  const interval = [];
+  for (var current = start; current <= end; current.add(1, 'd')) {
+    interval.push(current.format('YYYY-MM-DD'));
+  }
+  return interval;
+}
+
 const ModalChart = ({ onCloseModal, nodeRef }) => {
+  const sprint = useSelector(getCurrentSprint);
+  const task = useSelector(state => state.projects.task);
+
+  // Масив дат для оси X
+  const dates = dateInterval(sprint.date_start, sprint.date_end);
+
+  // Длительность в днях
+  const totalSprintDays = dates.length;
+
+  const allScheduledTime = task.reduce(
+    (acc, task) => acc + task.scheduled_hours,
+    0,
+  );
+
+  const allSpentTime = task.reduce(
+    (acc, task) => acc + task.hours_spent_per_day * totalSprintDays,
+    0,
+  );
+
+  const graphLine = (totalHoure, totalSprintDays) => {
+    const ar = [totalHoure];
+    const gradient = totalHoure / totalSprintDays;
+    while (totalHoure > 0) {
+      totalHoure -= gradient;
+      ar.push(totalHoure);
+    }
+    return ar;
+  };
+
+  const redLineArray = graphLine(allScheduledTime, totalSprintDays);
+  const blueLineArray = graphLine(allSpentTime, totalSprintDays);
+
   const data = {
-    labels: [
-      '22 July',
-      '23 July',
-      '24 July',
-      '25 July',
-      '26 July',
-      '27 July',
-      '28 July',
-    ],
+    labels: dates,
     datasets: [
       {
         label: 'Current labor costs remaining',
-        data: [20, 17, 14, 12, 6, 2, 0],
+        data: blueLineArray,
         backgroundColor: [
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 99, 132, 0.2)',
@@ -38,7 +77,7 @@ const ModalChart = ({ onCloseModal, nodeRef }) => {
       },
       {
         label: 'Planned labor costs remaining',
-        data: [20, 16.66, 13.33, 10, 6.66, 3.33, 0],
+        data: redLineArray,
         backgroundColor: [
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 99, 132, 0.2)',

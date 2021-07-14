@@ -10,6 +10,7 @@ import s from '../Modal/components/modal.module.scss';
 import { projectOperations } from '../../redux/projects';
 import { useDispatch, useSelector } from 'react-redux';
 import modalSelectors from '../../redux/modal/modal-selectors';
+import { projectsData } from '../../redux/projects/project-selectors';
 
 const ModalHOC = ({
   people,
@@ -39,12 +40,25 @@ const ModalHOC = ({
 
   const idProject = useSelector(modalSelectors.getIsOpenModalSprint);
   const idSprint = useSelector(modalSelectors.getIsOpenModalTask);
+  const idProjectPeople = useSelector(modalSelectors.getIsOpenModalAddPeople);
+  const peopleList = useSelector(projectsData);
+
   const idProjectAddPeople = useSelector(
     modalSelectors.getIsOpenModalAddPeople,
   );
 
   const dispatch = useDispatch();
   const emailArr = [];
+
+  peopleList.forEach(el => {
+    console.log(el._id, idProjectPeople);
+    if (el._id === idProjectPeople) {
+      el.participants.forEach(({ name }) => {
+        emailArr.push(name);
+      });
+    }
+  });
+
   const message = 'You have not added any users yet';
   const ref = useRef(null);
 
@@ -208,7 +222,7 @@ const ModalHOC = ({
               />
             )}
             {toggleChartModal && (
-              <ModalChart onCloseModal={onCloseModal} nodeRef={nodeRref} />
+              <ModalChart onCloseModal={onCloseModal} nodeRef={nodeRref} sprintID={idSprint} projectID={idProject} />
             )}
           </div>
         </>
